@@ -2,5 +2,3 @@
 Agent-based Model
 
 ABM
-
-
