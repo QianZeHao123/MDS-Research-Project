@@ -13,6 +13,7 @@ class BassModel(Model):
 
         # invoke the parent class's __init__ method
         super().__init__()
+        self.running = True
 
         """
         Add tracking of reaching a specific acceptance rate
