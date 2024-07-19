@@ -41,3 +41,10 @@ for step in range(steps):
     model.step()
 
 
+# --------------------------------------------
+# Output model simulation result
+agent_record = model.datacollector.get_agent_vars_dataframe()
+agent_record.to_csv('./report/agent_record.csv')
+
+model_result = model.datacollector.get_model_vars_dataframe()
+model_result.to_csv('./report/model_result.csv')
