@@ -29,7 +29,7 @@ params = {
     "q": 0.38,
     "proportion_innovators": 0.02,
     "proportion_influencers": 0.1,
-    "network_type": "random",
+    "network_type": "small_world"
 }
 
 results = mesa.batch_run(
