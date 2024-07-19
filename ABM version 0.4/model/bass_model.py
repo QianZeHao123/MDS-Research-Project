@@ -10,8 +10,21 @@ from .bass_agent import ConsumerAgent
 
 class BassModel(Model):
     def __init__(self, N, p, q, proportion_innovators, proportion_influencers, network_type="random"):
+
         # invoke the parent class's __init__ method
         super().__init__()
+
+        """
+        Add tracking of reaching a specific acceptance rate
+        (i.e. 25%, 50%, 75%) at a specific step
+        (i.e. 25%, 50%, 75%) in the data collector
+        """
+
+        self.steps_to_25_percent = None
+        self.steps_to_50_percent = None
+        self.steps_to_75_percent = None
+        self.steps_to_100_percent = None
+
         self.num_agents = N
         self.p = p
         self.q = q
@@ -64,11 +77,17 @@ class BassModel(Model):
                              "Influencer": "influencer",
                              "Agent_Type": "agent_type",
                              "Neighbors": lambda a: [neighbor.unique_id for neighbor in a.neighbors]},
-            model_reporters={"Adopted_Count": self.compute_adopted,
-                             "Influencer_Count": self.compute_influencers,
-                             "Non_Influencer_Count": self.compute_non_influencers,
-                             "Innovator_Count": self.compute_innovators,
-                             "Imitator_Count": self.compute_imitators}
+            model_reporters={
+                "Adopted_Count": self.compute_adopted,
+                "Influencer_Count": self.compute_influencers,
+                "Non_Influencer_Count": self.compute_non_influencers,
+                "Innovator_Count": self.compute_innovators,
+                "Imitator_Count": self.compute_imitators,
+                "Steps_to_25_percent": lambda m: m.steps_to_25_percent,
+                "Steps_to_50_percent": lambda m: m.steps_to_50_percent,
+                "Steps_to_75_percent": lambda m: m.steps_to_75_percent,
+                # "Steps_to_100_percent": lambda m: m.steps_to_100_percent
+            }
         )
 
         # Save fixed positions for nodes
@@ -78,31 +97,54 @@ class BassModel(Model):
         self.datacollector.collect(self)
         self.schedule.step()
 
+        adoption_rate = self.compute_adoption_rate()
+
+        if self.steps_to_25_percent is None and adoption_rate >= 0.25:
+            self.steps_to_25_percent = self.schedule.steps
+
+        if self.steps_to_50_percent is None and adoption_rate >= 0.50:
+            self.steps_to_50_percent = self.schedule.steps
+
+        if self.steps_to_75_percent is None and adoption_rate >= 0.75:
+            self.steps_to_75_percent = self.schedule.steps
+
+        # if self.steps_to_100_percent is None and adoption_rate == 1.0:
+        #     self.steps_to_100_percent = self.schedule.steps
+
     def compute_adopted(self):
-        adopted_count = sum([1 for agent in self.custom_agents if agent.adopted])
+        adopted_count = sum(
+            [1 for agent in self.custom_agents if agent.adopted])
         return adopted_count
 
     def compute_influencers(self):
-        influencer_count = sum([1 for agent in self.custom_agents if (agent.influencer and agent.adopted)])
+        influencer_count = sum(
+            [1 for agent in self.custom_agents if (agent.influencer and agent.adopted)])
         return influencer_count
 
     def compute_non_influencers(self):
-        non_influencer_count = sum([1 for agent in self.custom_agents if (not agent.influencer and agent.adopted)])
+        non_influencer_count = sum(
+            [1 for agent in self.custom_agents if (not agent.influencer and agent.adopted)])
         return non_influencer_count
 
     def compute_innovators(self):
-        innovator_count = sum([1 for agent in self.custom_agents if (agent.agent_type == 'Innovator' and agent.adopted)])
+        innovator_count = sum([1 for agent in self.custom_agents if (
+            agent.agent_type == 'Innovator' and agent.adopted)])
         return innovator_count
 
     def compute_imitators(self):
-        imitator_count = sum([1 for agent in self.custom_agents if (agent.agent_type == 'Imitator' and agent.adopted)])
+        imitator_count = sum([1 for agent in self.custom_agents if (
+            agent.agent_type == 'Imitator' and agent.adopted)])
         return imitator_count
+
+    def compute_adoption_rate(self):
+        return sum([1 for agent in self.custom_agents if agent.adopted]) / self.num_agents
 
     # save the network plot
     def save_network(self, filename):
         adopted = [agent.adopted for agent in self.custom_agents]
         colors = ["red" if status else "blue" for status in adopted]
-        influencer_sizes = [40 if agent.influencer else 5 for agent in self.custom_agents]
+        influencer_sizes = [
+            40 if agent.influencer else 5 for agent in self.custom_agents]
 
         nx.draw(self.G, self.pos, node_color=colors, with_labels=False, node_size=influencer_sizes,
                 edge_color='lightgray', width=0.2)  # set edge color to light gray
