@@ -1,3 +1,5 @@
+import pandas as pd
+import mesa
 from model import BassModel
 import os
 import shutil
@@ -21,23 +23,24 @@ os.makedirs(pic_dir)
 
 # --------------------------------------------
 # Parameters Setting
-N = 1000  # total number of agents
-p = 0.03  # probability of connection
-q = 0.38  # probability of innovation
-proportion_innovators = 0.02  # proportion of innovators
-proportion_influencers = 0.1  # proportion of influencers
-steps = 100  # number of steps
+params = {
+    "N": 1000,
+    "p": 0.03,
+    "q": 0.38,
+    "proportion_innovators": 0.02,
+    "proportion_influencers": 0.1,
+    "network_type": "random",
+}
 
+results = mesa.batch_run(
+    BassModel,
+    parameters=params,
+    iterations=1,
+    max_steps=99,
+    number_processes=1,
+    data_collection_period=1,
+    display_progress=True,
+)
 
-# create and run the model
-model = BassModel(N, p, q, proportion_innovators,
-                  proportion_influencers, network_type="small_world")
-
-
-# create and run the model
-model = BassModel(N, p, q, proportion_innovators,
-                  proportion_influencers, network_type="small_world")
-for step in range(steps):
-    model.step()
-
-
+results_df = pd.DataFrame(results)
+results_df.to_csv('./report/results.csv', index=False)
