@@ -13,6 +13,7 @@ class BassModel(Model):
 
         # invoke the parent class's __init__ method
         super().__init__()
+        # keep the model running
         self.running = True
 
         """
@@ -25,10 +26,11 @@ class BassModel(Model):
         self.steps_to_50_percent = None
         self.steps_to_75_percent = None
         self.steps_to_100_percent = None
-
+        # agent parameters
         self.num_agents = N
         self.p = p
         self.q = q
+        # create a scheduler for the agents to act in random order
         self.schedule = RandomActivation(self)
 
         # create a network
@@ -65,12 +67,18 @@ class BassModel(Model):
                 for target in additional_edges:
                     if not self.G.has_edge(agent.pos, target):
                         self.G.add_edge(agent.pos, target)
+
+        # Save fixed positions for nodes
+        self.pos = nx.spring_layout(self.G)
         # -----------------------------------------------
         # Print agent details after adding additional edges for influencers
         # uncomment the following to show the debug infomation
-        # for agent in self.custom_agents:
-        #     neighbors = list(self.G.neighbors(agent.pos))
-        #     print(f"Agent {agent.unique_id}: Influencer={agent.influencer}, Type={agent.agent_type}, Neighbors={neighbors}")
+        for agent in self.custom_agents:
+            neighbors = list(self.G.neighbors(agent.pos))
+            print(
+                f'-------------------Agent {agent.unique_id}-----------------------')
+            print(
+                f"Agent {agent.unique_id}: Influencer={agent.influencer}, Type={agent.agent_type}, Neighbors={neighbors}")
         # -----------------------------------------------
 
         self.datacollector = DataCollector(
@@ -90,9 +98,6 @@ class BassModel(Model):
                 # "Steps_to_100_percent": lambda m: m.steps_to_100_percent
             }
         )
-
-        # Save fixed positions for nodes
-        self.pos = nx.spring_layout(self.G)
 
     def step(self):
         self.datacollector.collect(self)
