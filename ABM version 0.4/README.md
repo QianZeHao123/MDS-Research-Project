@@ -54,6 +54,7 @@ flowchart TD
     inf --yes--> Add[Add more Neighbor to Influencer]
     inf --not--> Keep[Keep the same Neighbor]
     Add --> innoimit{Innovator or not?}
+    inputProp --> innoimit
     Keep --> innoimit
     innoimit --yes--> Innotator[Innotator:using p]
     innoimit --not--> Immitator[Immitator:using q]
