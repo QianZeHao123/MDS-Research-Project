@@ -11,15 +11,40 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Visualization for ABM Model version 5
 
+## Environment Setup
+
+```{r}
+# --------------------------------------------------------
+# clear the environment var area
+rm(list = ls())
+# clear all plots
+graphics.off()
+# clear the console area
+cat("\014")
+```
+
+## Read data with 'Fread' function
+
 ```{r}
 library(data.table)
 model5.results <- fread("./model5results.csv")
 ```
 
-```{r}
-data = results
-```
+## Filter data only when p=0.01
 
 ```{r}
-write.csv(data, "./model5results.csv", row.names = FALSE)
+library(dplyr)
+data = model5.results %>% filter(p == 0.01, AgentID == 100, Step == 100)
+```
+
+## Draw Box Plot
+
+```{r}
+library(ggplot2)
+ggplot(data, aes(y = Steps_to_25_percent)) +
+  geom_boxplot() +
+  labs(title = "Boxplot",
+       x = "Category",
+       y = "Value") +
+  theme_minimal()
 ```
