@@ -24,19 +24,19 @@ os.makedirs(pic_dir)
 # --------------------------------------------
 # Parameters Setting
 params = {
-    "N": 1000,
-    "p": 0.03,
-    "q": 0.38,
-    "proportion_innovators": 0.02,
-    "proportion_influencers": 0.1,
+    "N": [500, 1000],
+    "p": [0.01, 0.02, 0.03],
+    "q": [0.3, 0.35, 0.4, 0.45, 0.5],
+    "proportion_innovators": [0.01, 0.02, 0.03],
+    "proportion_influencers": [0.05, 0.1],
     "network_type": "small_world"
 }
 
 results = mesa.batch_run(
     BassModel,
     parameters=params,
-    iterations=1,
-    max_steps=99,
+    iterations=25,
+    max_steps=100,
     number_processes=1,
     data_collection_period=1,
     display_progress=True,
