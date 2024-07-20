@@ -70,16 +70,25 @@ class BassModel(Model):
 
         # Save fixed positions for nodes
         self.pos = nx.spring_layout(self.G)
+
+
         # -----------------------------------------------
-        # Print agent details after adding additional edges for influencers
-        # uncomment the following to show the debug infomation
-        for agent in self.custom_agents:
-            neighbors = list(self.G.neighbors(agent.pos))
-            print(
-                f'-------------------Agent {agent.unique_id}-----------------------')
-            print(
-                f"Agent {agent.unique_id}: Influencer={agent.influencer}, Type={agent.agent_type}, Neighbors={neighbors}")
+        # # Print agent details after adding additional edges for influencers
+        # # uncomment the following to show the debug infomation
+        # for agent in self.custom_agents:
+        #     neighbors = list(self.G.neighbors(agent.pos))
+        #     print(
+        #         f'-------------------Agent {agent.unique_id}-----------------------')
+        #     print(
+        #         f"Agent {agent.unique_id}: Influencer={agent.influencer}, Type={agent.agent_type}, Neighbors={neighbors}")
         # -----------------------------------------------
+
+        print(f"\nNumber of agents: {self.num_agents} \n")
+        print(f"Value of p: {self.p} \n")
+        print(f"Value of q: {self.q} \n")
+        print(f"Proportion of Innovators: {proportion_innovators} \n")
+        print(f"Proportion of Influencers: {proportion_influencers} \n")
+        print(f"Network Type: {network_type} \n")
 
         self.datacollector = DataCollector(
             agent_reporters={"Adopted": "adopted",
@@ -145,13 +154,13 @@ class BassModel(Model):
     def compute_adoption_rate(self):
         return sum([1 for agent in self.custom_agents if agent.adopted]) / self.num_agents
 
-    # save the network plot
-    def save_network(self, filename):
-        adopted = [agent.adopted for agent in self.custom_agents]
-        colors = ["red" if status else "blue" for status in adopted]
-        influencer_sizes = [
-            40 if agent.influencer else 5 for agent in self.custom_agents]
+    # # save the network plot
+    # def save_network(self, filename):
+    #     adopted = [agent.adopted for agent in self.custom_agents]
+    #     colors = ["red" if status else "blue" for status in adopted]
+    #     influencer_sizes = [
+    #         40 if agent.influencer else 5 for agent in self.custom_agents]
 
-        nx.draw(self.G, self.pos, node_color=colors, with_labels=False, node_size=influencer_sizes,
-                edge_color='lightgray', width=0.2)  # set edge color to light gray
-        plt.savefig(filename)  # save the figure to file
+    #     nx.draw(self.G, self.pos, node_color=colors, with_labels=False, node_size=influencer_sizes,
+    #             edge_color='lightgray', width=0.2)  # set edge color to light gray
+    #     plt.savefig(filename)  # save the figure to file
