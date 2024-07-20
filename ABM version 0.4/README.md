@@ -1,4 +1,10 @@
-# ABM Research for Marketing Diffusion
+# ABM Research for Marketing Diffusion (Model 4)
+## Non-notebook version
+
+Time: Builded on 24th, Jul, 2024
+
+Foundation: Based on Model 3, but instead of jupyter notebook, this version uses Python script.
+
 [Environment Configuration](../README.md)
 
 
