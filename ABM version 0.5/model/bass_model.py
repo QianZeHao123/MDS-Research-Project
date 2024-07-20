@@ -154,13 +154,3 @@ class BassModel(Model):
     def compute_adoption_rate(self):
         return sum([1 for agent in self.custom_agents if agent.adopted]) / self.num_agents
 
-    # # save the network plot
-    # def save_network(self, filename):
-    #     adopted = [agent.adopted for agent in self.custom_agents]
-    #     colors = ["red" if status else "blue" for status in adopted]
-    #     influencer_sizes = [
-    #         40 if agent.influencer else 5 for agent in self.custom_agents]
-
-    #     nx.draw(self.G, self.pos, node_color=colors, with_labels=False, node_size=influencer_sizes,
-    #             edge_color='lightgray', width=0.2)  # set edge color to light gray
-    #     plt.savefig(filename)  # save the figure to file
