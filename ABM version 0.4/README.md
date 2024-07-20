@@ -5,9 +5,18 @@ Time: Builded on 24th, Jul, 2024
 
 Foundation: Based on Model 3, but instead of jupyter notebook, this version uses Python script.
 
-[Environment Configuration](../README.md)
+Before running this model, see this [Environment Configuration](../README.md)
 
+## How to run this model?
 
+```bash
+# activate conda env
+conda activate ABM
+# run the script!
+python main.py
+```
+
+## UML for this model
 
 ```mermaid
 ---
