@@ -1,7 +1,25 @@
-# ABM Research for Marketing Diffusion
+# ABM Research for Marketing Diffusion (Model 5)
+
+## Batch Running version
+
+Time: Builded on 20th, Jul, 2024
+
+Foundation: Based on Model 4, using batch running
+
+Before running this model, see this [Environment Configuration](../README.md)
+
+## How to run this model?
+
+```bash
+# activate conda env
+conda activate ABM
+# run the script!
+python main.py
+```
+
 [Environment Configuration](../README.md)
 
-
+## UML for the model
 
 ```mermaid
 ---
