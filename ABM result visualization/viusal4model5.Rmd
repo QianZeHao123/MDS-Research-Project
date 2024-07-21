@@ -21,30 +21,76 @@ rm(list = ls())
 graphics.off()
 # clear the console area
 cat("\014")
+# --------------------------------------------------------
+# name of pic output folder
+folder_name <- "./pic"
+
+# check if the folder already exists
+if (dir.exists(folder_name)) {
+  unlink(folder_name, recursive = TRUE)
+}
+
+# create a new folder
+dir.create(folder_name)
 ```
 
 ## Read data with 'Fread' function
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(data.table)
-model5.results <- fread("./model5results.csv")
+model5.results = fread("./model5results.csv")
 ```
 
-## Filter data only when p=0.01
+## Filter data only when p=0.01, 0.02, 0,03
+
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+p.change.research = model5.results %>% filter(AgentID == 100, Step == 100)
+p.change.research
+```
+
+## Change the data to long format
 
 ```{r}
-library(dplyr)
-data = model5.results %>% filter(p == 0.01, AgentID == 100, Step == 100)
+library(tidyr)
+p.change.research.long <- p.change.research %>%
+  pivot_longer(cols = starts_with("Steps_to"), 
+               names_to = "Step_Percent", 
+               values_to = "Steps_Count")
+p.change.research.long
 ```
 
 ## Draw Box Plot
 
+### Generate Box plot with "esquisse"
+
+```{r}
+# library(plotly)
+# library(esquisse)
+# esquisser()
+```
+
 ```{r}
 library(ggplot2)
-ggplot(data, aes(y = Steps_to_25_percent)) +
+box = ggplot(p.change.research.long) +
+  aes(x = Step_Percent, y = Steps_Count, fill = p) +
   geom_boxplot() +
-  labs(title = "Boxplot",
-       x = "Category",
-       y = "Value") +
-  theme_minimal()
+  scale_fill_gradient() +
+  labs(
+    x = "Proportion Reach",
+    y = "Steps Count",
+    title = "Boxplot for Potential User Acceptance Ratio",
+    subtitle = "When the acceptance probability of innovator changes (p)"
+  ) +
+  theme_light() +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  ) +
+  facet_wrap(vars(p))
+```
+
+```{r}
+library(svglite)
+ggsave("./pic/boxplot_p_change.svg", plot = box, device = "svg", height = 9, width = 16)
 ```
