@@ -1,1 +1,4 @@
 *.csv
+style.R
+.Rhistory
+.RData
