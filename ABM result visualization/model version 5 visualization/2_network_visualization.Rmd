@@ -11,50 +11,62 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Network Visualization for Model 5 Result
 
+```{r}
+# --------------------------------------------------------
+# clear the environment var area
+rm(list = ls())
+# clear all plots
+graphics.off()
+# clear the console area
+cat("\014")
+# --------------------------------------------------------
+```
+
+```{r message=FALSE, warning=FALSE}
+library(data.table)
+model5_results = fread("./model5results.csv")
+```
+
 ## Draw network plot
 
-```{r}
-network.research.0 = model5.results %>%
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+network_research_id0 = model5_results %>%
   filter(RunId == 0)
+
+remove(model5_results)
 ```
 
 ```{r}
-data_long <- tibble(
-  step = paste0("step", 0:100),
-  value = NA
-)
-
-data_wide <- data_long %>%
-  pivot_wider(names_from = step, values_from = value)
+library(tidyr)
+agent_info_id0 = network_research_id0 %>%
+  filter(Step == 0) %>%
+  select(AgentID, Agent_Type, Neighbors, Influencer)
 ```
 
 ```{r}
-agent.0 = network.research %>%
-  filter(AgentID == 0) %>%
-  select(Adopted)
-```
+all_agents_data_id0 = network_research_id0 %>%
+  filter(AgentID %in% 0:999) %>%
+  select(AgentID, Step, Adopted) %>%
+  arrange(Step) %>%
+  pivot_wider(names_from = Step, values_from = Adopted, names_prefix = "Step") %>%
+  left_join(agent_info_id0)
 
-```{r}
-agent.1 = network.research %>%
-  filter(AgentID == 1)
-```
-
-```{r}
-network.0 = network.research %>%
-  filter(Step == 50)
+remove(agent_info_id0)
+gc()
 ```
 
 ```{r}
 library(jsonlite)
-network.0$Neighbors.new = lapply(network.0$Neighbors, fromJSON)
+all_agents_data_id0$Neighbors = lapply(all_agents_data_id0$Neighbors, fromJSON)
 ```
 
 ```{r}
 # library(igraph)
 # create a list for edges
-edges <- do.call(rbind, lapply(1:nrow(network.0), function(i) {
-  agent_id <- network.0$AgentID[i]
-  neighbors <- network.0$Neighbors.new[[i]]
+edges <- do.call(rbind, lapply(1:nrow(all_agents_data_id0), function(i) {
+  agent_id <- all_agents_data_id0$AgentID[i]
+  neighbors <- all_agents_data_id0$Neighbors[[i]]
   if(length(neighbors) > 0) {
     data.frame(from = agent_id, to = neighbors)
   } else {
@@ -73,36 +85,49 @@ library(igraph)
 
 # create graph object
 g <- graph_from_data_frame(edges, directed = FALSE)
-
-# transfer to tbl_graph object
-tg <- as_tbl_graph(g)
-
-# add Influencer attribute to node
-# tg <- tg %>%
-#   activate(nodes) %>%
-#   mutate(Influencer = network.0$Influencer[as.numeric(name) + 1])
-
-
-tg <- tg %>%
-  activate(nodes) %>%
-  mutate(Influencer = network.0$Influencer[as.numeric(name) + 1],
-         Agent_Type = network.0$Agent_Type[as.numeric(name) + 1],
-         Adopted = network.0$Adopted[as.numeric(name) + 1])
-```
-
-```{r fig.height=10, fig.width=10}
-
+# fix the position for each plot
 layout <- layout_with_fr(g)
 ```
 
 ```{r fig.height=10, fig.width=10}
-ggraph(tg, layout = layout) + 
-  geom_edge_link(color = "grey") + 
-  geom_node_point(aes(size = as.factor(Influencer), colour = as.factor(Adopted)), show.legend = FALSE) + 
-  # geom_node_text(aes(label = name), repel = TRUE) + 
-  scale_size_manual(values = c('FALSE' = 3, 'TRUE' = 6)) + 
-  scale_color_manual(values = c('FALSE' = 'blue', 'TRUE'='red'))
-  theme_void()
+steps <- seq(10, 100, by = 10)
+
+# write a loop to draw network plot
+for (step in steps) {
+  # transfer to tbl_graph object
+  tg <- as_tbl_graph(g)
+  
+  # extract the StepN
+  step_col <- paste0("Step", step)
+  
+  # node attribute settings
+  tg <- tg %>%
+    activate(nodes) %>%
+    mutate(
+      Influencer = all_agents_data_id0$Influencer[as.numeric(name) + 1],
+      Agent_Type = all_agents_data_id0$Agent_Type[as.numeric(name) + 1],
+      Adopted = all_agents_data_id0[[step_col]][as.numeric(name) + 1]
+    )
+  
+  # draw network plot
+  p <- ggraph(tg, layout = layout) +
+    geom_edge_link(color = "grey") +
+    geom_node_point(aes(size = as.factor(Influencer),
+                        colour = as.factor(Adopted)),
+                    show.legend = FALSE) +
+    scale_size_manual(values = c('FALSE' = 3, 'TRUE' = 6)) +
+    scale_color_manual(values = c('FALSE' = 'blue', 'TRUE' = 'red')) +
+    theme_void() +
+    ggtitle(paste("Step", step))
+  
+  # save the network plot
+  ggsave(
+    filename = paste0("./pic/network_plot_step_", step, ".png"),
+    plot = p,
+    width = 10,
+    height = 10
+  )
+}
 ```
 
 ```{r}
