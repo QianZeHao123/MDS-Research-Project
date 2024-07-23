@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Visualization for ABM Model version 5
+# Visualization for Model version 5 (Boxplot)
 
 Box Plot Analysis with 'Esquisse' Package
 
@@ -99,5 +99,46 @@ box
 
 ```{r}
 library(svglite)
-ggsave("./pic/boxplot_p_change.svg", plot = box, device = "svg", height = 9, width = 16)
+ggsave("./pic/boxplot_p_change.png", plot = box, device = "png", height = 9, width = 16)
+```
+
+# Visualization for Model version 5 (Linechart)
+
+```{r}
+# same p, q, RunID, different
+line.data = model5.results %>%
+  filter(AgentID == 0)
+```
+
+```{r fig.height=6, fig.width=10}
+line = ggplot(line.data) +
+  aes(
+    x = Step,
+    y = Adopted_Count,
+    colour = iteration,
+    group = iteration
+  ) +
+  geom_line(linewidth = 0.6) +
+  scale_color_viridis_c(option = "magma", direction = 1) +
+  labs(
+    x = 'Steps Count',
+    y = 'Adopted User Count',
+    title = "Line Chart Comparison with Different P Value", subtitle = "N=1000, iteration=25") +
+  theme_light() +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  ) +
+  facet_wrap(vars(p))
+
+# Show the plot
+line
+```
+
+```{r}
+ggsave("./pic/linechart_p_change.png", plot = line, device = "png", height = 6, width = 10)
+```
+
+```{r}
+
 ```
