@@ -102,7 +102,7 @@ library(svglite)
 ggsave("./pic/boxplot_p_change.png", plot = box, device = "png", height = 9, width = 16)
 ```
 
-# Visualization for Model version 5 (Linechart)
+# Visualization for Model version 5 (Line chart)
 
 ```{r}
 # same p, q, RunID, different
@@ -140,5 +140,70 @@ ggsave("./pic/linechart_p_change.png", plot = line, device = "png", height = 6, 
 ```
 
 ```{r}
+agent_inno.line.data= model5.results %>%
+  filter(iteration == 0) %>%
+  select(p, Step, Innovator_Count, Imitator_Count, Adopted_Count)
+```
 
+```{r}
+agent_inf.line.data= model5.results %>%
+  filter(iteration == 0) %>%
+  select(p, Step, Influencer_Count, Non_Influencer_Count, Adopted_Count)
+```
+
+```{r}
+agent_inno.line.data.long = agent_inno.line.data %>%
+  pivot_longer(cols = c(Innovator_Count, Imitator_Count,  Adopted_Count), 
+               names_to = "Type",
+               values_to = "Count")
+```
+
+```{r}
+agent_inf.line.data.long = agent_inf.line.data %>%
+  pivot_longer(cols = c(Influencer_Count, Non_Influencer_Count,  Adopted_Count), 
+               names_to = "Type",
+               values_to = "Count")
+```
+
+```{r fig.height=6, fig.width=10}
+ggplot(agent_inno.line.data.long) +
+  aes(x = Step, y = Count, colour = Type) +
+  geom_line(linewidth = 0.8) +
+  scale_color_viridis_d(option = "plasma", direction = 1) +
+  labs(
+    x = "Steps Count",
+    y = "Adopted User Count",
+    title = "Innovator and Imitator Statistics",
+    subtitle = "Iteration = 0",
+    color = "Innovator or Imitator"
+  ) +
+  theme_light() +
+  theme(
+    plot.title = element_text(face = "bold",
+    hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  ) +
+  facet_wrap(vars(p))
+
+```
+
+```{r fig.height=6, fig.width=10}
+ggplot(agent_inf.line.data.long) +
+  aes(x = Step, y = Count, colour = Type) +
+  geom_line(linewidth = 0.8) +
+  scale_color_viridis_d(option = "plasma", direction = 1) +
+  labs(
+    x = "Steps Count",
+    y = "Adopted User Count",
+    title = "Influencers' Statistics",
+    subtitle = "Iteration = 0",
+    color = "Influencer or not"
+  ) +
+  theme_light() +
+  theme(
+    plot.title = element_text(face = "bold",
+    hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  ) +
+  facet_wrap(vars(p))
 ```
