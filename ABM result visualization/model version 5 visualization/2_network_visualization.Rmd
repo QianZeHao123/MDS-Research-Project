@@ -76,6 +76,7 @@ edges <- do.call(rbind, lapply(1:nrow(all_agents_data_id0), function(i) {
 
 # remove the repeated edges
 edges <- unique(edges)
+gc()
 ```
 
 ```{r}
@@ -90,7 +91,7 @@ layout <- layout_with_fr(g)
 ```
 
 ```{r fig.height=10, fig.width=10}
-steps <- seq(10, 100, by = 10)
+steps <- seq(0, 100, by = 10)
 
 # write a loop to draw network plot
 for (step in steps) {
@@ -127,9 +128,14 @@ for (step in steps) {
     width = 10,
     height = 10
   )
+  gc()
 }
 ```
 
 ```{r}
 gc()
+```
+
+```{r}
+
 ```
