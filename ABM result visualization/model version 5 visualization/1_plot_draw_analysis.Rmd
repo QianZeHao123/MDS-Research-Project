@@ -166,7 +166,7 @@ agent_inf.line.data.long = agent_inf.line.data %>%
 ```
 
 ```{r fig.height=6, fig.width=10}
-ggplot(agent_inno.line.data.long) +
+p.line.inno = ggplot(agent_inno.line.data.long) +
   aes(x = Step, y = Count, colour = Type) +
   geom_line(linewidth = 0.8) +
   scale_color_viridis_d(option = "plasma", direction = 1) +
@@ -179,16 +179,24 @@ ggplot(agent_inno.line.data.long) +
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(face = "bold",
-    hjust = 0.5),
+    plot.title = element_text(face = "bold", hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5)
   ) +
   facet_wrap(vars(p))
 
+p.line.inno
+```
+
+```{r}
+ggsave("./pic/linechart_inno.png",
+       plot = p.line.inno,
+       device = "png",
+       height = 6,
+       width = 10)
 ```
 
 ```{r fig.height=6, fig.width=10}
-ggplot(agent_inf.line.data.long) +
+p.line.inf = ggplot(agent_inf.line.data.long) +
   aes(x = Step, y = Count, colour = Type) +
   geom_line(linewidth = 0.8) +
   scale_color_viridis_d(option = "plasma", direction = 1) +
@@ -201,9 +209,22 @@ ggplot(agent_inf.line.data.long) +
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(face = "bold",
-    hjust = 0.5),
+    plot.title = element_text(face = "bold", hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5)
   ) +
   facet_wrap(vars(p))
+
+p.line.inf
+```
+
+```{r}
+ggsave("./pic/linechart_inf.png",
+       plot = p.line.inf,
+       device = "png",
+       height = 6,
+       width = 10)
+```
+
+```{r}
+
 ```
