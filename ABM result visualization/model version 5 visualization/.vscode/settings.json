@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.Rmd": "rmd"
+    },
+    "r.rpath.windows": "C:\\Program Files\\R\\R-4.4.0\\bin\\R.exe",
+    "r.rterm.option": [
+        "--no-site-file"
+    ],
+    "r.rterm.windows": "C:\\ProgramData\\anaconda3\\envs\\ABM\\Scripts\\radian.exe"
+}
