@@ -21,6 +21,16 @@
 = Introduction
 #lorem(60)
 
+#set columns(1)
+
+#figure(
+  image("./img/boxplot_p_change.svg", width: 100%),
+  caption: [Boxplot of the percentage change in the number of agents in the market],
+
+)
+
+#set columns(2)
+
 == In this paper
 #lorem(20)
 
