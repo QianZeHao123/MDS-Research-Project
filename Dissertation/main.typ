@@ -2,42 +2,38 @@
 
 // Take a look at the file `template.typ` in the file panel
 // to customize this template and discover how it works.
+#let today = datetime.today()
 #show: project.with(
-  title: "Agent-based Modelling for Market Diffusion Research",
+  title: "Data Science Research Project",
+  subtitle: "Agent-based Modelling for Market Diffusion Research",
   authors: ((name: "Student Name: Zehao Qian", email: "zehao.qian.cn@gmail.com"), (
     name: "Supervisor Name: Jennifer Badham",
     email: "jennifer.badham@durham.ac.uk",
   ),),
-  // Insert your abstract after the colon, wrapped in brackets.
-  // Example: `abstract: [This is my abstract...]`
   abstract: lorem(59),
-  date: "July 25, 2024",
+  date: today.display("[month repr:long] [day], [year]"),
 )
 
 // We generated the example code below so you can see how
 // your document will look. Go ahead and replace it with
 // your own content!
+// ------------------------------------------------
+// outline part
+#show link: underline
+#show outline.entry.where(level: 1): it => {
+  v(12pt, weak: true)
+  strong(it)
+}
+#outline(indent: auto)
+// ------------------------------------------------
 
-= Introduction
-#lorem(60)
+= Introduction and Literature Review
 
-#set columns(1)
+== Introduction
 
-#figure(
-  image("./img/boxplot_p_change.svg", width: 100%),
-  caption: [Boxplot of the percentage change in the number of agents in the market],
+This project aims to investigate the market diffusion of a new product using agent-based modelling. The project will focus on the adoption of a new product by consumers and the impact of different marketing strategies on the diffusion process. The research will explore how agents interact with each other and make decisions based on their preferences and the information they receive. The project will also investigate the effect of social networks on the diffusion process and how they influence the adoption of the new product.
 
-)
 
-#set columns(2)
-
-== In this paper
-#lorem(20)
-
-=== Contributions
-#lorem(40)
-
-= Related Work
-#lorem(500)
+#figure(image("img/boxplot_p_change.svg"), caption: [Test of svg image 123])
 
 #bibliography("references.bib")
