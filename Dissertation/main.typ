@@ -31,7 +31,7 @@
 
 == Introduction
 
-This project aims to investigate the market diffusion of a new product using agent-based modelling. The project will focus on the adoption of a new product by consumers and the impact of different marketing strategies on the diffusion process. The research will explore how agents interact with each other and make decisions based on their preferences and the information they receive. The project will also investigate the effect of social networks on the diffusion process and how they influence the adoption of the new product.
+This project aims to investigate the market diffusion of a new product using agent-based modelling. The project will focus on the adoption of a new product by consumers and the impact of different marketing strategies on the diffusion process. The research will explore how agents interact with each other and make decisions based on their preferences and the information they receive. The project will also investigate the effect of social networks on the diffusion process and how they influence the adoption of the new product. @Helfmann2023
 
 
 #figure(image("img/boxplot_p_change.svg"), caption: [Test of svg image 123])

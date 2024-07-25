@@ -8,9 +8,18 @@
     margin: (left: 25mm, right: 25mm, top: 30mm, bottom: 30mm),
     numbering: "1",
     number-align: center,
+    // header: align(right)[Durham University, Department of Natural Sciences],
+    header: [
+        #set text(8pt)
+        Department of Natural Sciences, Durham University
+        #h(1fr) MDS Research Project
+      ],
   )
   set text(font: "Linux Libertine", lang: "en")
   set heading(numbering: "1.1")
+
+  set bibliography(title: "References", style: "modern-humanities-research-association")
+
   // Title row.
   align(center)[
     #block(text(weight: 700, 1.75em, title))
