@@ -18,7 +18,7 @@
   set text(font: "Linux Libertine", lang: "en")
   set heading(numbering: "1.1")
 
-  set bibliography(title: "References", style: "modern-humanities-research-association")
+  set bibliography(title: "References", style: "chicago-author-date")
 
   // Title row.
   align(center)[
