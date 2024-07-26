@@ -1,6 +1,5 @@
 import random
 import networkx as nx
-import matplotlib.pyplot as plt
 from mesa import Model
 from mesa.time import RandomActivation
 from mesa.space import NetworkGrid
@@ -9,10 +8,18 @@ from .bass_agent import BassAgent
 
 
 class BassModel(Model):
-    def __init__(self, N, p, q, proportion_influential_innovators, proportion_influential_imitators,
-                 proportion_non_influential_innovators, proportion_non_influential_imitators, network_type="random"):
+    def __init__(self, N, p, q, agent_proportion, network_type="small_world"):
+        """
+        N: Number of agents
+        p: Probability of innovators to accept the product
+        q: Probability of imitators to accept the product
+        agent_proportion: this is a list of lists, where each list contains the proportion of influential innovators, influential imitators, non-influential innovators, and non-influential imitators
+        network_type: Type of network to use. Options are "random", "small_world", and "scale_free", default is "small_world"
+        """
         super().__init__()
         self.running = True
+
+        # set the steps to reach 25%, 50%, 75%, and 100% adoption to None
         self.steps_to_25_percent = None
         self.steps_to_50_percent = None
         self.steps_to_75_percent = None
@@ -30,22 +37,37 @@ class BassModel(Model):
         elif network_type == "scale_free":
             self.G = nx.barabasi_albert_graph(n=N, m=2)
 
+        """
+        # The following code is not needed as the agent_proportion is already a list of lists
+        # proportion_influential_innovators = agent_proportion[0]
+        # proportion_influential_imitators = agent_proportion[1]
+        # proportion_non_influential_innovators = agent_proportion[2]
+        # proportion_non_influential_imitators = agent_proportion[3]
+        """
+
+        proportion_influential_innovators, proportion_influential_imitators, proportion_non_influential_innovators, proportion_non_influential_imitators = agent_proportion
+
         self.custom_agents = []
+
+        # Generate agent distribution
         agent_distribution = self.generate_agent_distribution(N, proportion_influential_innovators,
                                                               proportion_influential_imitators,
                                                               proportion_non_influential_innovators,
                                                               proportion_non_influential_imitators)
 
+        # Create agents and give them attributes based on the agent_distribution (agent type and influencer status)
         for i, node in enumerate(self.G.nodes()):
             agent_type, influencer = agent_distribution[i]
             agent = BassAgent(i, self, agent_type, influencer)
             self.schedule.add(agent)
             self.custom_agents.append(agent)
 
+        # Create a network grid and place the agents on the grid
         self.grid = NetworkGrid(self.G)
         for i, node in enumerate(self.G.nodes()):
             self.grid.place_agent(self.custom_agents[i], node)
 
+        # Add more edges if the agent is an influencer
         for agent in self.custom_agents:
             if agent.influencer:
                 current_neighbors = set(self.G.neighbors(agent.pos))
@@ -58,8 +80,10 @@ class BassModel(Model):
                     if not self.G.has_edge(agent.pos, target):
                         self.G.add_edge(agent.pos, target)
 
+        # Set the initial position of the agents
         self.pos = nx.spring_layout(self.G)
 
+        # data collector to collect data
         self.datacollector = DataCollector(
             agent_reporters={
                 "Adopted": "adopted",
@@ -80,6 +104,7 @@ class BassModel(Model):
             }
         )
 
+    # Function to generate agent distribution
     def generate_agent_distribution(self, N, prop_influential_innovators, prop_influential_imitators,
                                     prop_non_influential_innovators, prop_non_influential_imitators):
         num_influential_innovators = int(N * prop_influential_innovators)
@@ -96,6 +121,9 @@ class BassModel(Model):
         random.shuffle(agents)
         return agents
 
+    # Function to step through the model
+    # This function is called by the batch_run function in main.py
+    # The batch_run function will run the model for the specified number of iterations and steps
     def step(self):
         self.datacollector.collect(self)
         self.schedule.step()
