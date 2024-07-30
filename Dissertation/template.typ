@@ -1,7 +1,7 @@
 // The project function defines how your document looks.
 // It takes your content and some metadata and formats it.
 // Go ahead and customize it to your liking!
-#let project(title: "",subtitle:"",  abstract: [], authors: (), date: none, body) = {
+#let project(title: "", subtitle: "", abstract: [], authors: (), date: none, body) = {
   // Set the document's basic properties.
   set document(author: authors.map(a => a.name), title: title)
   set page(
@@ -10,16 +10,16 @@
     number-align: center,
     // header: align(right)[Durham University, Department of Natural Sciences],
     header: [
-        #set text(8pt)
-        Department of Natural Sciences, Durham University
-        #h(1fr) MDS Research Project
-      ],
+      #set text(8pt)
+      Department of Natural Sciences, Durham University
+      #h(1fr) MDS Research Project
+    ],
   )
   set text(font: "Linux Libertine", lang: "en")
   set heading(numbering: "1.1")
-
+  
   set bibliography(title: "References", style: "chicago-author-date")
-
+  
   // Title row.
   align(center)[
     #block(text(weight: 700, 1.75em, title))
@@ -31,7 +31,7 @@
     #v(1em, weak: true)
     #date
   ]
-
+  
   // Author information.
   pad(top: 0.5em, x: 2em, grid(
     columns: (1fr,) * calc.min(3, authors.len()),
@@ -41,7 +41,7 @@
       #author.email
     ]),
   ))
-
+  
   // Abstract.
   pad(
     x: 2em,
@@ -54,9 +54,9 @@
       #abstract
     ],
   )
-
+  
   // Main body.
   set par(justify: true)
-
+  
   body
 }
