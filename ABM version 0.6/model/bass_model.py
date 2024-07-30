@@ -74,7 +74,7 @@ class BassModel(Model):
                 potential_neighbors = list(
                     set(self.G.nodes()) - current_neighbors - {agent.pos})
                 additional_edges = random.sample(
-                    potential_neighbors, min(int(50 * random.random()), len(potential_neighbors)))
+                    potential_neighbors, min(int(25*random.random())+30, len(potential_neighbors)))
 
                 for target in additional_edges:
                     if not self.G.has_edge(agent.pos, target):
