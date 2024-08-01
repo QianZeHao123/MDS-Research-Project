@@ -39,10 +39,12 @@ simulation2_results = fread("./simulation2.csv")
 ```
 
 ```{r}
+library(tidyr)
+library(dplyr)
 q.change.research = simulation2_results %>%
   filter(AgentID == 100, Step == 100)
 
-library(tidyr)
+
 data.q.change.long <- q.change.research %>%
   pivot_longer(cols = starts_with("Steps_to"), 
                names_to = "Step_Percent", 
