@@ -72,7 +72,9 @@ data.box.long = data.box %>%
 ```
 
 ```{r}
-box = ggplot(data.p.change.long) +
+library(ggplot2)
+
+box = ggplot(data.box.long) +
   aes(x = p_number, y = Steps_Count, fill = p) +
   geom_boxplot() +
   scale_fill_gradient() +
@@ -123,4 +125,8 @@ ggsave("./pic_same_inno_prop_research/box.png",
        width = 16)
 
 box
+```
+
+```{r}
+
 ```
