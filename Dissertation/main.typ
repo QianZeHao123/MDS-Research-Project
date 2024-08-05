@@ -21,7 +21,9 @@
   v(12pt, weak: true)
   strong(it)
 }
-#outline(indent: auto)
+#outline(title: [Table of Contents], indent: auto)
+#outline(title: [List of Tables], target: figure.where(kind: table))
+#outline(title: [List of Figures], target: figure.where(kind: image))
 // ------------------------------------------------
 
 = Introduction and Literature Review
@@ -29,6 +31,16 @@
 == Introduction
 
 == Literature Review
+
+=== Agent-based Modelling Simulation
+
+=== Diffusion of Innovation and Bass Model
+
+=== Influencers and Opinion Leaders in Diffusion
+
+=== Network Structure and Diffusion
+
+=== Conclusion of Literature Review
 
 = Methodology
 
@@ -39,4 +51,9 @@
 #import "./Tables/simulationPlan.typ": simPlan
 #simPlan
 
+
+test of references @Helfmann2023
+
 #bibliography("references.bib")
+
+
