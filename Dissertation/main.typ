@@ -104,7 +104,7 @@ The ABM models contains three main components: agents, environment, and interact
   ),
 )
 
-Modeling Process Steps, here I refer to Jennifer @badham_developing_2018 and Gilbert's ABM specification sheet @gilbert_abm_nodate:
+Refer to @badham_developing_2018 and Gilbert's ABM specification sheet @gilbert_abm_nodate for summarizing the ABM modeling process:
 
 + Define model purpose and scope.
 + Identify and characterize agents.
@@ -113,12 +113,14 @@ Modeling Process Steps, here I refer to Jennifer @badham_developing_2018 and Gil
 + Design the environment.
 + Choose an ABMS platform and development strategy.
 + Implement learning and evolution strategies.
-+ Incorporate security mechanisms.
++ Incorporate security mechanisms @ramchurn_trust_2004.
 + Develop interaction protocols.
 + Collect relevant agent data.
 + Validate agent behavior models.
 + Run simulations and analyze output results.
 + Link micro-level agent behaviors to macro-level system behaviors.
+
+The setting of interaction rules, the selection of key parameters and the verification of results of ABM are the core links in the modeling process. The interaction rules are usually implemented by setting the behavior and topological structure of the agent, including the "Soup" model, cellular automata, Euclidean space, GIS and network topology @macal_agent-based_2009. The key parameters cover the personal characteristics and environmental factors of the agent @conte_agent-based_2014, and may also include specific belief parameters @ramchurn_trust_2004. The result verification methods include comparing the ABM simulation results with classical models or empirical data, adopting multi-level verification methods (calibrating parameters at the micro level and observing the reality of macro behavior) @conte_agent-based_2014, and using social network analysis and participatory simulation to obtain information about agent behavior and interaction. However, due to the complexity of ABM models, verification and calibration remain one of the main challenges, and the lack of standardized methods makes it difficult to interpret and analyze the results.
 
 === Application areas and advantages of ABM
 
