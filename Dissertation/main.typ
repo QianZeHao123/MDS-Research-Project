@@ -181,9 +181,15 @@ ABM has been widely used in multiple disciplines, demonstrating its strong poten
 
 === Application of ABM in complex systems and social science research
 
+ABM has demonstrated its unique advantages in the study of complex systems and can effectively reflect the complexity and adaptability of the system @zheng_primer_2013. Through simple local rules, ABM can generate complex system behaviors, such as the collective behaviors exhibited by the "Life" and "Boids" models @macal_agent-based_2009. It can simulate multi-level systems, capture complex interactions between individuals and between individuals and the environment, and allow agents to adapt and change decisions over time @badham_developing_2018. ABM can also simulate the properties of complex adaptive systems (CAS), including nonlinearity, fluidity and diversity, as well as feedback mechanisms in the system, which together constitute the complexity and adaptability of the system @macal_tutorial_2005.
 
+In social science research, ABM provides an innovative way to integrate social science theory and computational methods. It applies decision theory in social science (such as the BDI model) to the decision rules of agents @zheng_primer_2013, and combines data mining and complex system modeling to create the emerging field of computational social science. ABM can transform behavioral theories into computable models and calibrate them using multiple data sources. It integrates the theoretical foundations of multiple disciplines, including complexity science, system science, and management science. Through models such as SugarScape, ABM successfully simulates complex social processes @macal_agent-based_2009. In addition, the application of ABM in trust models and other fields demonstrates its ability to combine sociological concepts with computational models. This interdisciplinary approach not only promotes the development of social science theories, but also provides new perspectives and tools for the study of complex social systems.
 
 === Theoretical contributions and future development of ABM
+
+ABM's contribution to social science theory lies in its unique modeling and analysis capabilities. It can directly simulate individual behaviors and interactions, generate overall system behaviors, and provide a platform for verifying theoretical hypotheses @conte_agent-based_2014. ABM reveals the multi-level nature of social phenomena, demonstrates the dynamic process from micro-behavior to macro-structure, and provides a new perspective on long-standing problems. By introducing computational models, such as computable trust measures, ABM improves traditional research methods and provides new analytical tools and frameworks for social science theory @macal_agent-based_2009.
+
+The cutting-edge and interdisciplinary potential of ABM research is reflected in many aspects. Its application in complex system research is constantly expanding, especially in the study of self-organizing systems. ABM is being integrated with methods such as data mining and machine learning to promote the development of computational social science @davidsson_multi_2001. At the theoretical level, ABM promotes in-depth research on rational agents and system strategic structures. In the future, ABM is expected to make important contributions in the formalization of social selection processes and the standardization of intelligent agent systems, promote the deep integration of social sciences with natural sciences and computational sciences, and open up new prospects for complex system research @macal_agent-based_2009.
 
 == Platforms and Building Philosophy of ABM
 
@@ -209,4 +215,19 @@ ABM has been widely used in multiple disciplines, demonstrating its strong poten
 
 #bibliography("references.bib")
 
+#let appendix(body) = {
 
+  set heading(numbering: "A.I")
+  counter(heading).update(0)
+  body
+}
+
+#show: appendix
+
+= sdfsdf
+
+== asdasasdasd
+
+== asdasdasd
+
+= sdasdsad
