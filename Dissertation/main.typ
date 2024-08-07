@@ -215,19 +215,8 @@ The cutting-edge and interdisciplinary potential of ABM research is reflected in
 
 #bibliography("references.bib")
 
-#let appendix(body) = {
 
-  set heading(numbering: "A.I")
-  counter(heading).update(0)
-  body
-}
 
 #show: appendix
 
-= sdfsdf
-
-== asdasasdasd
-
-== asdasdasd
-
-= sdasdsad
+= Appendix ASDA
