@@ -140,52 +140,39 @@ ABM has been widely used in multiple disciplines, demonstrating its strong poten
     table.header([*Research Field*], [*Applications*]),
     table.hline(),
     [Social Sciences], [
-      - Human behavior and social interactions \
-      - Economic systems and artificial financial markets \
-      - Political processes and civic behavior \
-      - Organizational decision-making \
-      - Ancient civilization simulation \
-      - Crime analysis \
-      - Terrorism network studies \
+      - Human behavior and social interactions
+      - Economic systems and political processes
+      - Organizational decision-making
+      - Crime analysis and terrorism studies
     ],
     [Natural Sciences], [
-      - Ecology (animal group behavior, ecosystems)
-      - Biology (cellular behavior, subcellular molecular behavior)
-      - Chemistry
+      - Ecology and ecosystem dynamics
+      - Cellular and molecular biology
+      - Chemical reactions and processes
     ],
     [Public Health & Medicine], [
-      - Infectious disease epidemiology
-      - Non-communicable disease research
-      - Healthcare systems
+      - Epidemiology (infectious and non-communicable diseases)
+      - Healthcare systems optimization
     ],
     [Engineering & Technology], [
-      - Supply chain management
-      - Intelligent/distributed manufacturing
-      - Urban planning and distribution center usage
-      - Transportation systems (air traffic control)
-      - Energy analysis (electricity markets, hydrogen economy)
-      - Complex scalable power grid networks
+      - Supply chain and manufacturing
+      - Urban planning and transportation
+      - Energy systems and power grids
     ],
     [Business & Economics], [
-      - Consumer market analysis
-      - Financial market simulation
-      - Insurance business modeling
-      - Trade network analysis
-      - Marketing strategies
+      - Market analysis and financial simulations
+      - Trade networks and marketing strategies
     ],
     [Environment & Energy], [
       - Climate change impacts
-      - Sustainable development strategies
-      - Resource management
+      - Resource management and sustainability
     ],
     [Military & Security], [
-      - Command and control systems
-      - Force-on-force simulations
+      - Command systems and force simulations
       - Evacuation modeling
     ],
     [Complex Systems Science], [
-      - Emergent behavior studies
-      - Adaptive systems analysis
+      - Emergent behavior and adaptive systems
       - Multi-level system simulations
     ],
     table.hline(),
