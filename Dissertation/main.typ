@@ -233,11 +233,19 @@ The literature shows that the main advantage of the Bass model is that it can ac
 The following figure uses pure Python to simulate the acceptance process of a product by 1000 potential users (p = 0.03, q = 0.38) and visualize the results using Matplotlib:
 
 #figure(
-  caption: "Bass Model Simulation with Python NumPy and Matplotlib",
-  image("img/pic_bass_py_sim/bassmodelsim.png", width: 100%)
+  // caption: "Bass Model Simulation with Python NumPy and Matplotlib",
+  caption: link("https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20version%200.1/purebass.ipynb")[
+    Bass Model Simulation with Python NumPy and Matplotlib
+    ],
+  image("img/pic_bass_py_sim/bassmodelsim.png", width: 100%),
 )
 
+
 The influence of the Bass model is reflected in the fact that it has become the basis of many extended models. For example, the intergenerational diffusion model and the generalized Bass model developed by Bass are important developments based on the original model. These extensions further improve the scope of application and predictive power of the model.
+
+=== Apply ABM methods into the Bass model
+
+Agent-based models (ABMs) offer significant advantages for modeling innovation diffusion compared to traditional aggregate approaches. As illustrated in the reviewed papers, ABMs can capture heterogeneity among agents, such as different consumer types in electric vehicle adoption models (McCoy & Lyons, 2014) or varying farmer characteristics in agricultural innovation studies (Berger, 2001). They explicitly model interactions and social networks, like word-of-mouth effects in movie-going behavior (Broekhuizen et al., 2011) or peer influence in solar panel adoption (Palmer et al., 2015). ABMs reveal emergent phenomena from micro-level behaviors, as seen in the diffusion of organic farming practices (Deffuant et al., 2002). They provide flexibility to incorporate various decision rules, spatial effects, and qualitative factors, exemplified by models integrating psychological theories like the Theory of Planned Behavior (Schwarz & Ernst, 2009). By enabling analysis at both individual and aggregate levels, ABMs facilitate policy experimentation, as demonstrated in studies on energy technology adoption (Günther et al., 2011) and electric vehicle diffusion (Zhang et al., 2011). This approach allows for more realistic representation of complex social dynamics in innovation diffusion, providing valuable insights for both theoretical understanding and practical decision support.
 
 == Influencers and Opinion Leaders in Diffusion
 
