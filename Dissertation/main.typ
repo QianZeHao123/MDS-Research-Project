@@ -233,7 +233,6 @@ The literature shows that the main advantage of the Bass model is that it can ac
 The following figure uses pure Python to simulate the acceptance process of a product by 1000 potential users (p = 0.03, q = 0.38) and visualize the results using Matplotlib:
 
 #figure(
-  // caption: "Bass Model Simulation with Python NumPy and Matplotlib",
   caption: link("https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20version%200.1/purebass.ipynb")[
     Bass Model Simulation with Python NumPy and Matplotlib
     ],
@@ -245,15 +244,26 @@ The influence of the Bass model is reflected in the fact that it has become the 
 
 === Apply ABM methods into the Bass model
 
-Agent-based models (ABMs) offer significant advantages for modeling innovation diffusion compared to traditional aggregate approaches. As illustrated in the reviewed papers, ABMs can capture heterogeneity among agents, such as different consumer types in electric vehicle adoption models (McCoy & Lyons, 2014) or varying farmer characteristics in agricultural innovation studies (Berger, 2001). They explicitly model interactions and social networks, like word-of-mouth effects in movie-going behavior (Broekhuizen et al., 2011) or peer influence in solar panel adoption (Palmer et al., 2015). ABMs reveal emergent phenomena from micro-level behaviors, as seen in the diffusion of organic farming practices (Deffuant et al., 2002). They provide flexibility to incorporate various decision rules, spatial effects, and qualitative factors, exemplified by models integrating psychological theories like the Theory of Planned Behavior (Schwarz & Ernst, 2009). By enabling analysis at both individual and aggregate levels, ABMs facilitate policy experimentation, as demonstrated in studies on energy technology adoption (Günther et al., 2011) and electric vehicle diffusion (Zhang et al., 2011). This approach allows for more realistic representation of complex social dynamics in innovation diffusion, providing valuable insights for both theoretical understanding and practical decision support.
+ABMs offer significant advantages for modeling innovation diffusion compared to traditional aggregate approaches. As illustrated in the reviewed papers, ABMs can capture heterogeneity among agents, such as different consumer types in electric vehicle adoption models @mehdizadeh_systematic_2022 or varying farmer characteristics in agricultural innovation studies @kiesling_agent-based_2012. They explicitly model interactions and social networks, like word-of-mouth effects in movie-going behavior @ratna_social_nodate or peer influence in solar panel adoption @rand_agentbased_2021. ABMs reveal emergent phenomena from micro-level behaviors, as seen in the diffusion of organic farming practices. They provide flexibility to incorporate various decision rules, spatial effects, and qualitative factors, exemplified by models integrating psychological theories like the Theory of Planned Behavior. By enabling analysis at both individual and aggregate levels, ABMs facilitate policy experimentation, as demonstrated in studies on energy technology adoption @nageli_towards_2020 and electric vehicle diffusion @zhang_empirically_2019. This approach allows for more realistic representation of complex social dynamics in innovation diffusion, providing valuable insights for both theoretical understanding and practical decision support.
 
 == Influencers and Opinion Leaders in Diffusion
+
+
 
 == Network Structure and Diffusion
 
 == Conclusion of Literature Review
 
 = Methodology
+
+= Simulation and Results Analysis
+
+== Design of the Experiment
+
+// #import "./Tables/simulationPlan.typ": simPlan
+#simPlan
+
+== Visualization of Network Evolution
 
 #let network_images = (
   "img/pic_network_graph/network_plot_step_0.png",
@@ -278,13 +288,6 @@ Agent-based models (ABMs) offer significant advantages for modeling innovation d
   caption: [Network Evolution over Time from Step 0 to Step 80],
   network_image_grid
 )
-
-= Simulation and Results Analysis
-
-== Design of the Experiment
-
-// #import "./Tables/simulationPlan.typ": simPlan
-#simPlan
 
 #bibliography("references.bib")
 
