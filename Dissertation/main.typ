@@ -193,6 +193,18 @@ The cutting-edge and interdisciplinary potential of ABM research is reflected in
 
 == Platforms and Building Philosophy of ABM
 
+=== Platforms for ABM Development
+
+ABM tools encompass a diverse range, including specialized platforms (e.g., NetLogo, GAMA), large-scale development environments (e.g., Repast, MASON), commercial software (e.g., AnyLogic), and frameworks based on general-purpose programming languages (e.g., Mesa for Python). The choice of tool depends on the user's programming experience, project complexity, and specific requirements. Pure ABM builders might find intuitive specialized tools like NetLogo more suitable, while experienced programmers may prefer tools integrated with their familiar languages. For projects requiring GIS integration or large-scale simulations, tools such as GAMA or MASON might be more appropriate. If scientific computing and graph theory related content are needed in the modeling process, it is more appropriate to use the MESA package @project_mesa_team_mesa_nodate.
+
+=== Building Philosophy of ABM
+
+Bottom-up ABM starts from the micro-level, defining agents' attributes, behavioral rules, and interactions to simulate complex system dynamics @rixon_bottom-up_2005. This approach allows macro-level phenomena to emerge naturally from micro-level interactions, capturing the heterogeneity and adaptivity of the system @nageli_towards_2020. By constructing models from the individual level, ABM provides a unique perspective for understanding and explaining complex systems, demonstrating the advantages of bottom-up modeling approaches.
+
+With the improvement of computing power, ABM may play an increasingly important role in social sciences. Rand proposed a guiding framework for rigorous use of agent-based modeling (ABM) in research, including using some existing model frameworks, determining the applicability of ABM, designing and building models, and model verification and validation @rand_agent-based_2011.
+
+
+
 == Diffusion of Innovation and Bass Model
 
 == Influencers and Opinion Leaders in Diffusion
@@ -211,12 +223,6 @@ The cutting-edge and interdisciplinary potential of ABM research is reflected in
 
 #simPlan
 
-
-
 #bibliography("references.bib")
 
-
-
 #show: appendix
-
-= Appendix ASDA
