@@ -1,5 +1,5 @@
 #import "template.typ": *
-
+#import "./Tables/simulationPlan.typ": simPlan
 // Take a look at the file `template.typ` in the file panel
 // to customize this template and discover how it works.
 #let today = datetime.today()
@@ -199,13 +199,22 @@ ABM tools encompass a diverse range, including specialized platforms (e.g., NetL
 
 === Building Philosophy of ABM
 
+Modeling plays a crucial role in scientific research, with diverse purposes including prediction, explanation, and description. Edmonds emphasize the importance of clarifying model purposes, as this influences modeling and validation strategies @edmonds_different_2019. In terms of modeling strategies, KISS (Keep It Simple, Stupid) and KIDS (Keep It Descriptive, Stupid) represent two distinct approaches. KISS aims for simplicity, while KIDS emphasizes descriptiveness and extensive evidence. Both strategies have their advantages and disadvantages, and the choice depends on factors such as research objectives and phenomenon complexity. As computational power increases and complex systems research advances, KIDS may gain favor in certain fields @edmonds_kiss_2005. However, regardless of the chosen strategy, it is crucial to clearly define the model's purpose and demonstrate its applicability. Researchers should flexibly select strategies based on specific circumstances to construct the most effective models.
+
 Bottom-up ABM starts from the micro-level, defining agents' attributes, behavioral rules, and interactions to simulate complex system dynamics @rixon_bottom-up_2005. This approach allows macro-level phenomena to emerge naturally from micro-level interactions, capturing the heterogeneity and adaptivity of the system @nageli_towards_2020. By constructing models from the individual level, ABM provides a unique perspective for understanding and explaining complex systems, demonstrating the advantages of bottom-up modeling approaches.
 
 With the improvement of computing power, ABM may play an increasingly important role in social sciences. Rand proposed a guiding framework for rigorous use of agent-based modeling (ABM) in research, including using some existing model frameworks, determining the applicability of ABM, designing and building models, and model verification and validation @rand_agent-based_2011.
 
-
+UML also enhances Agent-Based Modeling by providing higher abstraction, improved readability, and better modularity. It facilitates communication, documentation, and design pattern application while being language-independent. UML captures dynamic behaviors, promotes efficient modeling, and encourages professional practices, ultimately improving ABM quality and maintainability @bersini_uml_2011.
 
 == Diffusion of Innovation and Bass Model
+
+
+
+#figure(
+  caption: "Bass Model Simulation with Python NumPy and Matplotlib",
+  image("img/pic_bass_py_sim/bassmodelsim.png", width: 100%)
+)
 
 == Influencers and Opinion Leaders in Diffusion
 
@@ -215,11 +224,35 @@ With the improvement of computing power, ABM may play an increasingly important 
 
 = Methodology
 
+#let network_images = (
+  "img/pic_network_graph/network_plot_step_0.png",
+  "img/pic_network_graph/network_plot_step_10.png",
+  "img/pic_network_graph/network_plot_step_20.png",
+  "img/pic_network_graph/network_plot_step_30.png",
+  "img/pic_network_graph/network_plot_step_40.png",
+  "img/pic_network_graph/network_plot_step_50.png",
+  "img/pic_network_graph/network_plot_step_60.png",
+  "img/pic_network_graph/network_plot_step_70.png",
+  "img/pic_network_graph/network_plot_step_80.png",
+  // "img/pic_network_graph/network_plot_step_90.png",
+)
+
+#let network_image_grid = grid(
+  columns: 3,
+  gutter: 10pt,
+  ..network_images.map(img => image(img, width: 100%))
+)
+
+#figure(
+  caption: [Network Evolution over Time from Step 0 to Step 80],
+  network_image_grid
+)
+
 = Simulation and Results Analysis
 
 == Design of the Experiment
 
-#import "./Tables/simulationPlan.typ": simPlan
+// #import "./Tables/simulationPlan.typ": simPlan
 
 #simPlan
 
