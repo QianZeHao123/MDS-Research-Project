@@ -209,12 +209,35 @@ UML also enhances Agent-Based Modeling by providing higher abstraction, improved
 
 == Diffusion of Innovation and Bass Model
 
+=== Innovation Diffusion Theory
 
+Innovation diffusion theory, proposed by Rogers @rogers_new_1976, the process of people accepting a new product usually follows the product life cycle theory and can be divided into several stages: introduction, growth, maturity and decline. In the introduction stage, only a few innovators (about 2.5% of the population) and early adopters (about 13.5%) will try the new product. As time goes by, the product enters the growth stage and more early majority (about 34%) begin to adopt it. In the maturity stage, most potential users (late majority about 34%) have adopted the product and the market tends to be saturated. Finally, it enters the decline stage, with only a few laggards (about 16%) still adopting it @chesbrough_beyond_2006. The adoption process at the individual level includes stages such as cognition, interest, evaluation, trial and final adoption @everett_m_rogers_diffusion_2003. Different types of consumers have different adoption times and can be divided into groups such as innovators, early adopters, early majority, late majority and laggards @diederen_innovation_2003.
+
+=== Bass Diffusion Model
+
+Innovation diffusion models are used to describe and predict the process by which new products or technologies are gradually accepted and popularized in society. The most famous and widely used model is the Bass diffusion model @bass_new_1969. Since Frank Bass proposed the new product diffusion model in 1969, the Bass model has had a profound impact on the research of new product adoption and technology diffusion @admin_bass_nodate. The model describes the diffusion process of new products through a simple differential equation:
+$ "dF"(t) / "dt" = (p + q F(t))(1 - F(t)) $
+
+where F(t) represents the cumulative adopter ratio, and p and q represent the innovation and imitation coefficients, respectively.
+
+The solutuion of the Bass model is:
+$F(t) = 1 - exp(-(p + q)t) / (1 + q/p exp(-(p + q)t))$
+
+The sales volume S(t) can be expressed as:
+$"S"(t) = "m" "dF"(t) / "dt"$
+
+The core assumption of the Bass model is that the adoption of new products is the result of innovation and imitation, and the adoption probability is linearly related to the number of adopters @boswijk_econometrics_2005.
+
+The literature shows that the main advantage of the Bass model is that it can accurately predict the S-shaped curve and sales peak of new product sales, and the model parameters have a clear market interpretation. Although originally developed for durable consumer goods, subsequent studies have confirmed that the model is applicable to a wide range of product and service categories, including technology products and B2B market @massiani_choice_2015.
+
+The following figure uses pure Python to simulate the acceptance process of a product by 1000 potential users (p = 0.03, q = 0.38) and visualize the results using Matplotlib:
 
 #figure(
   caption: "Bass Model Simulation with Python NumPy and Matplotlib",
   image("img/pic_bass_py_sim/bassmodelsim.png", width: 100%)
 )
+
+The influence of the Bass model is reflected in the fact that it has become the basis of many extended models. For example, the intergenerational diffusion model and the generalized Bass model developed by Bass are important developments based on the original model. These extensions further improve the scope of application and predictive power of the model.
 
 == Influencers and Opinion Leaders in Diffusion
 
