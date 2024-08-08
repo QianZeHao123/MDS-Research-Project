@@ -253,7 +253,6 @@ UML also enhances Agent-Based Modeling by providing higher abstraction, improved
 == Design of the Experiment
 
 // #import "./Tables/simulationPlan.typ": simPlan
-
 #simPlan
 
 #bibliography("references.bib")
