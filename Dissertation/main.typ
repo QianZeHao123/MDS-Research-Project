@@ -248,9 +248,21 @@ ABMs offer significant advantages for modeling innovation diffusion compared to 
 
 == Influencers and Opinion Leaders in Diffusion
 
-
+Influencers or opinion leaders are nodes in social networks that have a particularly important influence on the spread of information. They usually account for about 10% of network users, have a high degree of connectivity in the network, and play a key role in the widespread dissemination of information @turnbull_diffusion_1980. Studies have found that the probability of dissemination (p_op) of opinion leaders is often a key factor in successfully simulating the spread of real-world information @feder_role_2006. Ideally, early adopters are also opinion leaders, so that information can be spread most effectively. In general, influencers are widely connected and influential nodes in social networks, and play a disproportionately important role in the widespread dissemination of information @li_abem_2021.
 
 == Network Structure and Diffusion
+
+=== Network topological structure
+
+Several studies have shown that different network topologies have a significant impact on information dissemination. By comparing the information diffusion effect of priority connection network, random network, small world network and lattice network in ABM simulation. It was found that structural characteristics such as average degree, clustering coefficient and average path length of the network are closely related to the speed and scope of information propagation. For example, small-world networks tend to exhibit faster information propagation speeds due to their high clustering and short average path lengths.
+
+Chen (2019) further explored the selection strategies of early adopters (seed nodes) under different network structures. The study found that the most effective early adopter identification methods may be different in different network structures. For example, the degree discount algorithm performs well in most networks, while the greedy algorithm works better in grid networks.
+
+=== Node Heterogeneity and Opinion Leaders
+
+Smith and Burow (2020) emphasize the importance of considering node heterogeneity for accurately modeling information propagation. They proposed an extended Bass diffusion model that divided nodes into different connectivity categories and took into account the correlation between nodes. Research shows that highly connected nodes (so-called "opinion leaders") play a key role in information dissemination, especially in the early stages of information dissemination.
+
+Xue (2016) used ABM to study the spread of immunization policies in social networks. Their model considered the influence of opinion leaders and found that targeted publicity targeting opinion leaders can significantly improve the efficiency of information dissemination.
 
 == Conclusion of Literature Review
 
@@ -288,6 +300,14 @@ ABMs offer significant advantages for modeling innovation diffusion compared to 
   caption: [Network Evolution over Time from Step 0 to Step 80],
   network_image_grid
 )
+
+= Conclusion
+
+== Summary of Findings
+
+== Contributions and Implications
+
+== Limitations and Future Research
 
 #bibliography("references.bib")
 
