@@ -32,11 +32,7 @@
 
 == Introduction
 
-#lorem(300)
-
 == Research Question
-
-#lorem(50)
 
 = Literature Review
 
@@ -587,7 +583,9 @@ key attributes:
 This model simulates the interconnection and influence between consumers through
 different social network structures. The network structure has an important
 impact on the information dissemination and product adoption process. The model
-supports 2 typical network types (small world and ):
+supports 2 typical network types (small world and random network).
+
+The following table summarizes the key characteristics of the two network:
 
 #figure(
   caption: "Comparison of Random and Small-World Network Models",
@@ -626,12 +624,12 @@ supports 2 typical network types (small world and ):
     [Mathematical Expression],
     [
       - P(edge) = p for any two nodes
-      - Average degree = p(n-1)
-      - Graph is almost certainly connected when p > ln(n)/n
+      - Average degree = $p(n-1)$
+      - Graph is almost certainly connected when $p > ln(n)/n$
     ],
     [
-      - C ≈ 3(k-2)/4(k-1)
-      - L ∝ log(n)/log(k)
+      - $C approx (3(k-2))/(4(k-1))$
+      - $L prop log(n)/log(k)$
       - Maintains high clustering coefficient while reducing average path length through
         long-distance connections
     ],
@@ -639,14 +637,194 @@ supports 2 typical network types (small world and ):
   ),
 )
 
+The figure shows the network structure of a small-world network with 100
+nodes(agents), we can see that the random network has a higher clustering
+coefficient and a shorter average path length compared to the small world
+network: 
+
+#figure(
+  image("img/abm_model/network.png", width: 100%),
+  // caption: "Random and Small-World Network Structures",
+  caption: link(
+    "https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20version%200.1/network.ipynb",
+  )[
+    Random and Small-World Network Structures
+  ],
+)
+
+=== Diffusion mechanism
+
+We hypothesize that new product adoption is influenced by two main factors:
+- External influence (innovation effect): from external information sources such
+  as advertising and media.
+- Internal influence (imitation effect): from the adoption behavior of other
+  consumers in the social network.
+
+So in each time step, the adoption probability of an agent is determined by:
+- For innovators $p$: Agents independently adopt products with fixed probability
+  p.
+- For imitators $q$: Agents are influenced by the adoption behavior of their
+  neighbors, and the adoption probability is determined by the proportion of
+  neighbors who have adopted the product. The equation is ($N$ means neighbors):
+  $ p_"adopt" = q times N_"Adopted" / N_"Total" $
+
+=== Model Parameters
+
+This ·Model contains several key parameters that together define the behavior and characteristics of the model. The following is a detailed description of these parameters:
+
+#figure(
+  caption: "Model Parameters for Agent-Based Bass Diffusion Model",
+  table(
+    columns: (auto, auto, auto),
+    align: (left, left, left),
+    stroke: none,
+    table.hline(),
+    table.header([*Parameter*], [*Description*], [*Impact*]),
+    table.hline(),
+    [*Basic Parameters*],
+    [],
+    [],
+    [N],
+    [Total number of agents (consumers)],
+    [Determines market size, affects network complexity and computation time],
+    [p],
+    [Innovation coefficient (0.01 to 0.03)],
+    [Higher values accelerate innovators adoption],
+    [q],
+    [Imitation coefficient (0.3 to 0.5)],
+    [Higher values accelerate imitators adoption],
+    table.hline(),
+    [*Agent Type Distribution*],
+    [],
+    [],
+    [agent_proportion],
+    [List of four values representing proportions of:
+      1. Influential innovators
+      2. Influential imitators
+      3. Non-influential innovators
+      4. Non-influential imitators],
+    [Determines market composition, affecting overall diffusion dynamics],
+    table.hline(),
+    [*Network Structure*],
+    [],
+    [],
+    [network_type],
+    [Options: "random", "small_world", "scale_free"],
+    [Different structures lead to varied information spread patterns],
+    [p_random],
+    [Connection probability for random networks (default: 0.05)],
+    [Affects connectivity in random networks],
+    [k],
+    [Number of neighbors per node for small-world networks (default: 4)],
+    [Influences local clustering in small-world networks],
+    [p_rewire],
+    [Rewiring probability for small-world networks (default: 0.1)],
+    [Affects "small-world-ness" of the network],
+    [m],
+    [Number of edges added per new node in scale-free networks (default: 2)],
+    [Influences hub formation in scale-free networks],
+    table.hline(),
+    [*Influence Parameter*],
+    [],
+    [],
+    [Extra connections],
+    [30 to 55 additional connections for influential agents],
+    [Simulates the broad influence of opinion leaders],
+    table.hline(),
+  ),
+)
+
+== Run the ABM Model
+
+=== Initialize the Model
+
+The following pseudocode outlines the core initialization process for our Agent-Based Model (ABM) of product diffusion. This initialization sets up the fundamental structures and parameters necessary for simulating the Bass diffusion model in a network context. The code demonstrates how we establish the agent population, create the social network, and prepare the model for simulation runs.
+
+#import "@preview/algorithmic:0.1.0"
+#import algorithmic: algorithm
+
+#algorithm({
+  import algorithmic: *
+  Function("Initialize-Model", args: ("N", "p", "q", "agent_proportion", "network_type"), {
+    Cmt[Initialize core parameters and structures]
+    Assign[total_agents][N]
+    Assign[innovation_coefficient][p]
+    Assign[imitation_coefficient][q]
+    State[Create social network based on network_type]
+    State[Generate agent distribution list]
+    State[]
+    Cmt[Create and place agents]
+    For(cond: [$i = 0$, $N-1$], {
+      State[Create new BassAgent with properties from distribution list]
+      State[Add agent to network and scheduler]
+    })
+    State[]
+    Cmt[Enhance network for influential agents]
+    For(cond: [each influential agent], {
+      State[Add extra connections]
+    })
+    State[]
+    Cmt[Initialize tracking variables]
+    Assign[steps_to_key_percentages][None]
+    Assign[running][True]
+    State[]
+    Return[Initialized model]
+  })
+})
+
+Here is the detialed network initialization process of the ABM model:
+
+#figure(
+  image("img/abm_model/network_init.png", width: 100%),
+  caption: "Initialization of the ABM Model Network",
+)
+
+=== Scheduler and Barch Running with MESA
+
+Schedulers play a key role in Agent-Based Models. I chose to use the RandomActivation scheduler provided by Mesa. The main reason for using a scheduler is to manage and control the order in which agents in the model are activated. At each simulation step, the RandomActivation scheduler randomly decides the order in which to activate agents. This randomness is important because it helps avoid systematic biases that may be introduced by a fixed activation order. In the real-world product diffusion process, the order in which consumers make decisions is often not fixed, and using random activations can better simulate this uncertainty. In addition, the scheduler simplifies the time management of the model, allowing us to easily iterate over all agents at each time step, update their states, and collect relevant data. By creating a scheduler instance at model initialization and calling `self.schedule.step()` to activate all agents at each time step, we ensure that the model runs consistently and controllably. This approach is particularly suitable for simulating social processes that do not have a fixed order, such as our product diffusion model, allowing us to more accurately capture complex market dynamics.
+
+Batch Running is the core method of model analysis. Using Mesa's BatchRunner, we are able to systematically explore the impact of different parameter combinations on product diffusion. This method allows us to define parameter ranges (such as innovation coefficient, and imitation coefficient), perform multiple repeated simulations, and automatically collect data. Through batch running, we can conduct sensitivity analysis, understand how different market conditions affect product adoption, identify key parameters and critical points, and predict diffusion trends under various scenarios. This method greatly enhances our understanding and prediction capabilities of the product diffusion process and provides strong empirical support for market strategies.
+
+=== Data Collection
+
+Data collection is essential for analyzing both individual agent behaviors and overall system dynamics. We employ Mesa's `DataCollector()`, a tool that enables systematic gathering of both agent-level and model-level data. This dual-level approach allows us to track individual agent decisions and characteristics while also monitoring system-wide trends. The DataCollector efficiently gathers time-series data throughout the simulation, providing insights into the temporal dynamics of the diffusion process. This comprehensive data collection facilitates model validation, sensitivity analysis, and the exploration of emergent phenomena in product adoption patterns, enhancing our understanding of the complex diffusion process.
+
+#figure(
+  caption: "Data Collection in the Agent-Based Bass Diffusion Model",
+  table(
+    columns: (auto, auto, auto),
+    align: (left, left, left),
+    stroke: none,
+    table.hline(),
+    table.header([*Level*], [*Data Collected*], [*Description*]),
+    table.hline(),
+    [*Agent-level*], [Adopted], [Whether each agent has adopted the product],
+    [], [Influencer], [Whether each agent is an influential individual],
+    [], [Agent_Type], [Innovator or Imitator],
+    [], [Neighbors], [List of neighbors for each agent],
+    [], [Neighbors_number], [Number of neighbors for each agent],
+    table.hline(),
+    [*Model-level*], [Adopted_Count], [Total number of agents who have adopted the product],
+    [], [Influencer_Count], [Number of influential agents who have adopted the product],
+    [], [Non_Influencer_Count], [Number of non-influential agents who have adopted the product],
+    [], [Innovator_Count], [Number of innovators who have adopted the product],
+    [], [Imitator_Count], [Number of imitators who have adopted the product],
+    [], [Steps_to_X_percent], [Time steps required to reach 25%, 50%, and 75% adoption rates],
+    table.hline(),
+  )
+)
+
 = Simulation and Results Analysis
 
 == Design of the Experiment
 
+Split the experiment into different groups, each with specific parameters changed, and run batch simulations.
 // #import "./Tables/simulationPlan.typ": simPlan
 #simPlan
 
 == Visualization of Network Evolution
+
+Use the network graph to visually track whether an agent is activated at any time.
 
 #let network_images = (
   "img/pic_network_graph/network_plot_step_0.png",
@@ -670,6 +848,118 @@ supports 2 typical network types (small world and ):
 #figure(
   caption: [Network Evolution over Time from Step 0 to Step 80],
   network_image_grid,
+)
+
+== Table of Neighbors between Influencers and Non-Influencers
+
+The tables below shows the average, maximum, and minimum values of the number of influencer and non-influencer neighbors in the first five simulations. The number of neighbors of an influencer is approximately four to six times that of a flying influencer.
+
+#figure(
+  caption: "Run Data for Agent-Based Model",
+  table(
+    columns: (auto, auto, auto, auto, auto, auto, auto),
+    align: (left, center, center, center, center, center, center),
+    stroke: none,
+    table.hline(),
+    table.header([*RunId*], [*Inf Mean*], [*INF Max*], [*Inf Min*], [*Non-inf Mean*], [*Non-inf Max*], [*Non-inf Min*]),
+    table.hline(),
+    [0], [49.09], [62], [37], [8.132222], [17], [3],
+    [1], [49.83], [69], [36], [8.152222], [15], [3],
+    [2], [50.24], [65], [35], [8.215556], [16], [3],
+    [3], [50.83], [64], [36], [8.283333], [17], [3],
+    [4], [49.87], [65], [37], [8.11], [17], [3],
+    table.hline(),
+  )
+)
+
+== Research on Different Probability of Innovators Adoption
+
+#let p_images = (
+  "img/pic_p_change_research/box.png",
+  "img/pic_p_change_research/combined_plot.png",
+)
+
+#let p_image_grid = grid(
+  columns: 2,
+  gutter: 10pt,
+  ..p_images.map(img => image(img, width: 100%)),
+)
+
+#figure(
+  caption: [Boxplot and Line Plot of Different Innovator Adoption Probabilities],
+  p_image_grid,
+)
+
+== Research on Different Probability of Imitators Adoption
+
+#let q_images = (
+  "img/pic_q_change_research/box.png",
+  "img/pic_q_change_research/combined_plot.png",
+)
+
+#let q_image_grid = grid(
+  columns: 2,
+  gutter: 10pt,
+  ..q_images.map(img => image(img, width: 100%)),
+)
+
+#figure(
+  caption: [Boxplot and Line Plot of Different Imitator Adoption Probabilities],
+  q_image_grid,
+)
+
+== Research on the Impact of Fixed Influencial proportion
+
+#figure(
+  caption: [Keep the influential innovators' proportion changed when the innovator proportion is fixed],
+  image("img/pic_same_inf_prop_research/box.png", width: 100%),
+)
+
+== Research on the Impact of Fixed Innovator's proportion
+
+#figure(
+  caption: [Keep the influential innovators' proportion changed when the influential proportion is fixed],
+  image("img/pic_same_inno_prop_research/box.png", width: 100%),
+)
+
+== Change on the Innovators and Innovator proportion
+
+// pic_p_prop_inno_research
+#let p_prop_inno_images = (
+  "img/pic_p_prop_inno_research/step_to_25.png",
+  "img/pic_p_prop_inno_research/step_to_50.png",
+  "img/pic_p_prop_inno_research/step_to_75.png",
+)
+
+#let p_prop_inno_image_grid = grid(
+  columns: 3,
+  gutter: 10pt,
+  ..p_prop_inno_images.map(img => image(img, width: 100%)),
+)
+
+#figure(
+  caption: [Steps to Reach 25%, 50%, and 75% Adoption Rates with Different Innovator's P and Innovator's Proportion],
+  p_prop_inno_image_grid,
+)
+
+== Change on Proportion of Influencers and Innovators
+
+// pic_prop_inno_inf_research
+#let prop_inno_inf_images = (
+  "img/pic_prop_inno_inf_research/step_to_25.png",
+  "img/pic_prop_inno_inf_research/step_to_50.png",
+  "img/pic_prop_inno_inf_research/step_to_75.png",
+)
+
+#let prop_inno_inf_image_grid = grid(
+  columns: 3,
+  gutter: 10pt,
+  ..prop_inno_inf_images.map(img => image(img, width: 100%)),
+)
+
+#figure(
+  caption: [Steps to Reach 25%, 50%, and 75% Adoption Rates with Different Innovator's Proportion and Influencer's Proportion],
+  prop_inno_inf_image_grid,
 )
 
 = Conclusion
