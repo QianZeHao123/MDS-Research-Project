@@ -1,5 +1,4 @@
 #import "template.typ": *
-#import "./Tables/simulationPlan.typ": simPlan
 // Take a look at the file `template.typ` in the file panel
 // to customize this template and discover how it works.
 #let today = datetime.today()
@@ -670,7 +669,9 @@ So in each time step, the adoption probability of an agent is determined by:
 
 === Model Parameters
 
-This ·Model contains several key parameters that together define the behavior and characteristics of the model. The following is a detailed description of these parameters:
+This ·Model contains several key parameters that together define the behavior
+and characteristics of the model. The following is a detailed description of
+these parameters:
 
 #figure(
   caption: "Model Parameters for Agent-Based Bass Diffusion Model",
@@ -738,39 +739,50 @@ This ·Model contains several key parameters that together define the behavior a
 
 === Initialize the Model
 
-The following pseudocode outlines the core initialization process for our Agent-Based Model (ABM) of product diffusion. This initialization sets up the fundamental structures and parameters necessary for simulating the Bass diffusion model in a network context. The code demonstrates how we establish the agent population, create the social network, and prepare the model for simulation runs.
+The following pseudocode outlines the core initialization process for our
+Agent-Based Model (ABM) of product diffusion. This initialization sets up the
+fundamental structures and parameters necessary for simulating the Bass
+diffusion model in a network context. The code demonstrates how we establish the
+agent population, create the social network, and prepare the model for
+simulation runs.
 
 #import "@preview/algorithmic:0.1.0"
 #import algorithmic: algorithm
 
-#algorithm({
-  import algorithmic: *
-  Function("Initialize-Model", args: ("N", "p", "q", "agent_proportion", "network_type"), {
-    Cmt[Initialize core parameters and structures]
-    Assign[total_agents][N]
-    Assign[innovation_coefficient][p]
-    Assign[imitation_coefficient][q]
-    State[Create social network based on network_type]
-    State[Generate agent distribution list]
-    State[]
-    Cmt[Create and place agents]
-    For(cond: [$i = 0$, $N-1$], {
-      State[Create new BassAgent with properties from distribution list]
-      State[Add agent to network and scheduler]
-    })
-    State[]
-    Cmt[Enhance network for influential agents]
-    For(cond: [each influential agent], {
-      State[Add extra connections]
-    })
-    State[]
-    Cmt[Initialize tracking variables]
-    Assign[steps_to_key_percentages][None]
-    Assign[running][True]
-    State[]
-    Return[Initialized model]
-  })
-})
+#algorithm(
+  {
+    import algorithmic: *
+    Function(
+      "Initialize-Model",
+      args: ("N", "p", "q", "agent_proportion", "network_type"),
+      {
+        Cmt[Initialize core parameters and structures]
+        Assign[total_agents][N]
+        Assign[innovation_coefficient][p]
+        Assign[imitation_coefficient][q]
+        State[Create social network based on network_type]
+        State[Generate agent distribution list]
+        State[]
+        Cmt[Create and place agents]
+        For(cond: [$i = 0$, $N-1$], {
+          State[Create new BassAgent with properties from distribution list]
+          State[Add agent to network and scheduler]
+        })
+        State[]
+        Cmt[Enhance network for influential agents]
+        For(cond: [each influential agent], {
+          State[Add extra connections]
+        })
+        State[]
+        Cmt[Initialize tracking variables]
+        Assign[steps_to_key_percentages][None]
+        Assign[running][True]
+        State[]
+        Return[Initialized model]
+      },
+    )
+  },
+)
 
 Here is the detialed network initialization process of the ABM model:
 
@@ -781,13 +793,46 @@ Here is the detialed network initialization process of the ABM model:
 
 === Scheduler and Barch Running with MESA
 
-Schedulers play a key role in Agent-Based Models. I chose to use the RandomActivation scheduler provided by Mesa. The main reason for using a scheduler is to manage and control the order in which agents in the model are activated. At each simulation step, the RandomActivation scheduler randomly decides the order in which to activate agents. This randomness is important because it helps avoid systematic biases that may be introduced by a fixed activation order. In the real-world product diffusion process, the order in which consumers make decisions is often not fixed, and using random activations can better simulate this uncertainty. In addition, the scheduler simplifies the time management of the model, allowing us to easily iterate over all agents at each time step, update their states, and collect relevant data. By creating a scheduler instance at model initialization and calling `self.schedule.step()` to activate all agents at each time step, we ensure that the model runs consistently and controllably. This approach is particularly suitable for simulating social processes that do not have a fixed order, such as our product diffusion model, allowing us to more accurately capture complex market dynamics.
+Schedulers play a key role in Agent-Based Models. I chose to use the
+RandomActivation scheduler provided by Mesa. The main reason for using a
+scheduler is to manage and control the order in which agents in the model are
+activated. At each simulation step, the RandomActivation scheduler randomly
+decides the order in which to activate agents. This randomness is important
+because it helps avoid systematic biases that may be introduced by a fixed
+activation order. In the real-world product diffusion process, the order in
+which consumers make decisions is often not fixed, and using random activations
+can better simulate this uncertainty. In addition, the scheduler simplifies the
+time management of the model, allowing us to easily iterate over all agents at
+each time step, update their states, and collect relevant data. By creating a
+scheduler instance at model initialization and calling `self.schedule.step()` to
+activate all agents at each time step, we ensure that the model runs
+consistently and controllably. This approach is particularly suitable for
+simulating social processes that do not have a fixed order, such as our product
+diffusion model, allowing us to more accurately capture complex market dynamics.
 
-Batch Running is the core method of model analysis. Using Mesa's BatchRunner, we are able to systematically explore the impact of different parameter combinations on product diffusion. This method allows us to define parameter ranges (such as innovation coefficient, and imitation coefficient), perform multiple repeated simulations, and automatically collect data. Through batch running, we can conduct sensitivity analysis, understand how different market conditions affect product adoption, identify key parameters and critical points, and predict diffusion trends under various scenarios. This method greatly enhances our understanding and prediction capabilities of the product diffusion process and provides strong empirical support for market strategies.
+Batch Running is the core method of model analysis. Using Mesa's BatchRunner, we
+are able to systematically explore the impact of different parameter
+combinations on product diffusion. This method allows us to define parameter
+ranges (such as innovation coefficient, and imitation coefficient), perform
+multiple repeated simulations, and automatically collect data. Through batch
+running, we can conduct sensitivity analysis, understand how different market
+conditions affect product adoption, identify key parameters and critical points,
+and predict diffusion trends under various scenarios. This method greatly
+enhances our understanding and prediction capabilities of the product diffusion
+process and provides strong empirical support for market strategies.
 
 === Data Collection
 
-Data collection is essential for analyzing both individual agent behaviors and overall system dynamics. We employ Mesa's `DataCollector()`, a tool that enables systematic gathering of both agent-level and model-level data. This dual-level approach allows us to track individual agent decisions and characteristics while also monitoring system-wide trends. The DataCollector efficiently gathers time-series data throughout the simulation, providing insights into the temporal dynamics of the diffusion process. This comprehensive data collection facilitates model validation, sensitivity analysis, and the exploration of emergent phenomena in product adoption patterns, enhancing our understanding of the complex diffusion process.
+Data collection is essential for analyzing both individual agent behaviors and
+overall system dynamics. We employ Mesa's `DataCollector()`, a tool that enables
+systematic gathering of both agent-level and model-level data. This dual-level
+approach allows us to track individual agent decisions and characteristics while
+also monitoring system-wide trends. The DataCollector efficiently gathers
+time-series data throughout the simulation, providing insights into the temporal
+dynamics of the diffusion process. This comprehensive data collection
+facilitates model validation, sensitivity analysis, and the exploration of
+emergent phenomena in product adoption patterns, enhancing our understanding of
+the complex diffusion process.
 
 #figure(
   caption: "Data Collection in the Agent-Based Bass Diffusion Model",
@@ -798,41 +843,178 @@ Data collection is essential for analyzing both individual agent behaviors and o
     table.hline(),
     table.header([*Level*], [*Data Collected*], [*Description*]),
     table.hline(),
-    [*Agent-level*], [Adopted], [Whether each agent has adopted the product],
-    [], [Influencer], [Whether each agent is an influential individual],
-    [], [Agent_Type], [Innovator or Imitator],
-    [], [Neighbors], [List of neighbors for each agent],
-    [], [Neighbors_number], [Number of neighbors for each agent],
+    [*Agent-level*],
+    [Adopted],
+    [Whether each agent has adopted the product],
+    [],
+    [Influencer],
+    [Whether each agent is an influential individual],
+    [],
+    [Agent_Type],
+    [Innovator or Imitator],
+    [],
+    [Neighbors],
+    [List of neighbors for each agent],
+    [],
+    [Neighbors_number],
+    [Number of neighbors for each agent],
     table.hline(),
-    [*Model-level*], [Adopted_Count], [Total number of agents who have adopted the product],
-    [], [Influencer_Count], [Number of influential agents who have adopted the product],
-    [], [Non_Influencer_Count], [Number of non-influential agents who have adopted the product],
-    [], [Innovator_Count], [Number of innovators who have adopted the product],
-    [], [Imitator_Count], [Number of imitators who have adopted the product],
-    [], [Steps_to_X_percent], [Time steps required to reach 25%, 50%, and 75% adoption rates],
+    [*Model-level*],
+    [Adopted_Count],
+    [Total number of agents who have adopted the product],
+    [],
+    [Influencer_Count],
+    [Number of influential agents who have adopted the product],
+    [],
+    [Non_Influencer_Count],
+    [Number of non-influential agents who have adopted the product],
+    [],
+    [Innovator_Count],
+    [Number of innovators who have adopted the product],
+    [],
+    [Imitator_Count],
+    [Number of imitators who have adopted the product],
+    [],
+    [Steps_to_X_percent],
+    [Time steps required to reach 25%, 50%, and 75% adoption rates],
     table.hline(),
-  )
+  ),
 )
 
 = Simulation and Results Analysis
 
 == Design of the Experiment
 
-Split the experiment into different groups, each with specific parameters changed, and run batch simulations.
-// #import "./Tables/simulationPlan.typ": simPlan
-#simPlan
+Split the experiment into different groups, each with specific parameters
+changed, and run batch simulations.
 
 #page(
   paper: "a4",
   // orientation: "landscape",
   flipped: true,
+  margin: (left: 20mm, right: 20mm, top: 20mm, bottom: 20mm),
 )[
-  #simPlan
+  // #simPlan
+  #set text (10pt)
+  #figure(
+    caption: "The Parameters of the Experiment for Each Simulation",
+    align(
+      center,
+    )[
+      #table(
+        columns: (auto, auto, auto, auto, auto, auto, auto),
+        inset: 10pt,
+        align: center,
+        stroke: none,
+        table.hline(),
+        table.header(
+          [],
+          [*N*],
+          [*p*],
+          [*q*],
+          [*Agent Proportion*],
+          [*Network Type*],
+          [*Iterations*],
+        ),
+        table.hline(),
+        [Sim 1],
+        [1000],
+        [0.01, 0.015, 0.02, 0.025, 0.03],
+        [0.3],
+        [[0.001, 0.099, 0.009, 0.891]],
+        [Small World],
+        [25],
+        [Sim 2],
+        [1000],
+        [0.02],
+        [0.3, 0.35, 0.4, 0.45, 0.5],
+        [[0.001, 0.099, 0.009, 0.891]],
+        [Small World],
+        [25],
+        [Sim 3],
+        [1000],
+        [0.01],
+        [0.3],
+        [Prop innovator: 0.01 \ Inf-Inno Prop: 0, 0.003, 0.005, 0.007, 0.01],
+        [Small World],
+        [25],
+        [Sim 4],
+        [1000],
+        [0.01],
+        [0.3],
+        [Prop innovator: 0.01 \ Inf-Inno Prop: 0, 0.003, 0.005, 0.007, 0.01],
+        [Small World],
+        [25],
+        [Sim 5],
+        [1000],
+        [0.01, 0.015, 0.02, 0.025, \ 0.03, 0.045, 0.05],
+        [0.3],
+        [Prop innovator: 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07 \ 
+          Prop Influencer: 0.1],
+        [Small World],
+        [5],
+        [Sim 6],
+        [1000],
+        [0.01],
+        [0.3],
+        [Prop innovator: 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07 \
+          Prop Influencer: 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6],
+        [Small World],
+        [5],
+        [Sim 7],
+        [1000],
+        [0.01, 0.015, 0.02, 0.025, 0.03],
+        [0.3],
+        [[0.001, 0.099, 0.009, 0.891]],
+        [Random],
+        [25],
+        [Sim 8],
+        [1000],
+        [0.02],
+        [0.3, 0.35, 0.4, 0.45, 0.5],
+        [[0.001, 0.099, 0.009, 0.891]],
+        [Random],
+        [25],
+        [Sim 9],
+        [1000],
+        [0.01],
+        [0.3],
+        [Prop innovator: 0.01 \ Inf-Inno Prop: 0, 0.003, 0.005, 0.007, 0.01],
+        [Random],
+        [25],
+        [Sim 10],
+        [1000],
+        [0.01],
+        [0.3],
+        [Prop innovator: 0.01 \ Inf-Inno Prop: 0, 0.003, 0.005, 0.007, 0.01],
+        [Random],
+        [25],
+        [Sim 11],
+        [1000],
+        [0.01, 0.015, 0.02, 0.025, \ 0.03, 0.045, 0.05],
+        [0.3],
+        [Prop innovator: 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07 \ 
+          Prop Influencer: 0.1],
+        [Random],
+        [5],
+        [Sim 12],
+        [1000],
+        [0.01],
+        [0.3],
+        [Prop innovator: 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07 \
+          Prop Influencer: 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6],
+        [Random],
+        [5],
+        table.hline(),
+      )
+    ],
+  )
 ]
 
 == Visualization of Network Evolution
 
-Use the network graph to visually track whether an agent is activated at any time.
+Use the network graph to visually track whether an agent is activated at any
+time.
 
 #let network_images = (
   "img/pic_network_graph/network_plot_step_0.png",
@@ -860,25 +1042,63 @@ Use the network graph to visually track whether an agent is activated at any tim
 
 == Table of Neighbors between Influencers and Non-Influencers
 
-The tables below shows the average, maximum, and minimum values of the number of influencer and non-influencer neighbors in the first five simulations. The number of neighbors of an influencer is approximately four to six times that of a flying influencer.
+The tables below shows the average, maximum, and minimum values of the number of
+influencer and non-influencer neighbors in the first five simulations. The
+number of neighbors of an influencer is approximately four to six times that of
+a flying influencer.
 
-#figure(
-  caption: "Run Data for Agent-Based Model",
-  table(
-    columns: (auto, auto, auto, auto, auto, auto, auto),
-    align: (left, center, center, center, center, center, center),
-    stroke: none,
-    table.hline(),
-    table.header([*RunId*], [*Inf Mean*], [*INF Max*], [*Inf Min*], [*Non-inf Mean*], [*Non-inf Max*], [*Non-inf Min*]),
-    table.hline(),
-    [0], [49.09], [62], [37], [8.132222], [17], [3],
-    [1], [49.83], [69], [36], [8.152222], [15], [3],
-    [2], [50.24], [65], [35], [8.215556], [16], [3],
-    [3], [50.83], [64], [36], [8.283333], [17], [3],
-    [4], [49.87], [65], [37], [8.11], [17], [3],
-    table.hline(),
-  )
-)
+#figure(caption: "Run Data for Agent-Based Model", table(
+  columns: (auto, auto, auto, auto, auto, auto, auto),
+  align: (left, center, center, center, center, center, center),
+  stroke: none,
+  table.hline(),
+  table.header(
+    [*RunId*],
+    [*Inf Mean*],
+    [*INF Max*],
+    [*Inf Min*],
+    [*Non-inf Mean*],
+    [*Non-inf Max*],
+    [*Non-inf Min*],
+  ),
+  table.hline(),
+  [0],
+  [49.09],
+  [62],
+  [37],
+  [8.132222],
+  [17],
+  [3],
+  [1],
+  [49.83],
+  [69],
+  [36],
+  [8.152222],
+  [15],
+  [3],
+  [2],
+  [50.24],
+  [65],
+  [35],
+  [8.215556],
+  [16],
+  [3],
+  [3],
+  [50.83],
+  [64],
+  [36],
+  [8.283333],
+  [17],
+  [3],
+  [4],
+  [49.87],
+  [65],
+  [37],
+  [8.11],
+  [17],
+  [3],
+  table.hline(),
+))
 
 == Research on Different Probability of Innovators Adoption
 
@@ -919,14 +1139,16 @@ The tables below shows the average, maximum, and minimum values of the number of
 == Research on the Impact of Fixed Influencial proportion
 
 #figure(
-  caption: [Keep the influential innovators' proportion changed when the innovator proportion is fixed],
+  caption: [Keep the influential innovators' proportion changed when the innovator
+    proportion is fixed],
   image("img/pic_same_inf_prop_research/box.png", width: 100%),
 )
 
 == Research on the Impact of Fixed Innovator's proportion
 
 #figure(
-  caption: [Keep the influential innovators' proportion changed when the influential proportion is fixed],
+  caption: [Keep the influential innovators' proportion changed when the influential
+    proportion is fixed],
   image("img/pic_same_inno_prop_research/box.png", width: 100%),
 )
 
@@ -946,7 +1168,8 @@ The tables below shows the average, maximum, and minimum values of the number of
 )
 
 #figure(
-  caption: [Steps to Reach 25%, 50%, and 75% Adoption Rates with Different Innovator's P and Innovator's Proportion],
+  caption: [Steps to Reach 25%, 50%, and 75% Adoption Rates with Different Innovator's P and
+    Innovator's Proportion],
   p_prop_inno_image_grid,
 )
 
@@ -966,7 +1189,8 @@ The tables below shows the average, maximum, and minimum values of the number of
 )
 
 #figure(
-  caption: [Steps to Reach 25%, 50%, and 75% Adoption Rates with Different Innovator's Proportion and Influencer's Proportion],
+  caption: [Steps to Reach 25%, 50%, and 75% Adoption Rates with Different Innovator's
+    Proportion and Influencer's Proportion],
   prop_inno_inf_image_grid,
 )
 
