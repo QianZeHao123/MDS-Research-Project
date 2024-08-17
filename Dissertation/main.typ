@@ -822,6 +822,14 @@ Split the experiment into different groups, each with specific parameters change
 // #import "./Tables/simulationPlan.typ": simPlan
 #simPlan
 
+#page(
+  paper: "a4",
+  // orientation: "landscape",
+  flipped: true,
+)[
+  #simPlan
+]
+
 == Visualization of Network Evolution
 
 Use the network graph to visually track whether an agent is activated at any time.
