@@ -16,6 +16,7 @@
     ],
   )
   set text(font: "Linux Libertine", lang: "en")
+  // set text(font: "Arial", lang: "en")
   set heading(numbering: "1.1")
   
   // set bibliography(title: "References", style: "chicago-author-date")
