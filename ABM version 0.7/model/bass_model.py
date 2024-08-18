@@ -34,8 +34,8 @@ class BassModel(Model):
             self.G = nx.erdos_renyi_graph(n=N, p=0.05)
         elif network_type == "small_world":
             self.G = nx.watts_strogatz_graph(n=N, k=4, p=0.1)
-        elif network_type == "scale_free":
-            self.G = nx.barabasi_albert_graph(n=N, m=2)
+        # elif network_type == "scale_free":
+        #     self.G = nx.barabasi_albert_graph(n=N, m=2)
 
         """
         # The following code is not needed as the agent_proportion is already a list of lists
