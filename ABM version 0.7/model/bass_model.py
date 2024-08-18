@@ -14,7 +14,10 @@ class BassModel(Model):
         p: Probability of innovators to accept the product
         q: Probability of imitators to accept the product
         agent_proportion: this is a list of lists, where each list contains the proportion of influential innovators, influential imitators, non-influential innovators, and non-influential imitators
-        network_type: Type of network to use. Options are "random", "small_world", and "scale_free", default is "small_world"
+        network_type: Type of network to use. Options are "random", "small_world", and "scale_free", default is "small_world",
+        random_network_p: Probability of edge creation for random network, default is 0.004004
+        small_world_network_k: Each node is connected to k nearest neighbors in ring topology, default is 4
+        small_world_network_p: Probability of rewiring each edge in small world network, default is 0.1
         """
         super().__init__()
         self.running = True
