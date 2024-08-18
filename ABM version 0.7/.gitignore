@@ -4,3 +4,6 @@
 *.jpg
 *.jpeg
 *.ipynb
+*.Rmd
+*.R
+
