@@ -6,4 +6,4 @@
 *.ipynb
 *.Rmd
 *.R
-
+*.Rhistory
