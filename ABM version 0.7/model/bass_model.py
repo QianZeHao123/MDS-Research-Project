@@ -30,12 +30,15 @@ class BassModel(Model):
         self.q = q
         self.schedule = RandomActivation(self)
 
+        """
+        for Erdős-Rényi graph, the expected number of edges is: E(edges) = p * N * (N-1) / 2
+        for Watts-Strogatz graph, the expected number of edges is: E(edges) = N * k / 2
+        """
+        # Due most agents number I set is 1000, so I set the p to 0.004004 to make the expected these two graphs have the same number of edges
         if network_type == "random":
-            self.G = nx.erdos_renyi_graph(n=N, p=0.05)
+            self.G = nx.erdos_renyi_graph(n=N, p=0.004004)
         elif network_type == "small_world":
             self.G = nx.watts_strogatz_graph(n=N, k=4, p=0.1)
-        # elif network_type == "scale_free":
-        #     self.G = nx.barabasi_albert_graph(n=N, m=2)
 
         """
         # The following code is not needed as the agent_proportion is already a list of lists
