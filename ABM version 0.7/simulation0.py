@@ -33,7 +33,7 @@ results_neighbor_count = mesa.batch_run(
         "agent_proportion": [[0.001, 0.099, 0.009, 0.891]],
         "network_type": ["small_world", "random"],
     },
-    iterations=25,
+    iterations=10,
     max_steps=100,
     number_processes=1,
     data_collection_period=1,
