@@ -8,7 +8,10 @@ from .bass_agent import BassAgent
 
 
 class BassModel(Model):
-    def __init__(self, N, p, q, agent_proportion, network_type="small_world", random_network_p=0.004004, small_world_network_k=4, small_world_network_p=0.1):
+    def __init__(self, N, p, q, agent_proportion,
+                 network_type="small_world",
+                 random_network_p=0.004004,
+                 small_world_network_k=4, small_world_network_p=0.1):
         """
         N: Number of agents
         p: Probability of innovators to accept the product
@@ -41,7 +44,8 @@ class BassModel(Model):
         if network_type == "random":
             self.G = nx.erdos_renyi_graph(n=N, p=random_network_p)
         elif network_type == "small_world":
-            self.G = nx.watts_strogatz_graph(n=N, k=small_world_network_k, p=small_world_network_p)
+            self.G = nx.watts_strogatz_graph(
+                n=N, k=small_world_network_k, p=small_world_network_p)
 
         """
         # The following code is not needed as the agent_proportion is already a list of lists
