@@ -1,0 +1,52 @@
+---
+title: "Agent Calculation Test"
+author: "Zehao Qian"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# --------------------------------------------------------
+gc()
+rm(list = ls())
+graphics.off()
+cat("\014")
+# --------------------------------------------------------
+```
+
+```{r}
+library(data.table)
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+```
+
+```{r}
+simulation_results <- fread('./report/simulation0.csv')
+```
+
+```{r}
+research_data = simulation_results %>%
+  filter(Step == 0) %>%
+  select(AgentID, Neighbors_number, network_type, Influencer)
+```
+
+```{r}
+research_data.random.non_inf = research_data %>%
+  filter(network_type == 'random', Influencer == 'TRUE')
+research_data.smallworld.non_inf = research_data %>%
+  filter(network_type == 'small_world', Influencer == 'TRUE')
+```
+
+```{r}
+research_data.random.non_inf.mean = min(research_data.random.non_inf$Neighbors_number)
+research_data.smallworld.non_inf.mean = min(research_data.smallworld.non_inf$Neighbors_number)
+```
+
+```{r}
+
+```
