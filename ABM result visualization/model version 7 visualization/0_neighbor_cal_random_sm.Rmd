@@ -16,6 +16,16 @@ rm(list = ls())
 graphics.off()
 cat("\014")
 # --------------------------------------------------------
+# name of pic output folder
+folder_name <- "./pic_neighbour_stat_network"
+
+# check if the folder already exists
+if (dir.exists(folder_name)) {
+  unlink(folder_name, recursive = TRUE)
+}
+
+# create a new folder
+dir.create(folder_name)
 ```
 
 ```{r}
@@ -25,26 +35,110 @@ library(ggplot2)
 library(tidyr)
 ```
 
+simulation 1 and simulation 7
+
+simulation 1:
+
+-   p = 0.01 \~ 0.05, q = 0.03
+
+-   network = small world
+
+simulation 2:
+
+-   p = 0.01 \~ 0.05, q = 0.03
+
+-   network = random
+
 ```{r}
-simulation_results <- fread('./report/simulation0.csv')
+simulation_results <- fread('./report/simulation1.csv')
 ```
 
 ```{r}
-research_data = simulation_results %>%
+research_data_sm = simulation_results %>%
   filter(Step == 0) %>%
   select(AgentID, Neighbors_number, network_type, Influencer)
 ```
 
 ```{r}
-research_data.random.non_inf = research_data %>%
-  filter(network_type == 'random', Influencer == 'TRUE')
-research_data.smallworld.non_inf = research_data %>%
-  filter(network_type == 'small_world', Influencer == 'TRUE')
+remove(simulation_results)
+gc()
 ```
 
 ```{r}
-research_data.random.non_inf.mean = min(research_data.random.non_inf$Neighbors_number)
-research_data.smallworld.non_inf.mean = min(research_data.smallworld.non_inf$Neighbors_number)
+simulation_results <- fread('./report/simulation7.csv')
+research_data_rand = simulation_results %>%
+  filter(Step == 0) %>%
+  select(AgentID, Neighbors_number, network_type, Influencer) %>%
+  mutate(Influencer = as.numeric(as.logical(Influencer)))
+
+remove(simulation_results)
+gc()
+```
+
+```{r}
+research_data_combined = rbind(research_data_rand, research_data_sm)
+```
+
+```{r}
+mean_data <- research_data_combined %>%
+  group_by(network_type, Influencer) %>%
+  summarise(mean_neighbors = mean(Neighbors_number, na.rm = TRUE))
+```
+
+```{r fig.height=8, fig.width=14}
+neighbor_stat = ggplot(research_data_combined) +
+  aes(x = AgentID, y = Neighbors_number, colour = Influencer) +
+  geom_point(alpha = 0.5) +  # aplha is the transparency of the point
+  scale_color_distiller(palette = "BrBG", direction = 1) +
+  geom_hline(
+    data = mean_data,
+    aes(yintercept = mean_neighbors),
+    linetype = "dashed",
+    size = 1,
+    colour = 'red'
+  ) +
+  geom_text(
+    data = mean_data,
+    aes(
+      x = Inf,
+      y = mean_neighbors,
+      label = sprintf("%.3f", mean_neighbors),
+      group = Influencer
+    ),
+    color = "red",
+    hjust = 1.1,
+    vjust = -0.5,
+    size = 3
+  ) +  # 添加均值标签
+  labs(
+    x = "Agent ID",
+    y = "Number of Neighbours",
+    title = "Distribution of Agent Neighbor Count Across Network Types",
+    subtitle = "Comparing Influencers and Non-Influencers in Random and Small World Networks"
+  ) +
+  theme_light() +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  ) +
+  facet_wrap(vars(network_type)) +
+  guides(colour = "none")
+
+ggsave(
+  filename = "./pic_neighbour_stat_network/neighbor_stat.svg",
+  plot = neighbor_stat,
+  width = 14,
+  height = 8
+)
+
+ggsave(
+  filename = "./pic_neighbour_stat_network/neighbor_stat.png",
+  plot = neighbor_stat,
+  width = 14,
+  height = 8
+)
+
+neighbor_stat
 ```
 
 ```{r}

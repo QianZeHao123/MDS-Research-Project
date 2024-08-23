@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Network Visualization for Model 6 Result
+# Network Visualization for Model 7 Result
 
 ```{r}
 # --------------------------------------------------------
@@ -36,7 +36,7 @@ dir.create(folder_name)
 
 -   N = 1000
 
--   p = 0.01
+-   p = 0.01, 0.02, 0.03
 
 -   q = 0.3
 
@@ -44,7 +44,7 @@ dir.create(folder_name)
 
 ```{r message=FALSE, warning=FALSE}
 library(data.table)
-simulation1_results = fread("./report/simulation1.csv")
+simulation1_results = fread("./report/simulation_low_n.csv")
 ```
 
 ## Draw network plot
@@ -52,7 +52,7 @@ simulation1_results = fread("./report/simulation1.csv")
 ```{r message=FALSE, warning=FALSE}
 library(dplyr)
 network_research_id0 = simulation1_results %>%
-  filter(RunId == 0, p == 0.01)
+  filter(network_type == 'small_world')
 
 remove(simulation1_results)
 ```
@@ -71,7 +71,6 @@ all_agents_data_id0 = network_research_id0 %>%
   arrange(Step) %>%
   pivot_wider(names_from = Step, values_from = Adopted, names_prefix = "Step") %>%
   left_join(agent_info_id0)
-
 remove(agent_info_id0)
 gc()
 ```
@@ -107,11 +106,13 @@ library(igraph)
 # create graph object
 g <- graph_from_data_frame(edges, directed = FALSE)
 # fix the position for each plot
-layout <- layout_with_fr(g)
+layout <- layout_nicely(g)
+# layout <- layout_on_grid(g)
+# layout <- layout_randomly(g)
+
 ```
 
 ```{r fig.height=10, fig.width=10}
-library(svglite)
 steps <- seq(0, 100, by = 10)
 
 # write a loop to draw network plot
@@ -137,7 +138,7 @@ for (step in steps) {
     geom_node_point(aes(size = as.factor(Influencer),
                         colour = as.factor(Adopted)),
                     show.legend = FALSE) +
-    scale_size_manual(values = c('FALSE' = 3, 'TRUE' = 6)) +
+    scale_size_manual(values = c('FALSE' = 6, 'TRUE' = 12)) +
     scale_color_manual(values = c('FALSE' = 'blue', 'TRUE' = 'red')) +
     theme_void() +
     ggtitle(paste("Step", step))

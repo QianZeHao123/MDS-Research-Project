@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Data Set: Simulation 1
+Data Set: Simulation 1 and 6
 
 -   N = 1000
 
@@ -35,7 +35,7 @@ dir.create(folder_name)
 
 ```{r}
 library(data.table)
-simulation1_results = fread("./simulation1.csv")
+simulation1_results = fread("./report/simulation1.csv")
 ```
 
 ```{r}
