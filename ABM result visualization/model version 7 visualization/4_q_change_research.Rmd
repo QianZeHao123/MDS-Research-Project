@@ -23,7 +23,7 @@ if (dir.exists(folder_name)) {
 dir.create(folder_name)
 ```
 
-Data Set: Simulation 2
+Data Set: Simulation 2 and 8
 
 -   N = 1000
 
@@ -33,9 +33,11 @@ Data Set: Simulation 2
 
 -   Iteration = 25
 
+# Small World Network
+
 ```{r}
 library(data.table)
-simulation2_results = fread("./simulation2.csv")
+simulation2_results = fread("./report/simulation2.csv")
 ```
 
 ```{r}
@@ -51,7 +53,9 @@ data.q.change.long <- q.change.research %>%
                values_to = "Steps_Count") %>%
   mutate(q_number = case_when(
     q == 0.3 ~ "q = 0.3",
+    q == 0.35 ~ "q = 0.35",
     q == 0.4 ~ "q = 0.4",
+    q == 0.45 ~ "q = 0.45",
     q == 0.5 ~ "q = 0.5",
     TRUE ~ NA_character_  # other cases
   ))
@@ -63,7 +67,15 @@ library(ggplot2)
 
 box = ggplot(data.q.change.long) +
   aes(x = q_number, y = Steps_Count, fill = q) +
-  geom_boxplot() +
+  geom_boxplot(color = 'blue', fill = 'lightblue') +
+  stat_summary(
+    fun = median,
+    geom = "text",
+    aes(label = sprintf("%.1f", after_stat(y))),
+    vjust = -0.5,
+    color = "black",
+    size = 3
+  ) +
   scale_fill_gradient() +
   labs(
     x = "Different Q Number",
@@ -76,11 +88,19 @@ box = ggplot(data.q.change.long) +
     plot.title = element_text(face = "bold", hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5)
   ) +
-  facet_wrap(vars(Step_Percent))
+  facet_wrap(vars(Step_Percent)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 80))
 
-ggsave("./pic_q_change_research/box.png",
+
+ggsave("./pic_q_change_research/box_sm.png",
        plot = box,
        device = "png",
+       height = 8,
+       width = 12)
+
+ggsave("./pic_q_change_research/box_sm.svg",
+       plot = box,
+       device = "svg",
        height = 8,
        width = 12)
 
@@ -88,10 +108,12 @@ box
 ```
 
 ```{r fig.height=6, fig.width=10}
+
 line.data = simulation2_results %>%
   filter(AgentID == 0)
 
-ribbon_data = line.data %>%
+# calculate the max, min and mean value of Adopted_Count for each step and p's combination
+ribbon_data <- line.data %>%
   group_by(Step, q) %>%
   summarise(
     ymin = min(Adopted_Count),
@@ -102,28 +124,30 @@ ribbon_data = line.data %>%
 # create a combined-plot with both scatter and ribbon plot
 combined_plot <- ggplot() +
   geom_ribbon(
-    data = ribbon_data,
+    data = ribbon_data %>%
+      filter(q %in% c(0.3, 0.35, 0.4, 0.45, 0.5)),
     aes(x = Step, ymin = ymin, ymax = ymax),
     alpha = 0.3,
     fill = "blue"
   ) +
   geom_line(
-    data = ribbon_data,
+    data = ribbon_data %>% filter(q %in% c(0.3, 0.35, 0.4, 0.45, 0.5)),
     aes(x = Step, y = y_mean),
     color = "red",
     size = 1.5
   ) +
   geom_point(
-    data = line.data,
-    aes(x = Step, y = Adopted_Count, colour = RunId),
-    size = 1.6,
-    shape = "circle small"
+    data = line.data %>% filter(q %in% c(0.3, 0.35, 0.4, 0.45, 0.5)),
+    aes(x = Step, y = Adopted_Count),
+    color = "purple",
+    shape = "circle small",
+    size = 0.8
   ) +
   scale_color_viridis_c() +
   labs(
     x = 'Steps Count',
     y = 'Adopted User Count',
-    title = "Ribbon and Scatter Plot Comparison with Different P Value",
+    title = "Ribbon and Scatter Plot Comparison with Different Q Value",
     subtitle = "N=1000, iteration=25"
   ) +
   theme_light() +
@@ -133,9 +157,157 @@ combined_plot <- ggplot() +
   ) +
   facet_wrap(vars(q))
 
-ggsave("./pic_q_change_research/combined_plot.png",
+ggsave("./pic_q_change_research/combined_plot_sm.png",
        plot = combined_plot,
        device = "png",
+       height = 6,
+       width = 10)
+
+ggsave("./pic_q_change_research/combined_plot_sm.svg",
+       plot = combined_plot,
+       device = "svg",
+       height = 6,
+       width = 10)
+
+combined_plot
+```
+
+```{r}
+# --------------------------------------------------------
+gc()
+rm(list = ls())
+graphics.off()
+cat("\014")
+# --------------------------------------------------------
+```
+
+# Random Network
+
+```{r}
+simulation8_results = fread("./report/simulation8.csv")
+q.change.research = simulation8_results %>%
+  filter(AgentID == 100, Step == 100)
+
+
+data.q.change.long <- q.change.research %>%
+  pivot_longer(cols = starts_with("Steps_to"), 
+               names_to = "Step_Percent", 
+               values_to = "Steps_Count") %>%
+  mutate(q_number = case_when(
+    q == 0.3 ~ "q = 0.3",
+    q == 0.35 ~ "q = 0.35",
+    q == 0.4 ~ "q = 0.4",
+    q == 0.45 ~ "q = 0.45",
+    q == 0.5 ~ "q = 0.5",
+    TRUE ~ NA_character_  # other cases
+  ))
+
+```
+
+```{r fig.height=6, fig.width=10}
+library(ggplot2)
+
+box = ggplot(data.q.change.long) +
+  aes(x = q_number, y = Steps_Count, fill = q) +
+  geom_boxplot(color = '#f08a5d', fill = '#f9ed69') +
+  stat_summary(
+    fun = median,
+    geom = "text",
+    aes(label = sprintf("%.1f", after_stat(y))),
+    vjust = -0.5,
+    color = "black",
+    size = 3
+  ) +
+  scale_fill_gradient() +
+  labs(
+    x = "Different Q Number",
+    y = "Steps Count",
+    title = "Boxplot for Potential User Acceptance Ratio",
+    subtitle = "When the acceptance probability of imitator changes (q)"
+  ) +
+  theme_light() +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  ) +
+  facet_wrap(vars(Step_Percent)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 80))
+
+
+ggsave("./pic_q_change_research/box_random.png",
+       plot = box,
+       device = "png",
+       height = 8,
+       width = 12)
+
+ggsave("./pic_q_change_research/box_random.svg",
+       plot = box,
+       device = "svg",
+       height = 8,
+       width = 12)
+
+box
+```
+
+```{r fig.height=6, fig.width=10}
+
+line.data = simulation8_results %>%
+  filter(AgentID == 0)
+
+# calculate the max, min and mean value of Adopted_Count for each step and p's combination
+ribbon_data <- line.data %>%
+  group_by(Step, q) %>%
+  summarise(
+    ymin = min(Adopted_Count),
+    ymax = max(Adopted_Count),
+    y_mean = mean(Adopted_Count)
+  )
+
+# create a combined-plot with both scatter and ribbon plot
+combined_plot <- ggplot() +
+  geom_ribbon(
+    data = ribbon_data %>%
+      filter(q %in% c(0.3, 0.35, 0.4, 0.45, 0.5)),
+    aes(x = Step, ymin = ymin, ymax = ymax),
+    alpha = 0.3,
+    fill = "blue"
+  ) +
+  geom_line(
+    data = ribbon_data %>% filter(q %in% c(0.3, 0.35, 0.4, 0.45, 0.5)),
+    aes(x = Step, y = y_mean),
+    color = "red",
+    size = 1.5
+  ) +
+  geom_point(
+    data = line.data %>% filter(q %in% c(0.3, 0.35, 0.4, 0.45, 0.5)),
+    aes(x = Step, y = Adopted_Count),
+    color = "#903749",
+    shape = "circle small",
+    size = 0.8
+  ) +
+  scale_color_viridis_c() +
+  labs(
+    x = 'Steps Count',
+    y = 'Adopted User Count',
+    title = "Ribbon and Scatter Plot Comparison with Different Q Value",
+    subtitle = "N=1000, iteration=25"
+  ) +
+  theme_light() +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  ) +
+  facet_wrap(vars(q))
+
+ggsave("./pic_q_change_research/combined_plot_random.png",
+       plot = combined_plot,
+       device = "png",
+       height = 6,
+       width = 10)
+
+ggsave("./pic_q_change_research/combined_plot_random.svg",
+       plot = combined_plot,
+       device = "svg",
        height = 6,
        width = 10)
 
