@@ -41,7 +41,7 @@ Data Set: Simulation 5
 
 ```{r}
 library(data.table)
-simulation5_results = fread("./simulation5.csv")
+simulation5_results = fread("./report/simulation5.csv")
 ```
 
 ```{r}
@@ -88,7 +88,8 @@ data.research.heat.result <- data.research.heat %>%
   ungroup()
 ```
 
-```{r fig.height=6, fig.width=8}
+```{r fig.height=5, fig.width=5}
+library(ggplot2)
 step_to_25 = ggplot(data.research.heat.result) +
   aes(x = p, y = prop_inno, fill = avg_steps_25) +
   geom_tile() +
@@ -100,23 +101,147 @@ step_to_25 = ggplot(data.research.heat.result) +
     y = "Change the Proportion of Innovators",
     title = "Heatmap for Innovator Research",
     subtitle = "Proportion of Influencers = 0.1",
-    fill = "Average Steps to \n 25 percentage"
   ) +
   theme(
     plot.title = element_text(face = "bold", hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5)
-  )
+  ) +
+  guides(fill = "none", colour = "none")
 
-ggsave("./pic_p_prop_inno_research/step_to_25.png",
+ggsave("./pic_p_prop_inno_research/step_to_25_sm.png",
        plot = step_to_25,
        device = "png",
-       height = 6,
-       width = 8)
+       height = 5,
+       width = 5)
 
 step_to_25
 ```
 
-```{r fig.height=6, fig.width=8}
+```{r fig.height=5, fig.width=5}
+library(ggplot2)
+step_to_50 = ggplot(data.research.heat.result) +
+  aes(x = p, y = prop_inno, fill = avg_steps_50) +
+  geom_tile() +
+  geom_text(aes(label = round(avg_steps_50, 1)), color = "white", size = 3) +
+  scale_fill_viridis_c(option = "cividis", direction = 1) +
+  theme_light() +
+  labs(
+    x = "Change the Probability of Innovators to Accept the Product",
+    y = "Change the Proportion of Innovators",
+    title = "Heatmap for Innovator Research",
+    subtitle = "Proportion of Influencers = 0.1",
+  ) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  ) +
+  guides(fill = "none", colour = "none")
+
+ggsave("./pic_p_prop_inno_research/step_to_50_sm.png",
+       plot = step_to_50,
+       device = "png",
+       height = 5,
+       width = 5)
+
+step_to_50
+```
+
+```{r fig.height=5, fig.width=5}
+library(ggplot2)
+step_to_75 = ggplot(data.research.heat.result) +
+  aes(x = p, y = prop_inno, fill = avg_steps_75) +
+  geom_tile() +
+  geom_text(aes(label = round(avg_steps_75, 1)), color = "white", size = 3) +
+  scale_fill_viridis_c(option = "cividis", direction = 1) +
+  theme_light() +
+  labs(
+    x = "Change the Probability of Innovators to Accept the Product",
+    y = "Change the Proportion of Innovators",
+    title = "Heatmap for Innovator Research",
+    subtitle = "Proportion of Influencers = 0.1",
+  ) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  ) +
+  guides(fill = "none", colour = "none")
+
+ggsave("./pic_p_prop_inno_research/step_to_75_sm.png",
+       plot = step_to_75,
+       device = "png",
+       height = 5,
+       width = 5)
+
+step_to_75
+```
+
+```{r}
+remove(simulation5_results)
+simulation11_results = fread("./report/simulation11.csv")
+
+data.research = simulation11_results %>%
+  filter(AgentID == 0, Step == 100)
+
+data.research$agent_proportion_list = lapply(data.research$agent_proportion, fromJSON)
+
+data.research$prop_inf = sapply(data.research$agent_proportion_list,
+                                function(x) x[1]+x[2])
+data.research$prop_inno = sapply(data.research$agent_proportion_list, 
+                                function(x) x[1]+x[3])
+
+
+data.research.heat = data.research %>%
+  select(
+    p,
+    q,
+    Steps_to_25_percent,
+    Steps_to_50_percent,
+    Steps_to_75_percent,
+    prop_inf,
+    prop_inno
+  )
+
+data.research.heat.result <- data.research.heat %>%
+  group_by(p, prop_inno) %>%
+  summarise(
+    avg_steps_25 = mean(Steps_to_25_percent),
+    avg_steps_50 = mean(Steps_to_50_percent),
+    avg_steps_75 = mean(Steps_to_75_percent)
+  ) %>%
+  ungroup()
+```
+
+```{r fig.height=5, fig.width=5}
+library(ggplot2)
+step_to_25 = ggplot(data.research.heat.result) +
+  aes(x = p, y = prop_inno, fill = avg_steps_25) +
+  geom_tile() +
+  geom_text(aes(label = round(avg_steps_25, 1)), color = "white", size = 3) +
+  scale_fill_viridis_c(option = "inferno", direction = 1) +
+  theme_light() +
+  labs(
+    x = "Change the Probability of Innovators to Accept the Product",
+    y = "Change the Proportion of Innovators",
+    title = "Heatmap for Innovator Research",
+    subtitle = "Proportion of Influencers = 0.1",
+  ) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  ) +
+  guides(fill = "none", colour = "none")
+
+ggsave("./pic_p_prop_inno_research/step_to_25_random.png",
+       plot = step_to_25,
+       device = "png",
+       height = 5,
+       width = 5)
+
+step_to_25
+```
+
+```{r fig.height=5, fig.width=5}
+library(ggplot2)
 step_to_50 = ggplot(data.research.heat.result) +
   aes(x = p, y = prop_inno, fill = avg_steps_50) +
   geom_tile() +
@@ -128,50 +253,47 @@ step_to_50 = ggplot(data.research.heat.result) +
     y = "Change the Proportion of Innovators",
     title = "Heatmap for Innovator Research",
     subtitle = "Proportion of Influencers = 0.1",
-    fill = "Average Steps to \n 50 percentage"
   ) +
   theme(
     plot.title = element_text(face = "bold", hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5)
-  )
+  ) +
+  guides(fill = "none", colour = "none")
 
-ggsave("./pic_p_prop_inno_research/step_to_50.png",
+ggsave("./pic_p_prop_inno_research/step_to_50_random.png",
        plot = step_to_50,
        device = "png",
-       height = 6,
-       width = 8)
+       height = 5,
+       width = 5)
 
 step_to_50
 ```
 
-```{r fig.height=6, fig.width=8}
+```{r fig.height=5, fig.width=5}
+library(ggplot2)
 step_to_75 = ggplot(data.research.heat.result) +
   aes(x = p, y = prop_inno, fill = avg_steps_75) +
   geom_tile() +
   geom_text(aes(label = round(avg_steps_75, 1)), color = "white", size = 3) +
-  scale_fill_viridis_c(option = "viridis", direction = 1) +
+  scale_fill_viridis_c(option = "inferno", direction = 1) +
   theme_light() +
   labs(
     x = "Change the Probability of Innovators to Accept the Product",
     y = "Change the Proportion of Innovators",
     title = "Heatmap for Innovator Research",
     subtitle = "Proportion of Influencers = 0.1",
-    fill = "Average Steps to \n 75 percentage"
   ) +
   theme(
     plot.title = element_text(face = "bold", hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5)
-  )
+  ) +
+  guides(fill = "none", colour = "none")
 
-ggsave("./pic_p_prop_inno_research/step_to_75.png",
+ggsave("./pic_p_prop_inno_research/step_to_75_sm.png",
        plot = step_to_75,
        device = "png",
-       height = 6,
-       width = 8)
+       height = 5,
+       width = 5)
 
 step_to_75
-```
-
-```{r}
-
 ```
