@@ -23,7 +23,7 @@ if (dir.exists(folder_name)) {
 dir.create(folder_name)
 ```
 
-Data Set: Simulation 4
+Data Set: Simulation 4 and 10
 
 -   N = 1000
 
@@ -39,7 +39,7 @@ Data Set: Simulation 4
 
 ```{r}
 library(data.table)
-simulation4_results = fread("./simulation4.csv")
+simulation4_results = fread("./report/simulation4.csv")
 ```
 
 ```{r}
@@ -70,17 +70,25 @@ data.box.long = data.box %>%
   ))
 ```
 
-```{r fig.height=9, fig.width=16}
+```{r fig.height=9, fig.width=14}
 library(ggplot2)
 
 box = ggplot(data.box.long) +
   aes(
     x = prop_inf_inno_number,
     y = Steps_Count,
-    fill = prop_inf_inno
+    # fill = prop_inf_inno
   ) +
-  geom_boxplot() +
-  scale_fill_viridis_c(option = "plasma", direction = 1) +
+  geom_boxplot(color = 'blue', fill = 'lightblue') +
+  stat_summary(
+    fun = median,
+    geom = "text",
+    aes(label = sprintf("%.1f", after_stat(y))),
+    vjust = -0.5,
+    color = "black",
+    size = 3
+  ) +
+  scale_fill_gradient() +
   labs(
     x = "Change the Proportion of Influencial Innovator",
     y = "Steps Count",
@@ -92,17 +100,94 @@ box = ggplot(data.box.long) +
     plot.title = element_text(face = "bold", hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5)
   ) +
-  facet_wrap(vars(Step_Percent))
+  facet_wrap(vars(Step_Percent)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 80))
 
-ggsave("./pic_same_inf_prop_research/box.png",
+
+ggsave("./pic_same_inf_prop_research/box_sm.png",
        plot = box,
        device = "png",
        height = 9,
-       width = 16)
+       width = 14)
+
+ggsave("./pic_same_inf_prop_research/box_sm.svg",
+       plot = box,
+       device = "svg",
+       height = 9,
+       width = 14)
 
 box
 ```
 
 ```{r}
+remove(simulation4_results)
+simulation10_results = fread("./report/simulation10.csv")
+data.box = simulation10_results %>%
+  filter(AgentID == 0, Step == 100)
 
+
+data.box$agent_proportion_list = lapply(data.box$agent_proportion, fromJSON)
+data.box$prop_inf_inno = sapply(data.box$agent_proportion_list, function(x) x[1])
+
+data.box.long = data.box %>%
+  pivot_longer(cols = starts_with("Steps_to"), 
+               names_to = "Step_Percent", 
+               values_to = "Steps_Count") %>%
+  mutate(prop_inf_inno_number = case_when(
+    prop_inf_inno == 0 ~ "Inf Inno = 0",
+    prop_inf_inno == 0.003 ~ "Inf Inno = 0.003",
+    prop_inf_inno == 0.005 ~ "Inf Inno = 0.005",
+    prop_inf_inno == 0.007 ~ "Inf Inno = 0.007",
+    prop_inf_inno == 0.01 ~ "Inf Inno = 0.01",
+    TRUE ~ NA_character_
+  ))
+```
+
+```{r fig.height=9, fig.width=14}
+library(ggplot2)
+
+box = ggplot(data.box.long) +
+  aes(
+    x = prop_inf_inno_number,
+    y = Steps_Count,
+    # fill = prop_inf_inno
+  ) +
+  geom_boxplot(color = 'blue', fill = 'lightblue') +
+  stat_summary(
+    fun = median,
+    geom = "text",
+    aes(label = sprintf("%.1f", after_stat(y))),
+    vjust = -0.5,
+    color = "black",
+    size = 3
+  ) +
+  scale_fill_gradient() +
+  labs(
+    x = "Change the Proportion of Influencial Innovator",
+    y = "Steps Count",
+    title = "Boxplot for Potential User Acceptance ",
+    subtitle = "Proportion of Influencers = 0.1"
+  ) +
+  theme_light() +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  ) +
+  facet_wrap(vars(Step_Percent)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 80))
+
+
+ggsave("./pic_same_inf_prop_research/box_random.png",
+       plot = box,
+       device = "png",
+       height = 9,
+       width = 14)
+
+ggsave("./pic_same_inf_prop_research/box_random.svg",
+       plot = box,
+       device = "svg",
+       height = 9,
+       width = 14)
+
+box
 ```
