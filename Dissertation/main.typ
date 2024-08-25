@@ -362,7 +362,7 @@ which new products or technologies are gradually accepted and popularized in
 society. The most famous and widely used model is the Bass diffusion model
 @bass_new_1969. Since Frank Bass proposed the new product diffusion model in
 1969, the Bass model has had a profound impact on the research of new product
-adoption and technology diffusion @admin_bass_nodate. The model describes the
+adoption and technology diffusion. The model describes the
 diffusion process of new products through a simple differential equation:
 $ "dF"(t) / "dt" = (p + q F(t))(1 - F(t)) $
 
@@ -1082,6 +1082,6 @@ a flying influencer.
 
 == Limitations and Future Research
 
-#bibliography("references.bib")
+#bibliography("references.fixed.bib")
 
 #show: appendix
