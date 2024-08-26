@@ -109,7 +109,7 @@ neighbor_stat = ggplot(research_data_combined) +
     hjust = 1.1,
     vjust = -0.5,
     size = 3
-  ) +  # 添加均值标签
+  ) +  # add lables for the mean value
   labs(
     x = "Agent ID",
     y = "Number of Neighbours",
