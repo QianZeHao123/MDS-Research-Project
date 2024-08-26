@@ -144,7 +144,7 @@ for (step in steps) {
   
   # save the network plot
   ggsave(
-    filename = paste0("./pic_network_graph/network_plot_step_", step, ".svg"),
+    filename = paste0("./pic_network_graph/network_plot_step_", step, ".png"),
     plot = p,
     width = 10,
     height = 10
