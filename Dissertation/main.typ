@@ -62,8 +62,8 @@ which new products or technologies are gradually accepted and popularized in
 society. The most famous and widely used model is the Bass diffusion model
 @bass_new_1969. Since Frank Bass proposed the new product diffusion model in
 1969, the Bass model has had a profound impact on the research of new product
-adoption and technology diffusion. The model describes the
-diffusion process of new products through a simple differential equation:
+adoption and technology diffusion. The model describes the diffusion process of
+new products through a simple differential equation:
 $ "dF"(t) / "dt" = (p + q F(t))(1 - F(t)) $
 
 where F(t) represents the cumulative adopter ratio, and p and q represent the
@@ -88,16 +88,17 @@ technology products and B2B market @massiani_choice_2015.
 
 The following figure uses pure Python to simulate the acceptance process of a
 product by 1000 potential users (p = 0.03, q = 0.38) and visualize the results
-using Matplotlib:
+using Matplotlib (@label:NumPyRes):
 
 #figure(
-  caption: link(
-    "https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20version%200.1/purebass.ipynb",
-  )[
+  caption: [
     Bass Model Simulation with Python NumPy and Matplotlib
+    #link(
+      "https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20version%200.1/purebass.ipynb",
+    )[[Code]]
   ],
   image("img/pic_bass_py_sim/bassmodelsim.png", width: 100%),
-)
+) <label:NumPyRes>
 
 
 The influence of the Bass model is reflected in the fact that it has become the
@@ -142,12 +143,6 @@ environment, and act according to specific rules @davidsson_multi_2001. Agents
 typically possess bounded rationality, goal-oriented behavior, and variable
 internal states. These features enable ABM to effectively simulate individual
 behaviors and overall dynamics in complex systems.
-
-// === ABM modeling process and technical implementation
-
-// Agents: Autonomous individuals with specific attributes and behavioral rules
-// Environment: The context in which agents operate
-// Interaction Rules: Governing agent-to-agent and agent-environment interactions
 
 The ABM models contains three main components: agents, environment, and
 interaction rules. 
