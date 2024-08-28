@@ -15,7 +15,8 @@
       #h(1fr) MDS Research Project
     ],
   )
-  set text(font: "Linux Libertine", lang: "en")
+  // set text(font: "Linux Libertine", lang: "en")
+  set text(font: ("Linux Libertine", "SimSun"), lang: "en")
   // set text(font: "Arial", lang: "en")
   set heading(numbering: "1.1")
   
