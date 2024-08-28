@@ -1085,7 +1085,7 @@ a flying influencer.
 
 #bibliography("references.fixed.bib")
 
-#set heading(outlined: false)
+// #set heading(outlined: false)
 #set heading(numbering: none)
 
 = Appendix A: Model Code
