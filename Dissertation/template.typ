@@ -19,10 +19,10 @@
   set text(font: ("Linux Libertine", "SimSun"), lang: "en")
   // set text(font: "Arial", lang: "en")
   set heading(numbering: "1.1")
-  
+   
   // set bibliography(title: "References", style: "chicago-author-date")
   set bibliography(title: "References", style: "apa")
-  
+   
   // Title row.
   align(center)[
     #block(text(weight: 700, 1.75em, title))
@@ -34,7 +34,7 @@
     #v(1em, weak: true)
     #date
   ]
-  
+   
   // Author information.
   pad(top: 0.5em, x: 2em, grid(
     columns: (1fr,) * calc.min(3, authors.len()),
@@ -44,7 +44,7 @@
       #author.email
     ]),
   ))
-  
+   
   // Abstract.
   pad(
     x: 2em,
@@ -57,15 +57,9 @@
       #abstract
     ],
   )
-  
+   
   // Main body.
   set par(justify: true)
-  
-  body
-}
-
-#let appendix(body) = {
-  set heading(numbering:"A.1") 
-  counter(heading).update(0)
+   
   body
 }
