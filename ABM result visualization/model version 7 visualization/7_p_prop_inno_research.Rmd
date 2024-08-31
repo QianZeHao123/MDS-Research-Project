@@ -289,11 +289,15 @@ step_to_75 = ggplot(data.research.heat.result) +
   ) +
   guides(fill = "none", colour = "none")
 
-ggsave("./pic_p_prop_inno_research/step_to_75_sm.png",
+ggsave("./pic_p_prop_inno_research/step_to_75_random.png",
        plot = step_to_75,
        device = "png",
        height = 5,
        width = 5)
 
 step_to_75
+```
+
+```{r}
+
 ```
