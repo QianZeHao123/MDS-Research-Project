@@ -927,6 +927,12 @@ time.
   p_image_grid,
 )
 
+
+#figure(
+  caption: [Boxplot and Line Plot of Different Innovator Adoption Probabilities],
+  image("img/pic_p_change_research/combined_plot_sm.png", width: 100%),
+)
+
 == Research on Different Probability of Imitators Adoption
 
 #let q_images = (
@@ -978,8 +984,7 @@ time.
 )
 
 #figure(
-  caption: [Keep the innovators' proportion changed when the influential proportion
-    is fixed],
+  caption: [Keep the innovators' proportion changed when the influential proportion is fixed],
   img_same_inno_prop_research_grid,
 )
 
