@@ -966,9 +966,9 @@ time.
 
 // pic_p_prop_inno_research
 #let p_prop_inno_images = (
-  "img/pic_p_prop_inno_research/step_to_25.png",
-  "img/pic_p_prop_inno_research/step_to_50.png",
-  "img/pic_p_prop_inno_research/step_to_75.png",
+  "img/pic_p_prop_inno_research/step_to_25_sm.png",
+  "img/pic_p_prop_inno_research/step_to_50_sm.png",
+  "img/pic_p_prop_inno_research/step_to_75_sm.png",
 )
 
 #let p_prop_inno_image_grid = grid(
@@ -979,7 +979,7 @@ time.
 
 #figure(
   caption: [Steps to Reach 25%, 50%, and 75% Adoption Rates with Different Innovator's P and
-    Innovator's Proportion],
+    Innovator's Proportion (small world network)],
   p_prop_inno_image_grid,
 )
 
