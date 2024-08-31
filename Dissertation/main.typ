@@ -588,12 +588,23 @@ network:
 #figure(
   image("img/abm_model/network.png", width: 100%),
   // caption: "Random and Small-World Network Structures",
-  caption: link(
-    "https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20version%200.1/network.ipynb",
-  )[
+  caption: [
     Random and Small-World Network Structures
+    #link(
+      "https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20version%200.1/network.ipynb",
+    )[
+      [Code]
+    ]
   ],
 )
+
+Here is the detialed network initialization process of the ABM model:
+
+#figure(
+  image("img/abm_model/network_init.png", width: 100%),
+  caption: "Initialization of the ABM Model Network",
+)
+
 
 === Diffusion mechanism
 
@@ -730,13 +741,6 @@ simulation runs.
       },
     )
   },
-)
-
-Here is the detialed network initialization process of the ABM model:
-
-#figure(
-  image("img/abm_model/network_init.png", width: 100%),
-  caption: "Initialization of the ABM Model Network",
 )
 
 === Scheduler and Barch Running with MESA
