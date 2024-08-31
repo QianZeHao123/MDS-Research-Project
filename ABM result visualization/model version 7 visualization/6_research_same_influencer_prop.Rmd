@@ -191,3 +191,7 @@ ggsave("./pic_same_inf_prop_research/box_random.svg",
 
 box
 ```
+
+```{r}
+
+```
