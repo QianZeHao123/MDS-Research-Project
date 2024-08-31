@@ -266,31 +266,6 @@ computational models. This interdisciplinary approach not only promotes the
 development of social science theories, but also provides new perspectives and
 tools for the study of complex social systems.
 
-=== Theoretical contributions and future development of ABM
-
-ABM's contribution to social science theory lies in its unique modeling and
-analysis capabilities. It can directly simulate individual behaviors and
-interactions, generate overall system behaviors, and provide a platform for
-verifying theoretical hypotheses @conte_agent-based_2014. ABM reveals the
-multi-level nature of social phenomena, demonstrates the dynamic process from
-micro-behavior to macro-structure, and provides a new perspective on
-long-standing problems. By introducing computational models, such as computable
-trust measures, ABM improves traditional research methods and provides new
-analytical tools and frameworks for social science theory
-@macal_agent-based_2009.
-
-The cutting-edge and interdisciplinary potential of ABM research is reflected in
-many aspects. Its application in complex system research is constantly
-expanding, especially in the study of self-organizing systems. ABM is being
-integrated with methods such as data mining and machine learning to promote the
-development of computational social science @davidsson_multi_2001. At the
-theoretical level, ABM promotes in-depth research on rational agents and system
-strategic structures. In the future, ABM is expected to make important
-contributions in the formalization of social selection processes and the
-standardization of intelligent agent systems, promote the deep integration of
-social sciences with natural sciences and computational sciences, and open up
-new prospects for complex system research @macal_agent-based_2009.
-
 == Platforms and Building Philosophy of ABM
 
 === Platforms for ABM Development
@@ -484,6 +459,8 @@ The following are my research proposals:
 == Model framework introduction
 
 === Model Assumption
+
+
 
 === Model structure
 
@@ -692,6 +669,8 @@ these parameters:
 
 == Design of the Simulation Experiment
 
+Split the experiment into different groups, each with specific parameters
+changed, and run batch simulations.
 // #simInfo
 
 == Run the ABM Model
@@ -837,48 +816,12 @@ the complex diffusion process.
 
 这个是结果分析部分，测试一下中文看看可不可以。
 
-== Design of the Experiment
-
-Split the experiment into different groups, each with specific parameters
-changed, and run batch simulations.
-
-// #simInfo
-
-== Visualization of Network Evolution
-
-Use the network graph to visually track whether an agent is activated at any
-time.
-
-#let network_images = (
-  "img/pic_network_graph/network_plot_step_0.png",
-  "img/pic_network_graph/network_plot_step_10.png",
-  "img/pic_network_graph/network_plot_step_20.png",
-  "img/pic_network_graph/network_plot_step_30.png",
-  "img/pic_network_graph/network_plot_step_40.png",
-  "img/pic_network_graph/network_plot_step_50.png",
-  "img/pic_network_graph/network_plot_step_60.png",
-  "img/pic_network_graph/network_plot_step_70.png",
-  "img/pic_network_graph/network_plot_step_80.png",
-  // "img/pic_network_graph/network_plot_step_90.png",
-)
-
-#let network_image_grid = grid(
-  columns: 3,
-  gutter: 10pt,
-  ..network_images.map(img => image(img, width: 100%)),
-)
-
-#figure(
-  caption: [Network Evolution over Time from Step 0 to Step 80],
-  network_image_grid,
-)
-
 == Table of Neighbors between Influencers and Non-Influencers
 
 The tables below shows the average, maximum, and minimum values of the number of
 influencer and non-influencer neighbors in the first five simulations. The
 number of neighbors of an influencer is approximately four to six times that of
-a flying influencer.
+a flying influencer (@infstatable).
 
 #figure(caption: "Run Data for Agent-Based Model", table(
   columns: (auto, auto, auto, auto, auto, auto, auto),
@@ -931,7 +874,41 @@ a flying influencer.
   [17],
   [3],
   table.hline(),
-))
+)) <infstatable>
+
+#figure(
+  caption: [Neighbor statistics for Influencers and Non-Influencers],
+  image("img/pic_neighbour_stat_network/neighbor_stat.png", width: 100%),
+)
+
+== Visualization of Network Evolution
+
+Use the network graph to visually track whether an agent is activated at any
+time.
+
+#let network_images = (
+  "img/pic_network_graph/network_plot_step_0.png",
+  "img/pic_network_graph/network_plot_step_10.png",
+  "img/pic_network_graph/network_plot_step_20.png",
+  "img/pic_network_graph/network_plot_step_30.png",
+  "img/pic_network_graph/network_plot_step_40.png",
+  "img/pic_network_graph/network_plot_step_50.png",
+  "img/pic_network_graph/network_plot_step_60.png",
+  "img/pic_network_graph/network_plot_step_70.png",
+  "img/pic_network_graph/network_plot_step_80.png",
+  // "img/pic_network_graph/network_plot_step_90.png",
+)
+
+#let network_image_grid = grid(
+  columns: 3,
+  gutter: 10pt,
+  ..network_images.map(img => image(img, width: 100%)),
+)
+
+#figure(
+  caption: [Network Evolution over Time from Step 0 to Step 80],
+  network_image_grid,
+)
 
 == Research on Different Probability of Innovators Adoption
 
