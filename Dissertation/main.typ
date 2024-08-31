@@ -670,8 +670,7 @@ these parameters:
 == Design of the Simulation Experiment
 
 Split the experiment into different groups, each with specific parameters
-changed, and run batch simulations.
-// #simInfo
+changed, and run batch simulations.// #simInfo
 
 == Run the ABM Model
 
@@ -948,18 +947,40 @@ time.
 
 == Research on the Impact of Fixed Influencial proportion
 
+#let img_same_inf_prop_research = (
+  "img/pic_same_inf_prop_research/box_random.png",
+  "img/pic_same_inf_prop_research/box_sm.png",
+)
+
+#let img_same_inf_prop_research_grid = grid(
+  columns: 2,
+  gutter: 10pt,
+  ..img_same_inf_prop_research.map(img => image(img, width: 100%)),
+)
+
 #figure(
   caption: [Keep the influential innovators' proportion changed when the innovator
     proportion is fixed],
-  image("img/pic_same_inf_prop_research/box.png", width: 100%),
+  img_same_inf_prop_research_grid,
 )
 
 == Research on the Impact of Fixed Innovator's proportion
 
+#let img_same_inno_prop_research = (
+  "img/pic_same_inno_prop_research/box_random.png",
+  "img/pic_same_inno_prop_research/box_sm.png",
+)
+
+#let img_same_inno_prop_research_grid = grid(
+  columns: 2,
+  gutter: 10pt,
+  ..img_same_inno_prop_research.map(img => image(img, width: 100%)),
+)
+
 #figure(
-  caption: [Keep the influential innovators' proportion changed when the influential
-    proportion is fixed],
-  image("img/pic_same_inno_prop_research/box.png", width: 100%),
+  caption: [Keep the innovators' proportion changed when the influential proportion
+    is fixed],
+  img_same_inno_prop_research_grid,
 )
 
 == Change on the Innovators and Innovator proportion
@@ -969,6 +990,9 @@ time.
   "img/pic_p_prop_inno_research/step_to_25_sm.png",
   "img/pic_p_prop_inno_research/step_to_50_sm.png",
   "img/pic_p_prop_inno_research/step_to_75_sm.png",
+  "img/pic_p_prop_inno_research/step_to_25_random.png",
+  "img/pic_p_prop_inno_research/step_to_50_random.png",
+  "img/pic_p_prop_inno_research/step_to_75_random.png",
 )
 
 #let p_prop_inno_image_grid = grid(
@@ -979,7 +1003,7 @@ time.
 
 #figure(
   caption: [Steps to Reach 25%, 50%, and 75% Adoption Rates with Different Innovator's P and
-    Innovator's Proportion (small world network)],
+    Innovator's Proportion (small world network $arrow.t$, random network $arrow.b$)],
   p_prop_inno_image_grid,
 )
 
@@ -990,6 +1014,9 @@ time.
   "img/pic_prop_inno_inf_research/step_to_25_sm.png",
   "img/pic_prop_inno_inf_research/step_to_50_sm.png",
   "img/pic_prop_inno_inf_research/step_to_75_sm.png",
+  "img/pic_prop_inno_inf_research/step_to_25_random.png",
+  "img/pic_prop_inno_inf_research/step_to_50_random.png",
+  "img/pic_prop_inno_inf_research/step_to_75_random.png",
 )
 
 #let prop_inno_inf_image_grid = grid(
@@ -1000,7 +1027,8 @@ time.
 
 #figure(
   caption: [Steps to Reach 25%, 50%, and 75% Adoption Rates with Different Innovator's
-    Proportion and Influencer's Proportion],
+    Proportion and Influencer's Proportion (small world network $arrow.t$, random
+    network $arrow.b$)],
   prop_inno_inf_image_grid,
 )
 
