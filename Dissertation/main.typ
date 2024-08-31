@@ -449,7 +449,7 @@ The following are my research proposals:
   saturation level of a product.
 + Analysis of the impact of social network structure on product diffusion
   dynamics: Study how different types of social network structures (such as
-  small-world networks, scale-free networks, random networks, etc.) affect the
+  small-world networks, random networks, etc.) affect the
   spread and adoption speed of product information, as well as the relationship
   between these network characteristics and key indicators of the diffusion
   process (such as diffusion rate, peak time, saturation level, etc.).
@@ -601,7 +601,7 @@ So in each time step, the adoption probability of an agent is determined by:
 
 === Model Parameters
 
-This ·Model contains several key parameters that together define the behavior
+This Model contains several key parameters that together define the behavior
 and characteristics of the model. The following is a detailed description of
 these parameters:
 
@@ -642,7 +642,7 @@ these parameters:
     [],
     [],
     [network_type],
-    [Options: "random", "small_world", "scale_free"],
+    [Options: "random", "small_world"],
     [Different structures lead to varied information spread patterns],
     [p_random],
     [Connection probability for random networks (default: 0.05)],
@@ -653,9 +653,6 @@ these parameters:
     [p_rewire],
     [Rewiring probability for small-world networks (default: 0.1)],
     [Affects "small-world-ness" of the network],
-    [m],
-    [Number of edges added per new node in scale-free networks (default: 2)],
-    [Influences hub formation in scale-free networks],
     table.hline(),
     [*Influence Parameter*],
     [],
@@ -813,8 +810,6 @@ the complex diffusion process.
 
 = Simulation and Results Analysis
 
-这个是结果分析部分，测试一下中文看看可不可以。
-
 == Table of Neighbors between Influencers and Non-Influencers
 
 The tables below shows the average, maximum, and minimum values of the number of
@@ -880,7 +875,16 @@ a flying influencer (@infstatable).
   image("img/pic_neighbour_stat_network/neighbor_stat.png", width: 100%),
 )
 
-== Visualization of Network Evolution
+== Single Run Simulation Results Statistics
+
+=== Statistics of Consumer's Adoption for single simulation
+
+#figure(
+  caption: [Adoption Statistics for a Single Simulation Run],
+  image("img/pic_single_stat/combined_plot.png", width: 100%),
+)
+
+=== Visualization of Network Evolution
 
 Use the network graph to visually track whether an agent is activated at any
 time.
@@ -927,11 +931,26 @@ time.
   p_image_grid,
 )
 
+#let combined_plot = (
+  "img/pic_p_change_research/combined_plot_sm.png",
+  "img/pic_p_change_research/combined_plot_random.png",
+  )
+
+#let combined_plot_grid = grid(
+  columns: 2,
+  gutter: 10pt,
+  ..combined_plot.map(img => image(img, width: 100%)),
+)
 
 #figure(
   caption: [Boxplot and Line Plot of Different Innovator Adoption Probabilities],
-  image("img/pic_p_change_research/combined_plot_sm.png", width: 100%),
+  combined_plot_grid,
 )
+
+// #figure(
+//   caption: [Boxplot and Line Plot of Different Innovator Adoption Probabilities],
+//   image("img/pic_p_change_research/combined_plot_sm.png", width: 100%),
+// )
 
 == Research on Different Probability of Imitators Adoption
 
