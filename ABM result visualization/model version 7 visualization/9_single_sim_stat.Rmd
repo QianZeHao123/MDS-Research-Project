@@ -1,0 +1,130 @@
+---
+title: "Single Simulation Statistics"
+author: "Zehao Qian"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Simulation 9 Single Simulation Stat
+
+```{r}
+# --------------------------------------------------------
+gc()
+rm(list = ls())
+graphics.off()
+cat("\014")
+# --------------------------------------------------------
+folder_name <- "./pic_single_stat"
+if (dir.exists(folder_name)) {
+  unlink(folder_name, recursive = TRUE)
+}
+dir.create(folder_name)
+```
+
+```{r}
+library(data.table)
+simulation1_results = fread("./report/simulation1.csv")
+```
+
+```{r}
+library(tidyr)
+library(dplyr)
+
+data = simulation1_results %>%
+  filter(RunId == 0, p == 0.01)
+```
+
+```{r}
+# library(plotly)
+# library(esquisse)
+# 
+# esquisser(data)
+```
+
+```{r}
+names(data)
+```
+
+```{r fig.height=5, fig.width=8}
+library(ggplot2)
+library(cowplot)
+
+# main plot for five lines
+main_plot <- ggplot(data, aes(x = Step)) +
+  geom_line(aes(y = Adopted_Count, colour = "Adopted"), size = 1) +
+  geom_line(aes(y = Influencer_Count, colour = "Influencer"), size = 0.8) +
+  geom_line(aes(y = Non_Influencer_Count, colour = "Non-Influencer"), size = 0.8) +
+  geom_line(aes(y = Innovator_Count, colour = "Innovator"), size = 0.8) +
+  geom_line(aes(y = Imitator_Count, colour = "Imitator"), size = 0.8) +
+  scale_colour_manual(
+    values = c(
+      "Adopted" = "#112446",
+      "Influencer" = "#D64550",
+      "Non-Influencer" = "#37A794",
+      "Innovator" = "#FAA916",
+      "Imitator" = "#7E52A0"
+    )
+  ) +
+  labs(
+    title = "Agents of Different Types Adoption Statistics",
+    subtitle = "p = 0.01, q = 0.3, proportion of innovators = 0.01, proportion of influencers = 0.1",
+    x = "Step Count",
+    y = "Adopter Count",
+    colour = "Count Type"
+  ) +
+  theme_light() +
+  theme(
+    legend.position = "right",
+    legend.title = element_text(face = "bold"),
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    panel.grid.minor = element_blank()
+  ) +
+  scale_x_continuous(expand = c(0.02, 0)) +
+  scale_y_continuous(expand = c(0.02, 0))
+
+# Innovator small plot
+innovator_plot <- ggplot(data, aes(x = Step, y = Innovator_Count)) +
+  geom_line(colour = "#FAA916", size = 1) +
+  theme_minimal() +
+  theme(
+    axis.title = element_blank(),
+    plot.background = element_rect(fill = "white", color = "black"),
+    panel.grid = element_blank(),
+    axis.text = element_text(size = 8)
+  ) +
+  labs(title = "Innovator Count") +
+  theme(plot.title = element_text(size = 10, face = "bold", hjust = 0.5), )
+
+# using cowplot to combine them together
+combined_plot <- ggdraw(main_plot) +
+  draw_plot(
+    innovator_plot,
+    x = 0.4,
+    y = 0.3,
+    width = 0.35,
+    height = 0.35
+  )
+
+print(combined_plot)
+
+ggsave(
+  "./pic_single_stat/combined_plot.svg",
+  plot = combined_plot,
+  device = "svg",
+  height = 5,
+  width = 8
+)
+
+ggsave(
+  "./pic_single_stat/combined_plot.png",
+  plot = combined_plot,
+  device = "png",
+  height = 5,
+  width = 8
+)
+```
