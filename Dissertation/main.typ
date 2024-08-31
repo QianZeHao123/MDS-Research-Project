@@ -987,9 +987,9 @@ time.
 
 // pic_prop_inno_inf_research
 #let prop_inno_inf_images = (
-  "img/pic_prop_inno_inf_research/step_to_25.png",
-  "img/pic_prop_inno_inf_research/step_to_50.png",
-  "img/pic_prop_inno_inf_research/step_to_75.png",
+  "img/pic_prop_inno_inf_research/step_to_25_sm.png",
+  "img/pic_prop_inno_inf_research/step_to_50_sm.png",
+  "img/pic_prop_inno_inf_research/step_to_75_sm.png",
 )
 
 #let prop_inno_inf_image_grid = grid(
