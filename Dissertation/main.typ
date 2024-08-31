@@ -1,5 +1,7 @@
 #import "template.typ": *
 #import "Tables/SimulationInfoTable.typ": simInfo
+#import "@preview/algorithmic:0.1.0"
+#import algorithmic: algorithm
 // Take a look at the file `template.typ` in the file panel
 // to customize this template and discover how it works.
 #let today = datetime.today()
@@ -449,10 +451,10 @@ The following are my research proposals:
   saturation level of a product.
 + Analysis of the impact of social network structure on product diffusion
   dynamics: Study how different types of social network structures (such as
-  small-world networks, random networks, etc.) affect the
-  spread and adoption speed of product information, as well as the relationship
-  between these network characteristics and key indicators of the diffusion
-  process (such as diffusion rate, peak time, saturation level, etc.).
+  small-world networks, random networks, etc.) affect the spread and adoption
+  speed of product information, as well as the relationship between these network
+  characteristics and key indicators of the diffusion process (such as diffusion
+  rate, peak time, saturation level, etc.).
 
 = Methodology
 
@@ -475,7 +477,9 @@ behaviors of individual agents.
   caption: "Class Diagram of the ABM Model",
 ) 
 
-=== Agent Attributes
+== Agent Attributes
+ 
+=== Parameters for Agent Level
 
 Each agent represents a potential consumer in the market and has the following
 key attributes:
@@ -498,7 +502,34 @@ key attributes:
 - Social network characteristics: Neighbors: A list of other agents that an agent
   is directly connected to in the social network.
 
-=== Social Network Structure
+=== Diffusion mechanism
+
+We hypothesize that new product adoption is influenced by two main factors:
+- External influence (innovation effect): from external information sources such
+  as advertising and media.
+- Internal influence (imitation effect): from the adoption behavior of other
+  consumers in the social network.
+
+So in each time step, the adoption probability of an agent is determined by:
+- For innovators $p$: Agents independently adopt products with fixed probability
+  p.
+- For imitators $q$: Agents are influenced by the adoption behavior of their
+  neighbors, and the adoption probability is determined by the proportion of
+  neighbors who have adopted the product. The equation is ($N$ means neighbors):
+  $ p_"adopt" = q times N_"Adopted" / N_"Total" $
+
+== Social Network Structure
+
+我的ABM模型中的网络结构是基于小世界网络以及随机网络。但是在他们的基础上添加了Influencer。为影响者添加更多的边。下面是基础网络的样子。
+
+Here is the detialed network initialization process of the ABM model:
+
+#figure(
+  image("img/abm_model/network_init.png", width: 100%),
+  caption: "Initialization of the ABM Model Network",
+)
+
+=== Base Network Structure
 
 This model simulates the interconnection and influence between consumers through
 different social network structures. The network structure has an important
@@ -557,10 +588,9 @@ The following table summarizes the key characteristics of the two network:
   ),
 )
 
-The figure shows the network structure of a small-world network with 100
-nodes(agents), we can see that the random network has a higher clustering
-coefficient and a shorter average path length compared to the small world
-network: 
+The figure shows the network structure of a small-world network with 100 nodes
+(agents), we can see that the random network has a higher clustering coefficient
+and a shorter average path length compared to the small world network: 
 
 #figure(
   image("img/abm_model/network.png", width: 100%),
@@ -575,35 +605,79 @@ network:
   ],
 )
 
-Here is the detialed network initialization process of the ABM model:
+=== Network Edge Equalization <label:netedgeequal>
 
-#figure(
-  image("img/abm_model/network_init.png", width: 100%),
-  caption: "Initialization of the ABM Model Network",
+We hope to compare information diffusion in Erdős-Rényi random graphs and
+Watts-Strogatz small-world networks. To ensure comparability, I use a controlled
+variable approach, maintaining identical node counts (N) and total edge numbers
+across both network types.
+
+I achieve two different networks in which each node has the same number of
+connections with other nodes by adjusting the connection probability p in the
+random network model and the initial neighbor count k in the small world model
+to achieve the same number of edges:
+
+- For Erdős-Rényi graphs, the expected number of edges is: 
+$ E("edges") = 1/2 times p times N (N-1) $
+- For Watts-Strogatz graphs, the number of edges is fixed at:
+$ "edges" = 1 / 2 times N times k $
+
+By setting these two values equal, we can derive:
+$ p = k / (N-1) $
+
+For example, in my simulation, I set $N=1000$, $k=4$ in the small world network,
+so we can calculate $p approx 0.004004$ for random network.
+
+This approach constructs network models with identical node counts and edge
+numbers but differing topological structures, providing an ideal platform for
+studying the impact of network structure on information diffusion. This way,
+each agent can have a similar number of neighbors before adding more links to
+the Influencial agent. This can be demonstrated in @label:neighbor_stat.
+
+=== Add More Edges for Influencers
+
+In social network structure research, influencers are usually defined as nodes with more connections. Here we add additional connections to influencers. This can simulate the influencer's extensive influence in the social network.
+
+Here is the logic to implement adding more neighbors to an influencer (G means the network graph, achieved by @label:netedgeequal):
+
+#algorithm(
+  {
+    import algorithmic: *
+    Function(
+      "Enhance-Influencers-Connections",
+      args: ("G", "agents"),
+      {
+        For(
+          cond: [each agent in agents],
+          {
+            If(
+              cond: [agent is influencer],
+              {
+                State[Get current neighbors of agent]
+                State[Identify potential new neighbors (nodes not currently connected and not self)]
+                State[Calculate number of additional edges (random between 30 to 54)]
+                State[Randomly select new neighbors from potential neighbors]
+                For(cond: [each new neighbor], {
+                  If(cond: [edge doesn't exist between agent and new neighbor], {
+                    State[Add edge between agent and new neighbor]
+                  })
+                })
+              },
+            )
+          },
+        )
+      },
+    )
+  },
 )
 
-
-=== Diffusion mechanism
-
-We hypothesize that new product adoption is influenced by two main factors:
-- External influence (innovation effect): from external information sources such
-  as advertising and media.
-- Internal influence (imitation effect): from the adoption behavior of other
-  consumers in the social network.
-
-So in each time step, the adoption probability of an agent is determined by:
-- For innovators $p$: Agents independently adopt products with fixed probability
-  p.
-- For imitators $q$: Agents are influenced by the adoption behavior of their
-  neighbors, and the adoption probability is determined by the proportion of
-  neighbors who have adopted the product. The equation is ($N$ means neighbors):
-  $ p_"adopt" = q times N_"Adopted" / N_"Total" $
+== Model Input and Simulation Design
 
 === Model Parameters
 
-This Model contains several key parameters that together define the behavior
-and characteristics of the model. The following is a detailed description of
-these parameters:
+This Model contains several key parameters that together define the behavior and
+characteristics of the model. The following is a detailed description of these
+parameters:
 
 #figure(
   caption: "Model Parameters for Agent-Based Bass Diffusion Model",
@@ -664,7 +738,7 @@ these parameters:
   ),
 )
 
-== Design of the Simulation Experiment
+=== Design of the Simulation Experiment
 
 Split the experiment into different groups, each with specific parameters
 changed, and run batch simulations.// #simInfo
@@ -679,9 +753,6 @@ fundamental structures and parameters necessary for simulating the Bass
 diffusion model in a network context. The code demonstrates how we establish the
 agent population, create the social network, and prepare the model for
 simulation runs.
-
-#import "@preview/algorithmic:0.1.0"
-#import algorithmic: algorithm
 
 #algorithm(
   {
@@ -748,6 +819,8 @@ and predict diffusion trends under various scenarios. This method greatly
 enhances our understanding and prediction capabilities of the product diffusion
 process and provides strong empirical support for market strategies.
 
+在这里边添加一些使用CPU多核处理。以及优化代码, 防止内存爆炸的细节操作。
+
 === Data Collection
 
 Data collection is essential for analyzing both individual agent behaviors and
@@ -810,7 +883,7 @@ the complex diffusion process.
 
 = Simulation and Results Analysis
 
-== Table of Neighbors between Influencers and Non-Influencers
+== Table of Neighbors between Influencers and Non-Influencers <label:neighbor_stat>
 
 The tables below shows the average, maximum, and minimum values of the number of
 influencer and non-influencer neighbors in the first five simulations. The
@@ -934,7 +1007,7 @@ time.
 #let combined_plot = (
   "img/pic_p_change_research/combined_plot_sm.png",
   "img/pic_p_change_research/combined_plot_random.png",
-  )
+)
 
 #let combined_plot_grid = grid(
   columns: 2,
