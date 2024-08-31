@@ -49,6 +49,7 @@ simulation6_results = fread("./report/simulation6.csv")
 ```{r}
 library(tidyr)
 library(dplyr)
+library(ggplot2)
 
 data.research = simulation6_results %>%
   filter(AgentID == 0, Step == 100)
@@ -307,4 +308,8 @@ ggsave("./pic_prop_inno_inf_research/step_to_75_random.png",
        width = 5)
 
 step_to_75
+```
+
+```{r}
+
 ```
