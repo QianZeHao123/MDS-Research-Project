@@ -237,60 +237,6 @@ of different scales and complexities, providing researchers with a powerful tool
 to understand and predict complex social, economic, and natural phenomena
 @macal_tutorial_2005.
 
-#figure(caption: "Applications of ABM in Various Fields", table(
-  columns: (auto, auto),
-  align: (left, left),
-  stroke: none,
-  table.hline(),
-  table.header([*Research Field*], [*Applications*]),
-  table.hline(),
-  [Social Sciences],
-  [
-    - Human behavior and social interactions
-    - Economic systems and political processes
-    - Organizational decision-making
-    - Crime analysis and terrorism studies
-  ],
-  [Natural Sciences],
-  [
-    - Ecology and ecosystem dynamics
-    - Cellular and molecular biology
-    - Chemical reactions and processes
-  ],
-  [Public Health & Medicine],
-  [
-    - Epidemiology (infectious and non-communicable diseases)
-    - Healthcare systems optimization
-  ],
-  [Engineering & Technology],
-  [
-    - Supply chain and manufacturing
-    - Urban planning and transportation
-    - Energy systems and power grids
-  ],
-  [Business & Economics],
-  [
-    - Market analysis and financial simulations
-    - Trade networks and marketing strategies
-  ],
-  [Environment & Energy],
-  [
-    - Climate change impacts
-    - Resource management and sustainability
-  ],
-  [Military & Security],
-  [
-    - Command systems and force simulations
-    - Evacuation modeling
-  ],
-  [Complex Systems Science],
-  [
-    - Emergent behavior and adaptive systems
-    - Multi-level system simulations
-  ],
-  table.hline(),
-))
-
 === Application of ABM in complex systems and social science research
 
 ABM has demonstrated its unique advantages in the study of complex systems and
@@ -537,6 +483,8 @@ The following are my research proposals:
 
 == Model framework introduction
 
+=== Model Assumption
+
 === Model structure
 
 My ABM model is developed with MESA, using object-oriented programming, and
@@ -548,7 +496,7 @@ behaviors of individual agents.
 #figure(
   image("img/abm_model/class.png", width: 50%),
   caption: "Class Diagram of the ABM Model",
-)
+) 
 
 === Agent Attributes
 
