@@ -536,7 +536,7 @@ As shown in the @label:netinit below:
 This model simulates the interconnection and influence between consumers through
 different social network structures. The network structure has an important
 impact on the information dissemination and product adoption process. The model
-supports 2 typical network types (small world and random network). The use the Python NetworkX library #footnote[NetworkX is a package for complex networks. https://networkx.org/] to create the initial network structure.
+supports 2 typical network types (small world and random network). The use the Python NetworkX library #footnote[NetworkX is a package for complex networks. Official website: https://networkx.org/] to create the initial network structure.
 
 The following table summarizes the key characteristics of the two network:
 
