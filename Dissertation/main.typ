@@ -655,7 +655,8 @@ Here is the logic to implement adding more neighbors to an influencer (G means t
               {
                 State[Get current neighbors of agent]
                 State[Identify potential new neighbors (nodes not currently connected and not self)]
-                State[Calculate number of additional edges (random between 30 to 54)]
+                State[Additional Edges = min(int(25*random.random())+30, len(potential_neighbors)))]
+                State[Calculate number of additional edges (random between 30 to 54 $arrow.t$)]
                 State[Randomly select new neighbors from potential neighbors]
                 For(cond: [each new neighbor], {
                   If(cond: [edge doesn't exist between agent and new neighbor], {
