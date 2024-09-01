@@ -520,21 +520,23 @@ So in each time step, the adoption probability of an agent is determined by:
 
 == Social Network Structure
 
-我的ABM模型中的网络结构是基于小世界网络以及随机网络。但是在他们的基础上添加了Influencer。为影响者添加更多的边。下面是基础网络的样子。
+The network structure in my ABM model is based on small-world networks and random networks. On top of these two basic network structures, I further introduced the key attribute of influencers. Influencers have more connections in the network. This design is intended to simulate the role of opinion leaders or key nodes in real society. There are three steps to build such a network:
 
-Here is the detialed network initialization process of the ABM model:
+Initialize a base network (@label:basenet and @label:netedgeequal) $arrow.r$ Put agents on the network $arrow.r$ Add connections for influencers (@label:addneigh)
+
+As shown in the @label:netinit below:
 
 #figure(
   image("img/abm_model/network_init.png", width: 100%),
   caption: "Initialization of the ABM Model Network",
-)
+) <label:netinit>
 
-=== Base Network Structure
+=== Base Network Structure <label:basenet>
 
 This model simulates the interconnection and influence between consumers through
 different social network structures. The network structure has an important
 impact on the information dissemination and product adoption process. The model
-supports 2 typical network types (small world and random network).
+supports 2 typical network types (small world and random network). The use the Python NetworkX library to create the initial network structure.
 
 The following table summarizes the key characteristics of the two network:
 
@@ -634,11 +636,14 @@ studying the impact of network structure on information diffusion. This way,
 each agent can have a similar number of neighbors before adding more links to
 the Influencial agent. This can be demonstrated in @label:neighbor_stat.
 
-=== Add More Edges for Influencers
+=== Add More Edges for Influencers <label:addneigh>
 
-In social network structure research, influencers are usually defined as nodes with more connections. Here we add additional connections to influencers. This can simulate the influencer's extensive influence in the social network.
+In social network structure research, influencers are usually defined as nodes
+with more connections. Here we add additional connections to influencers. This
+can simulate the influencer's extensive influence in the social network.
 
-Here is the logic to implement adding more neighbors to an influencer (G means the network graph, achieved by @label:netedgeequal):
+Here is the logic to implement adding more neighbors to an influencer (G means
+the network graph, achieved by @label:netedgeequal):
 
 #algorithm(
   {
@@ -741,8 +746,42 @@ parameters:
 
 === Design of the Simulation Experiment
 
-Split the experiment into different groups, each with specific parameters
-changed, and run batch simulations.// #simInfo
+Experimental design is a core component of methodology, which directly
+determines how to test research hypotheses and answer research questions. My
+experimental design systematically covers changes in multiple key parameters
+(such as innovation coefficient p, imitation coefficient q, network type,
+influencer ratio, etc.) and considers their interactions to ensure the
+comprehensiveness and rigor of the research. Each set of experiments is iterated
+5 or 25 times, and such a design captures the randomness of the model and the
+stability of the results. Through this systematic and comprehensive experimental
+design, the foundation for the analysis and discussion of the results is laid.
+
+I designed a series of simulation experiments to explore the impact of different parameters on the product diffusion process. These experiments are divided into two categories, each containing 6 sets of experiments, conducted in small-world networks and random networks respectively. All experiments are based on a network of 1,000 agents with multiple iterations to eliminate the randomness of the simulation. Each set of experiments uses the same parameter settings in both network structures in order to directly compare the impact of the network structure. The following is a detailed description of the experimental design:
+
+- Network Type: Small-world network experiments (simulations 1-6) and random network experiments (simulations 7-12)
+- Effect of the innovation coefficient (p) on diffusion:
+  - Simulations 1 and 7: Adjust the p coefficient (0.01 to 0.03), keeping other parameters unchanged.
+  - Purpose: To understand how the innovator adoption probability affects the diffusion speed and pattern in different network structures.
+- Effect of imitation coefficient (q) on diffusion:
+  - Simulations 2 and 8: Adjust the q coefficient (0.3 to 0.5) and keep other parameters unchanged.
+  - Purpose: To explore the effect of imitator adoption probability on the diffusion process in different network structures.
+- Effect of influencer ratio on innovator diffusion:
+  - Simulations 3, 4 and 9, 10: Adjust the ratio of influencers to innovators (0 to 0.01), keeping the total innovator ratio constant.
+  - Purpose: To study how the proportion of influencers in the innovator group affects the diffusion dynamics of different network structures.
+- Effect of the ratio of influencers to innovators on diffusion:
+  - Simulations 3 and 9: Adjust the ratio of influential innovators (0 to 0.01), keeping the ratio of total innovators constant (0.01).
+  - Simulations 4 and 10: Adjust the ratio of influential innovators (0 to 0.01), keeping the ratio of total influencers constant.
+  - Purpose: To study how the ratio of influencers in the group of innovators affects the diffusion dynamics of different network structures. In particular, we want to study what happens when the number of influential innovators is zero.
+- Interaction between innovation coefficient and proportion of innovators:
+  - Simulations 5 and 11: Adjust p coefficient (0.01 to 0.05) and proportion of innovators (0.01 to 0.07) simultaneously.
+  - Purpose: To explore how the interaction between innovation coefficient and proportion of innovators affects the diffusion process in different network structures.
+- Interaction of innovator and influencer proportions:
+  - Simulations 6 and 12: Simultaneously adjust the innovator proportion (0.01 to 0.07) and the influencer proportion (0 to 0.6).
+  - Purpose: To investigate how the distribution of innovators and influencers in different network structures jointly influences diffusion dynamics.
+
+The @label:simPlan below shows all the detailed parameters that need to be input for each simulation.
+
+#simInfo
 
 == Run the ABM Model
 
