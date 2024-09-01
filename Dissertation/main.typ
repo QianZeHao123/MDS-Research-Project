@@ -30,6 +30,10 @@
 
 #show figure: set block(breakable: true)
 
+// add word count to the end of the document 
+#import "@preview/wordometer:0.1.2": word-count, total-words
+#show: word-count
+
 = Introduction and Research Question
 
 == Introduction
@@ -779,9 +783,9 @@ I designed a series of simulation experiments to explore the impact of different
   - Simulations 6 and 12: Simultaneously adjust the innovator proportion (0.01 to 0.07) and the influencer proportion (0 to 0.6).
   - Purpose: To investigate how the distribution of innovators and influencers in different network structures jointly influences diffusion dynamics.
 
-The @label:simPlan below shows all the detailed parameters that need to be input for each simulation.
+// The @label:simPlan below shows all the detailed parameters that need to be input for each simulation.
 
-#simInfo
+// #simInfo
 
 == Run the ABM Model
 
@@ -1177,9 +1181,15 @@ time.
 
 == Limitations and Future Research
 
+
+
 #bibliography("references.fixed.bib")
 
 // #set heading(outlined: false)
 #set heading(numbering: none)
 
 = Appendix A: Model Code
+
+= Appendix B: Words Count
+
+In this document, there are #total-words words all up.
