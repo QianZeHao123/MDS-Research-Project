@@ -1169,23 +1169,25 @@ To gain a more intuitive understanding of the process of product adoption spread
 
 Market diffusion shows obvious characteristics of evolution over time. In the initial stage (Step 0-20), the network is predominantly blue, and only a few nodes (most likely innovators) begin to adopt the product. As time goes by to Step 30-40, we observe a significant increase in the number of red nodes, especially in the core area of ​​the network, indicating that the product begins to spread widely among influential agents. Entering Step 50-60, the red nodes quickly spread throughout the network, marking the rapid growth stage of product adoption. Finally, at Step 70-80, the network is almost completely covered by red nodes, indicating that product adoption is close to saturation.
 
-== Research on Different Probability of Innovators Adoption
+== Research on Different Probability of Adoption
 
-#let p_images = (
-  "img/pic_p_change_research/box.png",
-  "img/pic_p_change_research/combined_plot.png",
-)
+=== Research on Innovation Coefficient (p)
 
-#let p_image_grid = grid(
-  columns: 2,
-  gutter: 10pt,
-  ..p_images.map(img => image(img, width: 100%)),
-)
+The innovation coefficient represents the tendency of consumers to independently adopt new products. I used the control variable method to change only the value of the innovation coefficient p (ranging from 0.01 to 0.03), while keeping all other parameters unchanged, including the imitation coefficient (q), network structure, overall market size, etc. For each p coefficient, multiple simulations were performed to ensure the stability and reliability of the results.
 
 #figure(
-  caption: [Boxplot and Line Plot of Different Innovator Adoption Probabilities],
-  p_image_grid,
-)
+  caption: [Boxplot of Different Innovator Adoption Probabilities in Small World Network],
+  image("img/pic_p_change_research/box_sm.png", width: 80%),
+) <label:p_boxplot_sm>
+
+This box plot (@label:p_boxplot_sm) is made by adjusting the p coefficient from 0.01 to 0.03 while keeping other parameters unchanged in small world network. In general, as the p coefficient increases, the time required to reach 25%, 50%, and 75% adoption rates is significantly shortened, like in the early stages. For example, the median number of steps to reach a 25% adoption rate dropped from about 30 to 25. This effect weakened but still existed in the later stages (75% adoption rate). At the same time, the increase in p coefficient also led to a decrease in the variability of the results, indicating that the adoption process under high innovation coefficients is more stable and predictable. These findings emphasize the importance of increasing the innovation coefficient (such as through effective marketing) to accelerate product adoption, especially in the early stages of market penetration.
+
+#figure(
+  caption: [Boxplot of Different Innovator Adoption Probabilities in Random Network],
+  image("img/pic_p_change_research/box_random.png", width: 80%),
+) <label:p_boxplot_random>
+
+When comparing the product adoption process in random networks and small-world networks, we can observe an interesting phenomenon: when the innovation coefficient (p) is small, the adoption process in the random network (@label:p_boxplot_random) exhibits greater variability, especially when p = 0.01, the whiskers and outliers of its box plot are wider.
 
 #let combined_plot = (
   "img/pic_p_change_research/combined_plot_sm.png",
@@ -1199,32 +1201,39 @@ Market diffusion shows obvious characteristics of evolution over time. In the in
 )
 
 #figure(
-  caption: [Boxplot and Line Plot of Different Innovator Adoption Probabilities],
+  caption: [A comparison about Line Plot of Different Innovator Adoption Probabilities],
   combined_plot_grid,
-)
+) <label:p_lineplot>
+
+The left side of the @label:p_lineplot shows what different p look like in a small-world network, and the right side shows what it looks like in a random network. Each data point represents a specific simulation result, the blue shaded area indicates the distribution range of the simulation results, and the red line represents the average number of steps at each p coefficient. 
+
+It can be seen that when p coefficient is relatively large, the results of the two networks are more similar. However, when P is relatively small, the coverage interval after random network simulation is larger. 
+
+I think this result may be caused by the fact that small-world networks have the characteristics of high clustering coefficient and short average path length, which may lead to rapid local propagation of information and rapid reach to other parts of the network. In contrast, the connections of random networks are more evenly distributed, but lack strong local clustering. At the same time, when the p coefficient is small, product adoption mainly depends on social propagation in the network (imitation effect) rather than independent adoption by individuals. In this case, the characteristics of the network structure become more important.
 
 // #figure(
 //   caption: [Boxplot and Line Plot of Different Innovator Adoption Probabilities],
 //   image("img/pic_p_change_research/combined_plot_sm.png", width: 100%),
 // )
 
-== Research on Different Probability of Imitators Adoption
+// == Research on Different Probability of Imitators Adoption
+=== Research on Imitation Coefficient (q)
 
-#let q_images = (
-  "img/pic_q_change_research/box.png",
-  "img/pic_q_change_research/combined_plot.png",
-)
+// #let q_images = (
+//   "img/pic_q_change_research/box.png",
+//   "img/pic_q_change_research/combined_plot.png",
+// )
 
-#let q_image_grid = grid(
-  columns: 2,
-  gutter: 10pt,
-  ..q_images.map(img => image(img, width: 100%)),
-)
+// #let q_image_grid = grid(
+//   columns: 2,
+//   gutter: 10pt,
+//   ..q_images.map(img => image(img, width: 100%)),
+// )
 
-#figure(
-  caption: [Boxplot and Line Plot of Different Imitator Adoption Probabilities],
-  q_image_grid,
-)
+// #figure(
+//   caption: [Boxplot and Line Plot of Different Imitator Adoption Probabilities],
+//   q_image_grid,
+// )
 
 == Research on the Impact of Fixed Influencial proportion
 
