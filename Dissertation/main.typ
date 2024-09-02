@@ -506,18 +506,24 @@ and market structure.
 
 === Model structure
 
-My ABM model is developed with MESA, using object-oriented programming, and
-consists of two main classes: BassModel and BassAgent. The BassModel class
-defines the overall model structure, including the network environment, agent
-creation, and data collection. The BassAgent class defines the properties and
-behaviors of individual agents.
+Regarding the many ABM modeling frameworks mentioned in Section X, considering
+that my model requires some support for complex networks and statistics on the
+agent status at each moment, I finally chose to develope with MESA, using
+object-oriented programming, and consists of two main classes: BassModel and
+BassAgent. The BassModel class defines the overall model structure, including
+the network environment, agent creation, and data collection. The BassAgent
+class defines the properties and behaviors of individual agents.
+
+The following UML shows the overview class diagram of the ABM model (@label:class):
 
 #figure(
   image("img/abm_model/class.png", width: 50%),
   caption: "Class Diagram of the ABM Model",
-) 
+) <label:class>
 
-== Agent Attributes
+I used a top-down modeling approach to design the customer (agent) and the market environment (BassModel). The characteristics (such as the type of the consumers, the probability of accepting the product, etc.) of the user will be introduced in detail in @label:agent_attr, and the simulation of the market environment (like the social network type, the market scale and the proportion of different kinds of consumer, etc.) will be presented in @label:network.
+
+== Agent Attributes <label:agent_attr>
  
 === Parameters for Agent Level
 
@@ -558,7 +564,7 @@ So in each time step, the adoption probability of an agent is determined by:
   neighbors who have adopted the product. The equation is ($N$ means neighbors):
   $ p_"adopt" = q times N_"Adopted" / N_"Total" $
 
-== Social Network Structure
+== Social Network Structure <label:network>
 
 The network structure in my ABM model is based on small-world networks and
 random networks. On top of these two basic network structures, I further
