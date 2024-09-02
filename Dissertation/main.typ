@@ -469,7 +469,15 @@ The following are my research proposals:
 
 = Methodology
 
-In this section, I will introduce the model framework (@label:framework), agent attributes (@label:agent_attr), social network structure (@label:network), and diffusion mechanism of the ABM model for market diffusion research (@label:diffusion). The model is designed to simulate the diffusion process of new products in the market, taking into account the influence of individual characteristics, social network structure, and market composition on the diffusion dynamics. After that, I designed simulation experiments for the research questions (@label:simPlanDesign) and ran ABM using the Mesa framework (@label:run).
+In this section, I will introduce the model framework (@label:framework), agent
+attributes (@label:agent_attr), social network structure (@label:network), and
+diffusion mechanism of the ABM model for market diffusion research
+(@label:diffusion). The model is designed to simulate the diffusion process of
+new products in the market, taking into account the influence of individual
+characteristics, social network structure, and market composition on the
+diffusion dynamics. After that, I designed simulation experiments for the
+research questions (@label:simPlanDesign) and ran ABM using the Mesa framework
+(@label:run).
 
 == Model framework introduction <label:framework>
 
@@ -511,11 +519,15 @@ and market structure.
 Regarding the many ABM modeling frameworks mentioned in @label:platforms,
 considering that my model requires some support for complex networks and
 statistics on the agent status at each moment, I finally chose to develope with
-MESA #footnote[Mesa allows users to quickly create agent-based models using built-in core components (such as spatial grids and agent schedulers) or customized implementations; visualize them using a browser-based interface; and analyze their results using Python's data analysis tools. Website: https://mesa.readthedocs.io/en/stable/], using object-oriented programming, and consists of two main classes:
-BassModel and BassAgent. The BassModel class defines the overall model
-structure, including the network environment, agent creation, and data
-collection. The BassAgent class defines the properties and behaviors of
-individual agents.
+MESA #footnote[Mesa allows users to quickly create agent-based models using built-in core
+  components (such as spatial grids and agent schedulers) or customized
+  implementations; visualize them using a browser-based interface; and analyze
+  their results using Python's data analysis tools. Website:
+  https://mesa.readthedocs.io/en/stable/], using object-oriented programming,
+and consists of two main classes: BassModel and BassAgent. The BassModel class
+defines the overall model structure, including the network environment, agent
+creation, and data collection. The BassAgent class defines the properties and
+behaviors of individual agents.
 
 The following UML shows the overview class diagram of the ABM model
 (@label:class):
@@ -923,29 +935,63 @@ scheduler is to manage and control the order in which agents in the model are
 activated. At each simulation step, the RandomActivation scheduler randomly
 decides the order in which to activate agents. This randomness is important
 because it helps avoid systematic biases that may be introduced by a fixed
-activation order. In the real-world product diffusion process, the order in
-which consumers make decisions is often not fixed, and using random activations
-can better simulate this uncertainty. In addition, the scheduler simplifies the
-time management of the model, allowing us to easily iterate over all agents at
-each time step, update their states, and collect relevant data. By creating a
+activation order. The @label:scheduler shows the difference between the five
+agents at each time step when using random activation and when not using random
+activation. In the real-world product diffusion process, the order in which
+consumers make decisions is often not fixed, and using random activations can
+better simulate this uncertainty. In addition, the scheduler simplifies the time
+management of the model, allowing us to easily iterate over all agents at each
+time step, update their states, and collect relevant data. By creating a
 scheduler instance at model initialization and calling `self.schedule.step()` to
 activate all agents at each time step, we ensure that the model runs
 consistently and controllably. This approach is particularly suitable for
 simulating social processes that do not have a fixed order, such as our product
 diffusion model, allowing us to more accurately capture complex market dynamics.
 
-Batch Running is the core method of model analysis. Using Mesa's BatchRunner, we
-are able to systematically explore the impact of different parameter
-combinations on product diffusion. This method allows us to define parameter
-ranges (such as innovation coefficient, and imitation coefficient), perform
-multiple repeated simulations, and automatically collect data. Through batch
-running, we can conduct sensitivity analysis, understand how different market
-conditions affect product adoption, identify key parameters and critical points,
-and predict diffusion trends under various scenarios. This method greatly
-enhances our understanding and prediction capabilities of the product diffusion
-process and provides strong empirical support for market strategies.
+#figure(
+  caption: "Comparison of Agent Activation Order with and without Random Activation Scheduler",
+  table(
+    columns: (auto, auto, auto),
+    align: (center, center, center),
+    stroke: none,
+    table.hline(),
+    table.header(
+      [*Time Step*],
+      [*Without Random Activation*],
+      [*With Random Activation*],
+    ),
+    table.hline(),
+    [0],
+    [1 $arrow$ 2 $arrow$ 3 $arrow$ 4 $arrow$ 5],
+    [1 $arrow$ 2 $arrow$ 3 $arrow$ 4 $arrow$ 5],
+    [1],
+    [1 $arrow$ 2 $arrow$ 3 $arrow$ 4 $arrow$ 5],
+    [3 $arrow$ 1 $arrow$ 5 $arrow$ 2 $arrow$ 4],
+    [2],
+    [1 $arrow$ 2 $arrow$ 3 $arrow$ 4 $arrow$ 5],
+    [5 $arrow$ 4 $arrow$ 2 $arrow$ 1 $arrow$ 3],
+    [$dots$],
+    [1 $arrow$ 2 $arrow$ 3 $arrow$ 4 $arrow$ 5],
+    [2 $arrow$ 3 $arrow$ 1 $arrow$ 5 $arrow$ 4],
+    [n],
+    [1 $arrow$ 2 $arrow$ 3 $arrow$ 4 $arrow$ 5],
+    [4 $arrow$ 1 $arrow$ 3 $arrow$ 5 $arrow$ 2],
+    table.hline(),
+  ),
+) <label:scheduler>
 
-在这里边添加一些使用CPU多核处理。以及优化代码, 防止内存爆炸的细节操作。
+Batch running is an efficient way to run different parameter combinations in a
+single simulation script. Using Mesa's BatchRunner, we can systematically
+explore the impact of different parameter combinations on product diffusion.
+This method allows us to define parameter ranges (such as innovation
+coefficients and imitation coefficients), perform multiple repeated simulations,
+and automatically collect data. Through batch running, we can perform
+sensitivity analysis, understand how different market conditions affect product
+adoption, identify key parameters and critical points, and predict diffusion
+trends under various scenarios. At the same time, repeating the experiment for
+the same parameter combination takes a lot of time. CPU multiprocessors can
+solve this problem in the batch running function implementation to speed up the
+simulation process.
 
 === Data Collection
 
@@ -1011,6 +1057,8 @@ the complex diffusion process.
 
 == Table of Neighbors between Influencers and Non-Influencers <label:neighbor_stat>
 
+Before doing any ABM analysis, I first need to verify the similarity of the number of connections between different networks mentioned and add more neighbors to the influencers in @label:network. Statistically analyze whether the influencers and non-influencers are the same in different networks. This is the premise for the following series of comparisons.
+
 The tables below shows the average, maximum, and minimum values of the number of
 influencer and non-influencer neighbors in the first five simulations. The
 number of neighbors of an influencer is approximately four to six times that of
@@ -1069,19 +1117,27 @@ a flying influencer (@infstatable).
   table.hline(),
 )) <infstatable>
 
+The @label:neighbor_stat_vis is a statistical analysis of the number of neighbors of all agents in simulation 1 (visualizations of simulations 2-16 are similar). The gray-green points in the figure represent influencers and he brown points represent non-influencers. From @label:neighbor_stat_vis, we can see that the number of non-influencer neighbors in the small-world network (8.205) and the random network (8.208), as well as the mean number of influencer neighbors (50.044 in random network and 50.077 in small world network), are basically the same. We can also see that the number of influencer neighbors is much higher than that of non-influencers.
+
 #figure(
   caption: [Neighbor statistics for Influencers and Non-Influencers],
   image("img/pic_neighbour_stat_network/neighbor_stat.png", width: 100%),
-)
+) <label:neighbor_stat_vis>
+
+In summary, the statistics in this section verify that the number of neighbors of influencers is much higher than that of non-influencers. It also proves that the network equilibrium achieved in @label:netedgeequal makes the two networks comparable.
 
 == Single Run Simulation Results Statistics
 
 === Statistics of Consumer's Adoption for single simulation
 
+This @label:single_stat shows one of the market diffusion simulations, showing a classic S-shaped adoption curve. The simulation set 1% innovators and 10% influencers, with an innovation coefficient p of 0.01 and an imitation coefficient q of 0.3. The results show that a small number of innovators took the lead in adopting the product in the early stage (0-25 steps), followed by rapid diffusion between 25-50 steps, which may be due to the network effect driven by influencers. Influential agents showed higher adoption rates, but overall imitators constituted the vast majority of adopters. The whole process reached market saturation after about 50 steps, and the final adoption rate was close to 100%.
+
 #figure(
   caption: [Adoption Statistics for a Single Simulation Run],
   image("img/pic_single_stat/combined_plot.png", width: 100%),
-)
+) <label:single_stat>
+
+It is worth noting that this simulation result (simulating the decision of every potential consumer in the market at the micro level) is highly consistent with the pattern predicted by the traditional Bass diffusion model (describing the entire market at the macro level). This consistency can be regarded as a pattern matching, which provides strong support for the effectiveness of the ABM model test. Among them, due to the relatively small number of innovators, the observation is not obvious, but in the statistics of the three groups of influencers, non-influencers and imitators, an obvious S-shaped growth curve can also be observed.
 
 === Visualization of Network Evolution
 
