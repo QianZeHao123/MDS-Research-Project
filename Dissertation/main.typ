@@ -417,7 +417,7 @@ report:
   important factors in information diffusion, and ABMs can capture these dynamics
   effectively.
 
-== Statement of research objectives
+== Statement of research objectives <label:questions>
 
 This study is based on the theoretical foundation of the Bass diffusion model
 and combines the Agent-Based Modeling method to simulate the market diffusion
@@ -437,6 +437,7 @@ differences, social network structure, and market heterogeneity while
 maintaining a grasp of overall market trends.
 
 The following are my research proposals:
+
 + Study on the relationship between the probability distribution of individual
   acceptance of new products in the market and the product diffusion rate: Explore
   the impact of different acceptance probability distributions on the overall
@@ -450,9 +451,9 @@ The following are my research proposals:
   the market on the diffusion of product acceptance, and explore the potential
   impact of the absence of a specific type of consumer group on the diffusion
   process.
-+ Evaluating the impact of market size on product diffusion dynamics: Studying how
-  different sizes of potential user groups affect the final diffusion rate and
-  saturation level of a product.
+// + Evaluating the impact of market size on product diffusion dynamics: Studying how
+//   different sizes of potential user groups affect the final diffusion rate and
+//   saturation level of a product.
 + Analysis of the impact of social network structure on product diffusion
   dynamics: Study how different types of social network structures (such as
   small-world networks, random networks, etc.) affect the spread and adoption
@@ -466,7 +467,14 @@ The following are my research proposals:
 
 === Model Assumption
 
+To address the research questions raised in @label:questions, I built a model framework for ABM market diffusion research. It is based on the following key assumptions:
 
+- Agent heterogeneity: Agents are divided into two main types: innovators and imitators, which are further divided into influential and non-influential individuals. Each agent has unique attributes, including consumer type and whether it is influenced. The transition from "non-adopted" to "adopted" for the adoption status of a new product is irreversible.
+- Social network structure: Product information is spread through network connections, and the relationship between agents is constructed through small-world networks and random networks. On this basis, influential agents will add more connections to simulate the role of opinion leaders or key nodes in the diffusion process.
+- Diffusion mechanism: The adoption of new products is affected by two main factors: external influence (innovation effect) and internal influence (imitation effect). Innovators adopt products independently, while imitators are influenced by the adoption behavior of other consumers in the social network. The adoption probability of each agent is determined by the parameters of the innovator and imitator.
+- Market composition: Assuming a closed market, a fixed number of potential adopters (N), the total potential market size remains constant during the diffusion process, and the market consists of four types of agents: influential innovators, influential imitators, non-influential innovators, and non-influential imitators.
+
+The market diffusion research model established based on these assumptions becomes a powerful platform for simulating and analyzing complex product diffusion processes by integrating agent heterogeneity, social network dynamics and market structure.
 
 === Model structure
 
