@@ -274,7 +274,7 @@ tools for the study of complex social systems.
 
 == Platforms and Building Philosophy of ABM
 
-=== Platforms for ABM Development
+=== Platforms for ABM Development <label:platforms>
 
 ABM tools encompass a diverse range, including specialized platforms (e.g.,
 NetLogo, GAMA), large-scale development environments (e.g., Repast, MASON),
@@ -469,7 +469,9 @@ The following are my research proposals:
 
 = Methodology
 
-== Model framework introduction
+In this section, I will introduce the model framework (@label:framework), agent attributes (@label:agent_attr), social network structure (@label:network), and diffusion mechanism of the ABM model for market diffusion research (@label:diffusion). The model is designed to simulate the diffusion process of new products in the market, taking into account the influence of individual characteristics, social network structure, and market composition on the diffusion dynamics. After that, I designed simulation experiments for the research questions (@label:simPlanDesign) and ran ABM using the Mesa framework (@label:run).
+
+== Model framework introduction <label:framework>
 
 === Model Assumption
 
@@ -506,22 +508,29 @@ and market structure.
 
 === Model structure
 
-Regarding the many ABM modeling frameworks mentioned in Section X, considering
-that my model requires some support for complex networks and statistics on the
-agent status at each moment, I finally chose to develope with MESA, using
-object-oriented programming, and consists of two main classes: BassModel and
-BassAgent. The BassModel class defines the overall model structure, including
-the network environment, agent creation, and data collection. The BassAgent
-class defines the properties and behaviors of individual agents.
+Regarding the many ABM modeling frameworks mentioned in @label:platforms,
+considering that my model requires some support for complex networks and
+statistics on the agent status at each moment, I finally chose to develope with
+MESA #footnote[Mesa allows users to quickly create agent-based models using built-in core components (such as spatial grids and agent schedulers) or customized implementations; visualize them using a browser-based interface; and analyze their results using Python's data analysis tools. Website: https://mesa.readthedocs.io/en/stable/], using object-oriented programming, and consists of two main classes:
+BassModel and BassAgent. The BassModel class defines the overall model
+structure, including the network environment, agent creation, and data
+collection. The BassAgent class defines the properties and behaviors of
+individual agents.
 
-The following UML shows the overview class diagram of the ABM model (@label:class):
+The following UML shows the overview class diagram of the ABM model
+(@label:class):
 
 #figure(
   image("img/abm_model/class.png", width: 50%),
   caption: "Class Diagram of the ABM Model",
 ) <label:class>
 
-I used a top-down modeling approach to design the customer (agent) and the market environment (BassModel). The characteristics (such as the type of the consumers, the probability of accepting the product, etc.) of the user will be introduced in detail in @label:agent_attr, and the simulation of the market environment (like the social network type, the market scale and the proportion of different kinds of consumer, etc.) will be presented in @label:network.
+I used a top-down modeling approach to design the customer (agent) and the
+market environment (BassModel). The characteristics (such as the type of the
+consumers, the probability of accepting the product, etc.) of the user will be
+introduced in detail in @label:agent_attr, and the simulation of the market
+environment (like the social network type, the market scale and the proportion
+of different kinds of consumer, etc.) will be presented in @label:network.
 
 == Agent Attributes <label:agent_attr>
  
@@ -548,7 +557,7 @@ key attributes:
 - Social network characteristics: Neighbors: A list of other agents that an agent
   is directly connected to in the social network.
 
-=== Diffusion mechanism
+=== Diffusion mechanism <label:diffusion>
 
 We hypothesize that new product adoption is influenced by two main factors:
 - External influence (innovation effect): from external information sources such
@@ -792,13 +801,13 @@ parameters:
     [],
     [],
     [Extra connections],
-    [30 to 55 additional connections for influential agents],
+    [additional connections for influential agents],
     [Simulates the broad influence of opinion leaders],
     table.hline(),
   ),
 )
 
-=== Design of the Simulation Experiment
+=== Design of the Simulation Experiment <label:simPlanDesign>
 
 Experimental design is a core component of methodology, which directly
 determines how to test research hypotheses and answer research questions. My
@@ -860,7 +869,7 @@ structure. The following is a detailed description of the experimental design:
 
 // #simInfo
 
-== Run the ABM Model
+== Run the ABM Model <label:run>
 
 === Initialize the Model
 
