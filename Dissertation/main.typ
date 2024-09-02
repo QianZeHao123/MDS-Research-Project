@@ -454,6 +454,12 @@ The following are my research proposals:
 // + Evaluating the impact of market size on product diffusion dynamics: Studying how
 //   different sizes of potential user groups affect the final diffusion rate and
 //   saturation level of a product.
++ Investigation of the interactive effects of multiple factors on product
+  diffusion: Explore the combined impact on the product diffusion process when
+  multiple key parameters - such as innovation coefficient, imitation coefficient,
+  proportion of innovators, or proportion of influencers - vary simultaneously.
+  Analyze potential synergistic or counteracting effects among these factors and
+  how they collectively shape diffusion dynamics.
 + Analysis of the impact of social network structure on product diffusion
   dynamics: Study how different types of social network structures (such as
   small-world networks, random networks, etc.) affect the spread and adoption
@@ -467,14 +473,36 @@ The following are my research proposals:
 
 === Model Assumption
 
-To address the research questions raised in @label:questions, I built a model framework for ABM market diffusion research. It is based on the following key assumptions:
+To address the research questions raised in @label:questions, I built a model
+framework for ABM market diffusion research. It is based on the following key
+assumptions:
 
-- Agent heterogeneity: Agents are divided into two main types: innovators and imitators, which are further divided into influential and non-influential individuals. Each agent has unique attributes, including consumer type and whether it is influenced. The transition from "non-adopted" to "adopted" for the adoption status of a new product is irreversible.
-- Social network structure: Product information is spread through network connections, and the relationship between agents is constructed through small-world networks and random networks. On this basis, influential agents will add more connections to simulate the role of opinion leaders or key nodes in the diffusion process.
-- Diffusion mechanism: The adoption of new products is affected by two main factors: external influence (innovation effect) and internal influence (imitation effect). Innovators adopt products independently, while imitators are influenced by the adoption behavior of other consumers in the social network. The adoption probability of each agent is determined by the parameters of the innovator and imitator.
-- Market composition: Assuming a closed market, a fixed number of potential adopters (N), the total potential market size remains constant during the diffusion process, and the market consists of four types of agents: influential innovators, influential imitators, non-influential innovators, and non-influential imitators.
+- Agent heterogeneity: Agents are divided into two main types: innovators and
+  imitators, which are further divided into influential and non-influential
+  individuals. Each agent has unique attributes, including consumer type and
+  whether it is influenced. The transition from "non-adopted" to "adopted" for the
+  adoption status of a new product is irreversible.
+- Social network structure: Product information is spread through network
+  connections, and the relationship between agents is constructed through
+  small-world networks and random networks. On this basis, influential agents will
+  add more connections to simulate the role of opinion leaders or key nodes in the
+  diffusion process.
+- Diffusion mechanism: The adoption of new products is affected by two main
+  factors: external influence (innovation effect) and internal influence
+  (imitation effect). Innovators adopt products independently, while imitators are
+  influenced by the adoption behavior of other consumers in the social network.
+  The adoption probability of each agent is determined by the parameters of the
+  innovator and imitator.
+- Market composition: Assuming a closed market, a fixed number of potential
+  adopters (N), the total potential market size remains constant during the
+  diffusion process, and the market consists of four types of agents: influential
+  innovators, influential imitators, non-influential innovators, and
+  non-influential imitators.
 
-The market diffusion research model established based on these assumptions becomes a powerful platform for simulating and analyzing complex product diffusion processes by integrating agent heterogeneity, social network dynamics and market structure.
+The market diffusion research model established based on these assumptions
+becomes a powerful platform for simulating and analyzing complex product
+diffusion processes by integrating agent heterogeneity, social network dynamics
+and market structure.
 
 === Model structure
 
@@ -532,9 +560,15 @@ So in each time step, the adoption probability of an agent is determined by:
 
 == Social Network Structure
 
-The network structure in my ABM model is based on small-world networks and random networks. On top of these two basic network structures, I further introduced the key attribute of influencers. Influencers have more connections in the network. This design is intended to simulate the role of opinion leaders or key nodes in real society. There are three steps to build such a network:
+The network structure in my ABM model is based on small-world networks and
+random networks. On top of these two basic network structures, I further
+introduced the key attribute of influencers. Influencers have more connections
+in the network. This design is intended to simulate the role of opinion leaders
+or key nodes in real society. There are three steps to build such a network:
 
-Initialize a base network (@label:basenet and @label:netedgeequal) $arrow.r$ Put agents on the network $arrow.r$ Add connections for influencers (@label:addneigh)
+Initialize a base network (@label:basenet and @label:netedgeequal) $arrow.r$ Put
+agents on the network $arrow.r$ Add connections for influencers
+(@label:addneigh)
 
 As shown in the @label:netinit below:
 
@@ -548,7 +582,9 @@ As shown in the @label:netinit below:
 This model simulates the interconnection and influence between consumers through
 different social network structures. The network structure has an important
 impact on the information dissemination and product adoption process. The model
-supports 2 typical network types (small world and random network). The use the Python NetworkX library #footnote[NetworkX is a package for complex networks. Official website: https://networkx.org/] to create the initial network structure.
+supports 2 typical network types (small world and random network). The use the
+Python NetworkX library #footnote[NetworkX is a package for complex networks. Official website:
+  https://networkx.org/] to create the initial network structure.
 
 The following table summarizes the key characteristics of the two network:
 
@@ -621,7 +657,7 @@ and a shorter average path length compared to the small world network:
 
 === Network Edge Equalization <label:netedgeequal>
 
-We hope to compare information diffusion in Erdős-Rényi random graphs and
+We hope to compare market diffusion in Erdős-Rényi random graphs and
 Watts-Strogatz small-world networks. To ensure comparability, I use a controlled
 variable approach, maintaining identical node counts (N) and total edge numbers
 across both network types.
@@ -768,28 +804,51 @@ comprehensiveness and rigor of the research. Each set of experiments is iterated
 stability of the results. Through this systematic and comprehensive experimental
 design, the foundation for the analysis and discussion of the results is laid.
 
-I designed a series of simulation experiments to explore the impact of different parameters on the product diffusion process. These experiments are divided into two categories, each containing 6 sets of experiments, conducted in small-world networks and random networks respectively. All experiments are based on a network of 1,000 agents with multiple iterations to eliminate the randomness of the simulation. Each set of experiments uses the same parameter settings in both network structures in order to directly compare the impact of the network structure. The following is a detailed description of the experimental design:
+I designed a series of simulation experiments to explore the impact of different
+parameters on the product diffusion process. These experiments are divided into
+two categories, each containing 6 sets of experiments, conducted in small-world
+networks and random networks respectively. All experiments are based on a
+network of 1,000 agents with multiple iterations to eliminate the randomness of
+the simulation. Each set of experiments uses the same parameter settings in both
+network structures in order to directly compare the impact of the network
+structure. The following is a detailed description of the experimental design:
 
-- Network Type: Small-world network experiments (simulations 1-6) and random network experiments (simulations 7-12)
+- Network Type: Small-world network experiments (simulations 1-6) and random
+  network experiments (simulations 7-12)
 - Effect of the innovation coefficient (p) on diffusion:
-  - Simulations 1 and 7: Adjust the p coefficient (0.01 to 0.03), keeping other parameters unchanged.
-  - Purpose: To understand how the innovator adoption probability affects the diffusion speed and pattern in different network structures.
+  - Simulations 1 and 7: Adjust the p coefficient (0.01 to 0.03), keeping other
+    parameters unchanged.
+  - Purpose: To understand how the innovator adoption probability affects the
+    diffusion speed and pattern in different network structures.
 - Effect of imitation coefficient (q) on diffusion:
-  - Simulations 2 and 8: Adjust the q coefficient (0.3 to 0.5) and keep other parameters unchanged.
-  - Purpose: To explore the effect of imitator adoption probability on the diffusion process in different network structures.
+  - Simulations 2 and 8: Adjust the q coefficient (0.3 to 0.5) and keep other
+    parameters unchanged.
+  - Purpose: To explore the effect of imitator adoption probability on the diffusion
+    process in different network structures.
 - Effect of influencer ratio on innovator diffusion:
-  - Simulations 3, 4 and 9, 10: Adjust the ratio of influencers to innovators (0 to 0.01), keeping the total innovator ratio constant.
-  - Purpose: To study how the proportion of influencers in the innovator group affects the diffusion dynamics of different network structures.
+  - Simulations 3, 4 and 9, 10: Adjust the ratio of influencers to innovators (0 to
+    0.01), keeping the total innovator ratio constant.
+  - Purpose: To study how the proportion of influencers in the innovator group
+    affects the diffusion dynamics of different network structures.
 - Effect of the ratio of influencers to innovators on diffusion:
-  - Simulations 3 and 9: Adjust the ratio of influential innovators (0 to 0.01), keeping the ratio of total innovators constant (0.01).
-  - Simulations 4 and 10: Adjust the ratio of influential innovators (0 to 0.01), keeping the ratio of total influencers constant.
-  - Purpose: To study how the ratio of influencers in the group of innovators affects the diffusion dynamics of different network structures. In particular, we want to study what happens when the number of influential innovators is zero.
+  - Simulations 3 and 9: Adjust the ratio of influential innovators (0 to 0.01),
+    keeping the ratio of total innovators constant (0.01).
+  - Simulations 4 and 10: Adjust the ratio of influential innovators (0 to 0.01),
+    keeping the ratio of total influencers constant.
+  - Purpose: To study how the ratio of influencers in the group of innovators
+    affects the diffusion dynamics of different network structures. In particular,
+    we want to study what happens when the number of influential innovators is zero.
 - Interaction between innovation coefficient and proportion of innovators:
-  - Simulations 5 and 11: Adjust p coefficient (0.01 to 0.05) and proportion of innovators (0.01 to 0.07) simultaneously.
-  - Purpose: To explore how the interaction between innovation coefficient and proportion of innovators affects the diffusion process in different network structures.
+  - Simulations 5 and 11: Adjust p coefficient (0.01 to 0.05) and proportion of
+    innovators (0.01 to 0.07) simultaneously.
+  - Purpose: To explore how the interaction between innovation coefficient and
+    proportion of innovators affects the diffusion process in different network
+    structures.
 - Interaction of innovator and influencer proportions:
-  - Simulations 6 and 12: Simultaneously adjust the innovator proportion (0.01 to 0.07) and the influencer proportion (0 to 0.6).
-  - Purpose: To investigate how the distribution of innovators and influencers in different network structures jointly influences diffusion dynamics.
+  - Simulations 6 and 12: Simultaneously adjust the innovator proportion (0.01 to
+    0.07) and the influencer proportion (0 to 0.6).
+  - Purpose: To investigate how the distribution of innovators and influencers in
+    different network structures jointly influences diffusion dynamics.
 
 // The @label:simPlan below shows all the detailed parameters that need to be input for each simulation.
 
