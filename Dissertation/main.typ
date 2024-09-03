@@ -1081,62 +1081,66 @@ the premise for the following series of comparisons.
 
 The tables below shows the average, maximum, and minimum values of the number of
 influencer and non-influencer neighbors in the first five simulations. The
-number of neighbors of an influencer is approximately 4 to 6 times that of
-a flying influencer (@infstatable).
+number of neighbors of an influencer is approximately 4 to 6 times that of a
+flying influencer (@infstatable).
 
-#figure(caption: [Run Data for Agent-Based Model #link("https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%206%20visualization/2_agent_neighbour_stat.Rmd")[[Code]]],
-table(
-  columns: (auto, auto, auto, auto, auto, auto, auto),
-  align: (left, center, center, center, center, center, center),
-  stroke: none,
-  table.hline(),
-  table.header(
-    [*RunId*],
-    [*Inf Mean*],
-    [*INF Max*],
-    [*Inf Min*],
-    [*Non-inf Mean*],
-    [*Non-inf Max*],
-    [*Non-inf Min*],
+#figure(
+  caption: [Run Data for Agent-Based Model #link(
+      "https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%206%20visualization/2_agent_neighbour_stat.Rmd",
+    )[[Code]]],
+  table(
+    columns: (auto, auto, auto, auto, auto, auto, auto),
+    align: (left, center, center, center, center, center, center),
+    stroke: none,
+    table.hline(),
+    table.header(
+      [*RunId*],
+      [*Inf Mean*],
+      [*INF Max*],
+      [*Inf Min*],
+      [*Non-inf Mean*],
+      [*Non-inf Max*],
+      [*Non-inf Min*],
+    ),
+    table.hline(),
+    [0],
+    [49.09],
+    [62],
+    [37],
+    [8.132222],
+    [17],
+    [3],
+    [1],
+    [49.83],
+    [69],
+    [36],
+    [8.152222],
+    [15],
+    [3],
+    [2],
+    [50.24],
+    [65],
+    [35],
+    [8.215556],
+    [16],
+    [3],
+    [3],
+    [50.83],
+    [64],
+    [36],
+    [8.283333],
+    [17],
+    [3],
+    [4],
+    [49.87],
+    [65],
+    [37],
+    [8.11],
+    [17],
+    [3],
+    table.hline(),
   ),
-  table.hline(),
-  [0],
-  [49.09],
-  [62],
-  [37],
-  [8.132222],
-  [17],
-  [3],
-  [1],
-  [49.83],
-  [69],
-  [36],
-  [8.152222],
-  [15],
-  [3],
-  [2],
-  [50.24],
-  [65],
-  [35],
-  [8.215556],
-  [16],
-  [3],
-  [3],
-  [50.83],
-  [64],
-  [36],
-  [8.283333],
-  [17],
-  [3],
-  [4],
-  [49.87],
-  [65],
-  [37],
-  [8.11],
-  [17],
-  [3],
-  table.hline(),
-)) <infstatable>
+) <infstatable>
 
 The @label:neighbor_stat_vis is a statistical analysis of the number of
 neighbors of all agents in simulation 1 (visualizations of simulations 2-16 are
@@ -1149,7 +1153,9 @@ same. We can also see that the number of influencer neighbors is much higher
 than that of non-influencers.
 
 #figure(
-  caption: [Neighbor statistics for Influencers and Non-Influencers #link("https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%207%20visualization/0_neighbor_cal_random_sm.Rmd")[[Code]]],
+  caption: [Neighbor statistics for Influencers and Non-Influencers #link(
+      "https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%207%20visualization/0_neighbor_cal_random_sm.Rmd",
+    )[[Code]]],
   image("img/pic_neighbour_stat_network/neighbor_stat.png", width: 100%),
 ) <label:neighbor_stat_vis>
 
@@ -1174,7 +1180,9 @@ reached market saturation after about 50 steps, and the final adoption rate was
 close to 100%.
 
 #figure(
-  caption: [Adoption Statistics for a Single Simulation Run #link("https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%207%20visualization/9_single_sim_stat.Rmd")[[Code]]],
+  caption: [Adoption Statistics for a Single Simulation Run #link(
+      "https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%207%20visualization/9_single_sim_stat.Rmd",
+    )[[Code]]],
   image("img/pic_single_stat/combined_plot.png", width: 100%),
 ) <label:single_stat>
 
@@ -1220,7 +1228,9 @@ influential individuals.
 )
 
 #figure(
-  caption: [Network Evolution over Time from Step 0 to Step 80 #link("https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%207%20visualization/1_network_visualization.Rmd")[[Code]]],
+  caption: [Network Evolution over Time from Step 0 to Step 80 #link(
+      "https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%207%20visualization/1_network_visualization.Rmd",
+    )[[Code]]],
   network_image_grid,
 ) <label:network_graph>
 
@@ -1241,8 +1251,8 @@ red nodes, indicating that product adoption is close to saturation.
 The innovation coefficient represents the tendency of consumers to independently
 adopt new products. I used the control variable method to change only the value
 of the innovation coefficient p (ranging from 0.01 to 0.03), while keeping all
-other parameters unchanged, including the imitation coefficient (q), network
-structure, overall market size, etc. For each p coefficient, multiple
+other parameters unchanged, including the imitation coefficient (q),
+network structure (q=0.3, proportion of innovators=0.01, proportion of influencers=0.1, N=1000), overall market size, etc. For each p coefficient, multiple
 simulations were performed to ensure the stability and reliability of the
 results.
 
@@ -1298,13 +1308,12 @@ shaded area indicates the distribution range of the simulation results, and the
 red line represents the average number of steps at each p coefficient. 
 
 
-#figure(
-  image("img/pic_p_change_research/box_final.png", width: 80%),
-) <label:p_boxplot_final>
+#figure(image("img/pic_p_change_research/box_final.png", width: 80%)) <label:p_boxplot_final>
 
-It can be seen that when p coefficient is relatively large (@label:p_boxplot_final), the results of the
-two networks are more similar. However, when P is relatively small, the coverage
-interval after random network simulation is larger. 
+It can be seen that when p coefficient is relatively large
+(@label:p_boxplot_final), the results of the two networks are more similar.
+However, when P is relatively small, the coverage interval after random network
+simulation is larger. 
 
 I think this result may be caused by the fact that small-world networks have the
 characteristics of high clustering coefficient and short average path length,
