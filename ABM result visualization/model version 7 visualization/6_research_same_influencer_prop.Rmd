@@ -121,6 +121,8 @@ box
 
 ```{r}
 remove(simulation4_results)
+box4 = data.box.long
+
 simulation10_results = fread("./report/simulation10.csv")
 data.box = simulation10_results %>%
   filter(AgentID == 0, Step == 100)
@@ -190,6 +192,60 @@ ggsave("./pic_same_inf_prop_research/box_random.svg",
        width = 14)
 
 box
+
+box10 = data.box.long
+```
+
+```{r}
+box = rbind(box4, box10)
+```
+
+```{r fig.height=8, fig.width=15}
+box_combine = ggplot(box) +
+  aes(x = prop_inf_inno_number, y = Steps_Count, fill = network_type) +
+  geom_boxplot(color = 'black') +
+  # stat_summary(
+  #   fun = median,
+  #   geom = "text",
+  #   aes(label = sprintf("%.1f", after_stat(y))),
+  #   vjust = -0.5,
+  #   color = "black",
+  #   size = 3
+  # ) +
+  scale_fill_manual(values = c("small_world" = "#6888F5", "random" = "#D77071"),
+                    name = "Network Type") +
+  labs(
+    x = "Different Proportion of Influncial Innovator",
+    y = "Steps Count",
+    title = "Research on the Influncial Innnovator",
+    subtitle = "When the proportion of Influencers fixed to 0.1"
+  ) +
+  theme_light() +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.position = "bottom"
+  ) +
+  facet_wrap(vars(Step_Percent)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 80))
+
+
+
+box_combine
+```
+
+```{r}
+ggsave("./pic_same_inf_prop_research/box_combine.png",
+       plot = box_combine,
+       device = "png",
+       height = 8,
+       width = 15)
+
+ggsave("./pic_same_inf_prop_research/box_combine.svg",
+       plot = box_combine,
+       device = "svg",
+       height = 8,
+       width = 15)
 ```
 
 ```{r}
