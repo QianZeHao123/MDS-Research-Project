@@ -67,7 +67,7 @@ library(ggplot2)
 
 box = ggplot(data.p.change.long) +
   aes(x = p_number, y = Steps_Count) +
-  geom_boxplot(color = 'blue', fill = 'lightblue') +
+  geom_boxplot(color = 'black', fill = '#6888F5') +
   stat_summary(
     fun = median,
     geom = "text",
@@ -78,7 +78,7 @@ box = ggplot(data.p.change.long) +
   ) +
   scale_fill_gradient() +
   labs(
-    x = "Different P Number",
+    x = "Different P Coefficient",
     y = "Steps Count",
     title = "Boxplot for Potential User Acceptance Ratio",
     subtitle = "When the acceptance probability of innovator changes (p)"
@@ -150,8 +150,8 @@ combined_plot <- ggplot() +
   labs(
     x = 'Steps Count',
     y = 'Adopted User Count',
-    title = "Ribbon and Scatter Plot Comparison with Different P Value",
-    subtitle = "N=1000, iteration=25"
+    title = "Ribbon and Scatter Plot Comparison with Different P Coefficient",
+    subtitle = "N=1000, iteration=25, Small World Network"
   ) +
   theme_light() +
   theme(
@@ -180,9 +180,12 @@ combined_plot
 ```{r}
 # --------------------------------------------------------
 gc()
-rm(list = ls())
+rm(simulation1_results)
 graphics.off()
 cat("\014")
+
+box1 = data.p.change.long
+
 # --------------------------------------------------------
 simulation7_results = fread("./report/simulation7.csv")
 p.change.research = simulation7_results %>%
@@ -208,7 +211,7 @@ library(ggplot2)
 
 box = ggplot(data.p.change.long) +
   aes(x = p_number, y = Steps_Count) +
-  geom_boxplot(color = '#f08a5d', fill = '#f9ed69') +
+  geom_boxplot(color = 'black', fill = '#D77071') +
   stat_summary(
     fun = median,
     geom = "text",
@@ -219,7 +222,7 @@ box = ggplot(data.p.change.long) +
   ) +
   scale_fill_gradient() +
   labs(
-    x = "Different P Number",
+    x = "Different P Coefficient",
     y = "Steps Count",
     title = "Boxplot for Potential User Acceptance Ratio",
     subtitle = "When the acceptance probability of innovator changes (p)"
@@ -291,8 +294,8 @@ combined_plot <- ggplot() +
   labs(
     x = 'Steps Count',
     y = 'Adopted User Count',
-    title = "Ribbon and Scatter Plot Comparison with Different P Value",
-    subtitle = "N=1000, iteration=25"
+    title = "Ribbon and Scatter Plot Comparison with Different P Coefficient",
+    subtitle = "N=1000, iteration=25, Random Network"
   ) +
   theme_light() +
   theme(
@@ -314,6 +317,59 @@ ggsave("./pic_p_change_research/combined_plot_random.svg",
        width = 10)
 
 combined_plot
+```
+
+```{r}
+box7 = data.p.change.long
+```
+
+```{r}
+box_full = rbind(box1, box7) %>%
+  filter(Step_Percent == 'Steps_to_50_percent')
+```
+
+```{r fig.height=6, fig.width=10}
+box_final = ggplot(box_full) +
+  aes(x = p_number, y = Steps_Count, fill = network_type) +
+  geom_boxplot(color = 'black') +
+  # stat_summary(
+  #   fun = median,
+  #   geom = "text",
+  #   aes(label = sprintf("%.1f", after_stat(y))),
+  #   vjust = -0.5,
+  #   color = "black",
+  #   size = 3
+  # ) +
+  scale_fill_manual(values = c("small_world" = "#6888F5", "random" = "#D77071"),
+                    name = "Network Type") +
+  labs(
+    x = "Different P Coefficient",
+    y = "Steps Count",
+    title = "Compare p in different networks",
+    subtitle = "When 50% of the potential consumers accept"
+  ) +
+  theme_light() +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.position = "bottom"
+  ) +
+  facet_wrap(vars(Step_Percent))
+
+
+box_final
+
+ggsave("./pic_p_change_research/box_final.png",
+       plot = box_final,
+       device = "png",
+       height = 6,
+       width = 10)
+
+ggsave("./pic_p_change_research/box_final.svg",
+       plot = box_final,
+       device = "svg",
+       height = 6,
+       width = 10)
 ```
 
 ```{r}
