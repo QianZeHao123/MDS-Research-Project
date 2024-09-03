@@ -319,6 +319,8 @@ combined_plot
 box_random = data.q.change.long
 ```
 
+# Compare networks together
+
 ```{r}
 # box_full = box_random + box_sm
 box_full = rbind(box_random, box_sm)
