@@ -720,36 +720,44 @@ can simulate the influencer's extensive influence in the social network.
 Here is the logic to implement adding more neighbors to an influencer (G means
 the network graph, achieved by @label:netedgeequal):
 
-#algorithm(
-  {
-    import algorithmic: *
-    Function(
-      "Enhance-Influencers-Connections",
-      args: ("G", "agents"),
+#figure(
+  table(
+    columns: 1,
+    align: left,
+  )[*Algorithm 1: Rules for adding more neighbors to Influencer*][
+    #algorithm(
       {
-        For(
-          cond: [each agent in agents],
+        import algorithmic: *
+        Function(
+          "Enhance-Influencers-Connections",
+          args: ("G", "agents"),
           {
-            If(
-              cond: [agent is influencer],
+            For(
+              cond: [each agent in agents],
               {
-                State[Get current neighbors of agent]
-                State[Identify potential new neighbors (nodes not currently connected and not self)]
-                State[Additional Edges = min(int(25*random.random())+30, len(potential_neighbors)))]
-                State[Calculate number of additional edges (random between 30 to 54 $arrow.t$)]
-                State[Randomly select new neighbors from potential neighbors]
-                For(cond: [each new neighbor], {
-                  If(cond: [edge doesn't exist between agent and new neighbor], {
-                    State[Add edge between agent and new neighbor]
-                  })
-                })
+                If(
+                  cond: [agent is influencer],
+                  {
+                    State[Get current neighbors of agent]
+                    State[Identify potential new neighbors (nodes not currently connected and not self)]
+                    State[Additional Edges = min(int(25*random.random())+30, len(potential_neighbors)))]
+                    State[Calculate number of additional edges (random between 30 to 54 $arrow.t$)]
+                    State[Randomly select new neighbors from potential neighbors]
+                    For(cond: [each new neighbor], {
+                      If(cond: [edge doesn't exist between agent and new neighbor], {
+                        State[Add edge between agent and new neighbor]
+                      })
+                    })
+                  },
+                )
               },
             )
           },
         )
       },
     )
-  },
+  ],
+  caption: [Algorithm for Enhancing Influencers' Connections],
 )
 
 == Model Input and Simulation Design
@@ -892,39 +900,47 @@ diffusion model in a network context. The code demonstrates how we establish the
 agent population, create the social network, and prepare the model for
 simulation runs.
 
-#algorithm(
-  {
-    import algorithmic: *
-    Function(
-      "Initialize-Model",
-      args: ("N", "p", "q", "agent_proportion", "network_type"),
+#figure(
+  table(
+    columns: 1,
+    align: left,
+  )[*Algorithm 2: Final Initialization for Market Diffusion Simulation Model*][
+    #algorithm(
       {
-        Cmt[Initialize core parameters and structures]
-        Assign[total_agents][N]
-        Assign[innovation_coefficient][p]
-        Assign[imitation_coefficient][q]
-        State[Create social network based on network_type]
-        State[Generate agent distribution list]
-        State[]
-        Cmt[Create and place agents]
-        For(cond: [$i = 0$, $N-1$], {
-          State[Create new BassAgent with properties from distribution list]
-          State[Add agent to network and scheduler]
-        })
-        State[]
-        Cmt[Enhance network for influential agents]
-        For(cond: [each influential agent], {
-          State[Add extra connections]
-        })
-        State[]
-        Cmt[Initialize tracking variables]
-        Assign[steps_to_key_percentages][None]
-        Assign[running][True]
-        State[]
-        Return[Initialized model]
+        import algorithmic: *
+        Function(
+          "Initialize-Model",
+          args: ("N", "p", "q", "agent_proportion", "network_type"),
+          {
+            Cmt[Initialize core parameters and structures]
+            Assign[total_agents][N]
+            Assign[innovation_coefficient][p]
+            Assign[imitation_coefficient][q]
+            State[Create social network based on network_type]
+            State[Generate agent distribution list]
+            State[]
+            Cmt[Create and place agents]
+            For(cond: [$i = 0$, $N-1$], {
+              State[Create new BassAgent with properties from distribution list]
+              State[Add agent to network and scheduler]
+            })
+            State[]
+            Cmt[Enhance network for influential agents]
+            For(cond: [each influential agent], {
+              State[Add extra connections]
+            })
+            State[]
+            Cmt[Initialize tracking variables]
+            Assign[steps_to_key_percentages][None]
+            Assign[running][True]
+            State[]
+            Return[Initialized model]
+          },
+        )
       },
     )
-  },
+  ],
+  caption: [Summary of the Model Initialization Process],
 )
 
 === Scheduler and Barch Running with MESA
@@ -1057,7 +1073,11 @@ the complex diffusion process.
 
 == Table of Neighbors between Influencers and Non-Influencers <label:neighbor_stat>
 
-Before doing any ABM analysis, I first need to verify the similarity of the number of connections between different networks mentioned and add more neighbors to the influencers in @label:network. Statistically analyze whether the influencers and non-influencers are the same in different networks. This is the premise for the following series of comparisons.
+Before doing any ABM analysis, I first need to verify the similarity of the
+number of connections between different networks mentioned and add more
+neighbors to the influencers in @label:network. Statistically analyze whether
+the influencers and non-influencers are the same in different networks. This is
+the premise for the following series of comparisons.
 
 The tables below shows the average, maximum, and minimum values of the number of
 influencer and non-influencer neighbors in the first five simulations. The
@@ -1117,31 +1137,67 @@ a flying influencer (@infstatable).
   table.hline(),
 )) <infstatable>
 
-The @label:neighbor_stat_vis is a statistical analysis of the number of neighbors of all agents in simulation 1 (visualizations of simulations 2-16 are similar). The gray-green points in the figure represent influencers and he brown points represent non-influencers. From @label:neighbor_stat_vis, we can see that the number of non-influencer neighbors in the small-world network (8.205) and the random network (8.208), as well as the mean number of influencer neighbors (50.044 in random network and 50.077 in small world network), are basically the same. We can also see that the number of influencer neighbors is much higher than that of non-influencers.
+The @label:neighbor_stat_vis is a statistical analysis of the number of
+neighbors of all agents in simulation 1 (visualizations of simulations 2-16 are
+similar). The gray-green points in the figure represent influencers and he brown
+points represent non-influencers. From @label:neighbor_stat_vis, we can see that
+the number of non-influencer neighbors in the small-world network (8.205) and
+the random network (8.208), as well as the mean number of influencer neighbors
+(50.044 in random network and 50.077 in small world network), are basically the
+same. We can also see that the number of influencer neighbors is much higher
+than that of non-influencers.
 
 #figure(
   caption: [Neighbor statistics for Influencers and Non-Influencers],
   image("img/pic_neighbour_stat_network/neighbor_stat.png", width: 100%),
 ) <label:neighbor_stat_vis>
 
-In summary, the statistics in this section verify that the number of neighbors of influencers is much higher than that of non-influencers. It also proves that the network equilibrium achieved in @label:netedgeequal makes the two networks comparable.
+In summary, the statistics in this section verify that the number of neighbors
+of influencers is much higher than that of non-influencers. It also proves that
+the network equilibrium achieved in @label:netedgeequal makes the two networks
+comparable.
 
 == Single Run Simulation Results Statistics
 
 === Statistics of Consumer's Adoption for single simulation
 
-This @label:single_stat shows one of the market diffusion simulations, showing a classic S-shaped adoption curve. The simulation set 1% innovators and 10% influencers, with an innovation coefficient p of 0.01 and an imitation coefficient q of 0.3. The results show that a small number of innovators took the lead in adopting the product in the early stage (0-25 steps), followed by rapid diffusion between 25-50 steps, which may be due to the network effect driven by influencers. Influential agents showed higher adoption rates, but overall imitators constituted the vast majority of adopters. The whole process reached market saturation after about 50 steps, and the final adoption rate was close to 100%.
+This @label:single_stat shows one of the market diffusion simulations, showing a
+classic S-shaped adoption curve. The simulation set 1% innovators and 10%
+influencers, with an innovation coefficient p of 0.01 and an imitation
+coefficient q of 0.3. The results show that a small number of innovators took
+the lead in adopting the product in the early stage (0-25 steps), followed by
+rapid diffusion between 25-50 steps, which may be due to the network effect
+driven by influencers. Influential agents showed higher adoption rates, but
+overall imitators constituted the vast majority of adopters. The whole process
+reached market saturation after about 50 steps, and the final adoption rate was
+close to 100%.
 
 #figure(
   caption: [Adoption Statistics for a Single Simulation Run],
   image("img/pic_single_stat/combined_plot.png", width: 100%),
 ) <label:single_stat>
 
-It is worth noting that this simulation result (simulating the decision of every potential consumer in the market at the micro level) is highly consistent with the pattern predicted by the traditional Bass diffusion model (describing the entire market at the macro level). This consistency can be regarded as a pattern matching, which provides strong support for the effectiveness of the ABM model test. Among them, due to the relatively small number of innovators, the observation is not obvious, but in the statistics of the three groups of influencers, non-influencers and imitators, an obvious S-shaped growth curve can also be observed.
+It is worth noting that this simulation result (simulating the decision of every
+potential consumer in the market at the micro level) is highly consistent with
+the pattern predicted by the traditional Bass diffusion model (describing the
+entire market at the macro level). This consistency can be regarded as a pattern
+matching, which provides strong support for the effectiveness of the ABM model
+test. Among them, due to the relatively small number of innovators, the
+observation is not obvious, but in the statistics of the three groups of
+influencers, non-influencers and imitators, an obvious S-shaped growth curve can
+also be observed.
 
 === Visualization of Network Evolution
 
-To gain a more intuitive understanding of the process of product adoption spreading in social networks, I created a series of network graphs to visualize the time evolution of agent activations. These networks (@label:network_graph) were generated by the NetworkX library and visualized with igraph. In these graphs, nodes represent individual agents and edges represent social connections between them. Red nodes represent agents that have adopted the product, while blue nodes represent agents that have not yet adopted. The size of the node represents the influence of the agent, with larger nodes representing influential individuals.
+To gain a more intuitive understanding of the process of product adoption
+spreading in social networks, I created a series of network graphs to visualize
+the time evolution of agent activations. These networks (@label:network_graph)
+were generated by the NetworkX library and visualized with igraph. In these
+graphs, nodes represent individual agents and edges represent social connections
+between them. Red nodes represent agents that have adopted the product, while
+blue nodes represent agents that have not yet adopted. The size of the node
+represents the influence of the agent, with larger nodes representing
+influential individuals.
 
 #let network_images = (
   "img/pic_network_graph/network_plot_step_0.png",
@@ -1167,27 +1223,56 @@ To gain a more intuitive understanding of the process of product adoption spread
   network_image_grid,
 ) <label:network_graph>
 
-Market diffusion shows obvious characteristics of evolution over time. In the initial stage (Step 0-20), the network is predominantly blue, and only a few nodes (most likely innovators) begin to adopt the product. As time goes by to Step 30-40, we observe a significant increase in the number of red nodes, especially in the core area of ​​the network, indicating that the product begins to spread widely among influential agents. Entering Step 50-60, the red nodes quickly spread throughout the network, marking the rapid growth stage of product adoption. Finally, at Step 70-80, the network is almost completely covered by red nodes, indicating that product adoption is close to saturation.
+Market diffusion shows obvious characteristics of evolution over time. In the
+initial stage (Step 0-20), the network is predominantly blue, and only a few
+nodes (most likely innovators) begin to adopt the product. As time goes by to
+Step 30-40, we observe a significant increase in the number of red nodes,
+especially in the core area of ​​the network, indicating that the product begins
+to spread widely among influential agents. Entering Step 50-60, the red nodes
+quickly spread throughout the network, marking the rapid growth stage of product
+adoption. Finally, at Step 70-80, the network is almost completely covered by
+red nodes, indicating that product adoption is close to saturation.
 
 == Research on Different Probability of Adoption
 
 === Research on Innovation Coefficient (p)
 
-The innovation coefficient represents the tendency of consumers to independently adopt new products. I used the control variable method to change only the value of the innovation coefficient p (ranging from 0.01 to 0.03), while keeping all other parameters unchanged, including the imitation coefficient (q), network structure, overall market size, etc. For each p coefficient, multiple simulations were performed to ensure the stability and reliability of the results.
+The innovation coefficient represents the tendency of consumers to independently
+adopt new products. I used the control variable method to change only the value
+of the innovation coefficient p (ranging from 0.01 to 0.03), while keeping all
+other parameters unchanged, including the imitation coefficient (q), network
+structure, overall market size, etc. For each p coefficient, multiple
+simulations were performed to ensure the stability and reliability of the
+results.
 
 #figure(
   caption: [Boxplot of Different Innovator Adoption Probabilities in Small World Network],
   image("img/pic_p_change_research/box_sm.png", width: 80%),
 ) <label:p_boxplot_sm>
 
-This box plot (@label:p_boxplot_sm) is made by adjusting the p coefficient from 0.01 to 0.03 while keeping other parameters unchanged in small world network. In general, as the p coefficient increases, the time required to reach 25%, 50%, and 75% adoption rates is significantly shortened, like in the early stages. For example, the median number of steps to reach a 25% adoption rate dropped from about 30 to 25. This effect weakened but still existed in the later stages (75% adoption rate). At the same time, the increase in p coefficient also led to a decrease in the variability of the results, indicating that the adoption process under high innovation coefficients is more stable and predictable. These findings emphasize the importance of increasing the innovation coefficient (such as through effective marketing) to accelerate product adoption, especially in the early stages of market penetration.
+This box plot (@label:p_boxplot_sm) is made by adjusting the p coefficient from
+0.01 to 0.03 while keeping other parameters unchanged in small world network. In
+general, as the p coefficient increases, the time required to reach 25%, 50%,
+and 75% adoption rates is significantly shortened, like in the early stages. For
+example, the median number of steps to reach a 25% adoption rate dropped from
+about 30 to 25. This effect weakened but still existed in the later stages (75%
+adoption rate). At the same time, the increase in p coefficient also led to a
+decrease in the variability of the results, indicating that the adoption process
+under high innovation coefficients is more stable and predictable. These
+findings emphasize the importance of increasing the innovation coefficient (such
+as through effective marketing) to accelerate product adoption, especially in
+the early stages of market penetration.
 
 #figure(
   caption: [Boxplot of Different Innovator Adoption Probabilities in Random Network],
   image("img/pic_p_change_research/box_random.png", width: 80%),
 ) <label:p_boxplot_random>
 
-When comparing the product adoption process in random networks and small-world networks, we can observe an interesting phenomenon: when the innovation coefficient (p) is small, the adoption process in the random network (@label:p_boxplot_random) exhibits greater variability, especially when p = 0.01, the whiskers and outliers of its box plot are wider.
+When comparing the product adoption process in random networks and small-world
+networks, we can observe an interesting phenomenon: when the innovation
+coefficient (p) is small, the adoption process in the random network
+(@label:p_boxplot_random) exhibits greater variability, especially when p =
+0.01, the whiskers and outliers of its box plot are wider.
 
 #let combined_plot = (
   "img/pic_p_change_research/combined_plot_sm.png",
@@ -1205,11 +1290,25 @@ When comparing the product adoption process in random networks and small-world n
   combined_plot_grid,
 ) <label:p_lineplot>
 
-The left side of the @label:p_lineplot shows what different p look like in a small-world network, and the right side shows what it looks like in a random network. Each data point represents a specific simulation result, the blue shaded area indicates the distribution range of the simulation results, and the red line represents the average number of steps at each p coefficient. 
+The left side of the @label:p_lineplot shows what different p look like in a
+small-world network, and the right side shows what it looks like in a random
+network. Each data point represents a specific simulation result, the blue
+shaded area indicates the distribution range of the simulation results, and the
+red line represents the average number of steps at each p coefficient. 
 
-It can be seen that when p coefficient is relatively large, the results of the two networks are more similar. However, when P is relatively small, the coverage interval after random network simulation is larger. 
+It can be seen that when p coefficient is relatively large, the results of the
+two networks are more similar. However, when P is relatively small, the coverage
+interval after random network simulation is larger. 
 
-I think this result may be caused by the fact that small-world networks have the characteristics of high clustering coefficient and short average path length, which may lead to rapid local propagation of information and rapid reach to other parts of the network. In contrast, the connections of random networks are more evenly distributed, but lack strong local clustering. At the same time, when the p coefficient is small, product adoption mainly depends on social propagation in the network (imitation effect) rather than independent adoption by individuals. In this case, the characteristics of the network structure become more important.
+I think this result may be caused by the fact that small-world networks have the
+characteristics of high clustering coefficient and short average path length,
+which may lead to rapid local propagation of information and rapid reach to
+other parts of the network. In contrast, the connections of random networks are
+more evenly distributed, but lack strong local clustering. At the same time,
+when the p coefficient is small, product adoption mainly depends on social
+propagation in the network (imitation effect) rather than independent adoption
+by individuals. In this case, the characteristics of the network structure
+become more important.
 
 // #figure(
 //   caption: [Boxplot and Line Plot of Different Innovator Adoption Probabilities],
@@ -1321,7 +1420,7 @@ I think this result may be caused by the fact that small-world networks have the
   prop_inno_inf_image_grid,
 )
 
-= Conclusion
+= Discussion
 
 == Summary of Findings
 
@@ -1329,6 +1428,7 @@ I think this result may be caused by the fact that small-world networks have the
 
 == Limitations and Future Research
 
+= Conclusion
 
 
 #bibliography("references.fixed.bib")
