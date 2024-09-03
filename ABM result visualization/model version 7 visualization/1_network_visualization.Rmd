@@ -140,7 +140,8 @@ for (step in steps) {
     scale_size_manual(values = c('FALSE' = 3, 'TRUE' = 6)) +
     scale_color_manual(values = c('FALSE' = 'blue', 'TRUE' = 'red')) +
     theme_void() +
-    ggtitle(paste("Step", step))
+    ggtitle(paste("Step", step)) +
+    theme(plot.title = element_text(size=40))
   
   # save the network plot
   ggsave(
