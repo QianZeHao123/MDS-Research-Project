@@ -1081,7 +1081,7 @@ the premise for the following series of comparisons.
 
 The tables below shows the average, maximum, and minimum values of the number of
 influencer and non-influencer neighbors in the first five simulations. The
-number of neighbors of an influencer is approximately four to six times that of
+number of neighbors of an influencer is approximately 4 to 6 times that of
 a flying influencer (@infstatable).
 
 #figure(caption: "Run Data for Agent-Based Model", table(
