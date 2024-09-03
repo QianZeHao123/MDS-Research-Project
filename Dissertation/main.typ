@@ -1238,7 +1238,7 @@ Market diffusion shows obvious characteristics of evolution over time. In the
 initial stage (Step 0-20), the network is predominantly blue, and only a few
 nodes (most likely innovators) begin to adopt the product. As time goes by to
 Step 30-40, we observe a significant increase in the number of red nodes,
-especially in the core area of ​​the network, indicating that the product begins
+especially in the core area of the network, indicating that the product begins
 to spread widely among influential agents. Entering Step 50-60, the red nodes
 quickly spread throughout the network, marking the rapid growth stage of product
 adoption. Finally, at Step 70-80, the network is almost completely covered by
