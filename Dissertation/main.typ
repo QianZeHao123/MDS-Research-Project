@@ -1300,9 +1300,9 @@ red line represents the average number of steps at each p coefficient.
 
 #figure(
   image("img/pic_p_change_research/box_final.png", width: 80%),
-)
+) <label:p_boxplot_final>
 
-It can be seen that when p coefficient is relatively large, the results of the
+It can be seen that when p coefficient is relatively large (@label:p_boxplot_final), the results of the
 two networks are more similar. However, when P is relatively small, the coverage
 interval after random network simulation is larger. 
 
@@ -1324,34 +1324,12 @@ become more important.
 // == Research on Different Probability of Imitators Adoption
 === Research on Imitation Coefficient (q)
 
-// #let q_images = (
-//   "img/pic_q_change_research/box.png",
-//   "img/pic_q_change_research/combined_plot.png",
-// )
-
-// #let q_image_grid = grid(
-//   columns: 2,
-//   gutter: 10pt,
-//   ..q_images.map(img => image(img, width: 100%)),
-// )
-
-// #figure(
-//   caption: [Boxplot and Line Plot of Different Imitator Adoption Probabilities],
-//   q_image_grid,
-// )
+#figure(
+  caption: [Boxplot of Different Imitator Adoption Probabilities in Small World Network],
+  image("img/pic_q_change_research/box_combine.png", width: 100%),
+) <label:q_boxplot_sm>
 
 == Research on the Impact of Fixed Influencial proportion
-
-// #let img_same_inf_prop_research = (
-//   "img/pic_same_inf_prop_research/box_random.png",
-//   "img/pic_same_inf_prop_research/box_sm.png",
-// )
-
-// #let img_same_inf_prop_research_grid = grid(
-//   columns: 2,
-//   gutter: 10pt,
-//   ..img_same_inf_prop_research.map(img => image(img, width: 100%)),
-// )
 
 #figure(
   caption: [Keep the influential innovators' proportion changed when the innovator
@@ -1360,17 +1338,6 @@ become more important.
 )
 
 == Research on the Impact of Fixed Innovator's proportion
-
-// #let img_same_inno_prop_research = (
-//   "img/pic_same_inno_prop_research/box_random.png",
-//   "img/pic_same_inno_prop_research/box_sm.png",
-// )
-
-// #let img_same_inno_prop_research_grid = grid(
-//   columns: 2,
-//   gutter: 10pt,
-//   ..img_same_inno_prop_research.map(img => image(img, width: 100%)),
-// )
 
 #figure(
   caption: [Keep the innovators' proportion changed when the influential proportion is fixed],
