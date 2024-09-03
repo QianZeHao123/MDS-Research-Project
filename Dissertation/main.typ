@@ -821,7 +821,7 @@ parameters:
     [],
     [],
     [Extra connections],
-    [additional connections for influential agents],
+    [Additional connections for influential agents],
     [Simulates the broad influence of opinion leaders],
     table.hline(),
   ),
@@ -1084,7 +1084,8 @@ influencer and non-influencer neighbors in the first five simulations. The
 number of neighbors of an influencer is approximately 4 to 6 times that of
 a flying influencer (@infstatable).
 
-#figure(caption: "Run Data for Agent-Based Model", table(
+#figure(caption: [Run Data for Agent-Based Model #link("https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%206%20visualization/2_agent_neighbour_stat.Rmd")[[Code]]],
+table(
   columns: (auto, auto, auto, auto, auto, auto, auto),
   align: (left, center, center, center, center, center, center),
   stroke: none,
@@ -1148,7 +1149,7 @@ same. We can also see that the number of influencer neighbors is much higher
 than that of non-influencers.
 
 #figure(
-  caption: [Neighbor statistics for Influencers and Non-Influencers],
+  caption: [Neighbor statistics for Influencers and Non-Influencers #link("https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%207%20visualization/0_neighbor_cal_random_sm.Rmd")[[Code]]],
   image("img/pic_neighbour_stat_network/neighbor_stat.png", width: 100%),
 ) <label:neighbor_stat_vis>
 
@@ -1173,7 +1174,7 @@ reached market saturation after about 50 steps, and the final adoption rate was
 close to 100%.
 
 #figure(
-  caption: [Adoption Statistics for a Single Simulation Run],
+  caption: [Adoption Statistics for a Single Simulation Run #link("https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%207%20visualization/9_single_sim_stat.Rmd")[[Code]]],
   image("img/pic_single_stat/combined_plot.png", width: 100%),
 ) <label:single_stat>
 
@@ -1219,7 +1220,7 @@ influential individuals.
 )
 
 #figure(
-  caption: [Network Evolution over Time from Step 0 to Step 80],
+  caption: [Network Evolution over Time from Step 0 to Step 80 #link("https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%207%20visualization/1_network_visualization.Rmd")[[Code]]],
   network_image_grid,
 ) <label:network_graph>
 
