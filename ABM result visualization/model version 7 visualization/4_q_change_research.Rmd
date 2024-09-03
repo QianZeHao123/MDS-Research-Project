@@ -173,9 +173,10 @@ combined_plot
 ```
 
 ```{r}
+box_sm = data.q.change.long
 # --------------------------------------------------------
 gc()
-rm(list = ls())
+remove(simulation2_results)
 graphics.off()
 cat("\014")
 # --------------------------------------------------------
@@ -312,6 +313,65 @@ ggsave("./pic_q_change_research/combined_plot_random.svg",
        width = 10)
 
 combined_plot
+```
+
+```{r}
+box_random = data.q.change.long
+```
+
+```{r}
+# box_full = box_random + box_sm
+box_full = rbind(box_random, box_sm)
+```
+
+```{r}
+library(plotly)
+library(esquisse)
+esquisser(box_full)
+```
+
+```{r fig.height=8, fig.width=15}
+box_combine = ggplot(box_full) +
+  aes(x = q_number, y = Steps_Count, fill = network_type) +
+  geom_boxplot(color = 'black') +
+  # stat_summary(
+  #   fun = median,
+  #   geom = "text",
+  #   aes(label = sprintf("%.1f", after_stat(y))),
+  #   vjust = -0.5,
+  #   color = "black",
+  #   size = 3
+  # ) +
+  scale_fill_manual(values = c("small_world" = "#6888F5", "random" = "#D77071"),
+                    name = "Network Type") +
+  labs(
+    x = "Different Q Coefficient",
+    y = "Steps Count",
+    title = "Boxplot for Potential User Acceptance Ratio",
+    subtitle = "When the acceptance probability of imitator changes (q)"
+  ) +
+  theme_light() +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.position = "bottom"
+  ) +
+  facet_wrap(vars(Step_Percent)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 80))
+
+ggsave("./pic_q_change_research/box_combine.png",
+       plot = box_combine,
+       device = "png",
+       height = 8,
+       width = 15)
+
+ggsave("./pic_q_change_research/box_combine.svg",
+       plot = box_combine,
+       device = "svg",
+       height = 8,
+       width = 15)
+
+box_combine
 ```
 
 ```{r}
