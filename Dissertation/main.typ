@@ -1257,7 +1257,7 @@ simulations were performed to ensure the stability and reliability of the
 results.
 
 #figure(
-  caption: [Boxplot of Different Innovator Adoption Probabilities in Small World Network],
+  caption: [Boxplot of Different Innovator Adoption Probabilities in Small World Network #link("https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%207%20visualization/3_p_change_research.Rmd")[[Code]]],
   image("img/pic_p_change_research/box_sm.png", width: 80%),
 ) <label:p_boxplot_sm>
 
@@ -1275,7 +1275,7 @@ as through effective marketing) to accelerate product adoption, especially in
 the early stages of market penetration.
 
 #figure(
-  caption: [Boxplot of Different Innovator Adoption Probabilities in Random Network],
+  caption: [Boxplot of Different Innovator Adoption Probabilities in Random Network #link("https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%207%20visualization/3_p_change_research.Rmd")[[Code]]],
   image("img/pic_p_change_research/box_random.png", width: 80%),
 ) <label:p_boxplot_random>
 
@@ -1297,7 +1297,7 @@ coefficient (p) is small, the adoption process in the random network
 )
 
 #figure(
-  caption: [A comparison about Line Plot of Different Innovator Adoption Probabilities],
+  caption: [A comparison about Line Plot of Different Innovator Adoption Probabilities #link("https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%207%20visualization/3_p_change_research.Rmd")[[Code]]],
   combined_plot_grid,
 ) <label:p_lineplot>
 
@@ -1308,7 +1308,10 @@ shaded area indicates the distribution range of the simulation results, and the
 red line represents the average number of steps at each p coefficient. 
 
 
-#figure(image("img/pic_p_change_research/box_final.png", width: 80%)) <label:p_boxplot_final>
+#figure(
+  image("img/pic_p_change_research/box_final.png", width: 80%),
+  caption: [Comparison of different p coefficient in two networks when 50% reaches #link("https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%207%20visualization/3_p_change_research.Rmd")[[Code]]],
+  ) <label:p_boxplot_final>
 
 It can be seen that when p coefficient is relatively large
 (@label:p_boxplot_final), the results of the two networks are more similar.
@@ -1325,13 +1328,9 @@ propagation in the network (imitation effect) rather than independent adoption
 by individuals. In this case, the characteristics of the network structure
 become more important.
 
-// #figure(
-//   caption: [Boxplot and Line Plot of Different Innovator Adoption Probabilities],
-//   image("img/pic_p_change_research/combined_plot_sm.png", width: 100%),
-// )
-
-// == Research on Different Probability of Imitators Adoption
 === Research on Imitation Coefficient (q)
+
+
 
 #figure(
   caption: [Boxplot of Different Imitator Adoption Probabilities in Small World Network],
