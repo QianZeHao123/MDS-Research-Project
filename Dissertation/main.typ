@@ -1297,6 +1297,11 @@ network. Each data point represents a specific simulation result, the blue
 shaded area indicates the distribution range of the simulation results, and the
 red line represents the average number of steps at each p coefficient. 
 
+
+#figure(
+  image("img/pic_p_change_research/box_final.png", width: 80%),
+)
+
 It can be seen that when p coefficient is relatively large, the results of the
 two networks are more similar. However, when P is relatively small, the coverage
 interval after random network simulation is larger. 
@@ -1337,39 +1342,39 @@ become more important.
 
 == Research on the Impact of Fixed Influencial proportion
 
-#let img_same_inf_prop_research = (
-  "img/pic_same_inf_prop_research/box_random.png",
-  "img/pic_same_inf_prop_research/box_sm.png",
-)
+// #let img_same_inf_prop_research = (
+//   "img/pic_same_inf_prop_research/box_random.png",
+//   "img/pic_same_inf_prop_research/box_sm.png",
+// )
 
-#let img_same_inf_prop_research_grid = grid(
-  columns: 2,
-  gutter: 10pt,
-  ..img_same_inf_prop_research.map(img => image(img, width: 100%)),
-)
+// #let img_same_inf_prop_research_grid = grid(
+//   columns: 2,
+//   gutter: 10pt,
+//   ..img_same_inf_prop_research.map(img => image(img, width: 100%)),
+// )
 
 #figure(
   caption: [Keep the influential innovators' proportion changed when the innovator
     proportion is fixed],
-  img_same_inf_prop_research_grid,
+  image("img/pic_same_inf_prop_research/box_combine.png", width: 100%),
 )
 
 == Research on the Impact of Fixed Innovator's proportion
 
-#let img_same_inno_prop_research = (
-  "img/pic_same_inno_prop_research/box_random.png",
-  "img/pic_same_inno_prop_research/box_sm.png",
-)
+// #let img_same_inno_prop_research = (
+//   "img/pic_same_inno_prop_research/box_random.png",
+//   "img/pic_same_inno_prop_research/box_sm.png",
+// )
 
-#let img_same_inno_prop_research_grid = grid(
-  columns: 2,
-  gutter: 10pt,
-  ..img_same_inno_prop_research.map(img => image(img, width: 100%)),
-)
+// #let img_same_inno_prop_research_grid = grid(
+//   columns: 2,
+//   gutter: 10pt,
+//   ..img_same_inno_prop_research.map(img => image(img, width: 100%)),
+// )
 
 #figure(
   caption: [Keep the innovators' proportion changed when the influential proportion is fixed],
-  img_same_inno_prop_research_grid,
+  image("img/pic_same_inno_prop_research/box_combine.png", width: 100%),
 )
 
 == Change on the Innovators and Innovator proportion
