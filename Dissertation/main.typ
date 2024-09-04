@@ -1568,8 +1568,7 @@ also revealed some thought-provoking new insights.
 Here we briefly review the research questions and come up the answers obtained through simulation analysis.
 
 + The relationship between individual adoption probability and market diffusion rate: How do different innovation coefficients (p) and imitation coefficients (q) affect the overall market diffusion process? 
-  #rect[,dfkjsfhjkhkj,dfkjsfhjkhkj,dfkjsfhjkhkj,dfkjsfhjkhkj,dfkjsfhjkhkj,dfkjsfhjkhkj,dfkjsfhjkhkj,
-  dfkjsfhjkhk,dfkjsfhjkhkj,dfkjsfhjkhkj,dfkjsfhjkhkj,dfkjsfhjkhk,dfkjsfhjkhkj,dfkjsfhjkhkj,dfkjsfhjkhkj,dfkjsfhjkhk]
+  #rect[]
 + Influence of innovators and opinion leaders: How does the ratio of innovators and influential individuals affect the market penetration and diffusion rate of products?
 + The role of consumer group heterogeneity: How does the proportion of different types of consumers (e.g., innovators, imitators, influential and non-influential individuals) affect product diffusion?
 + Multi-factor interactions: How do the interactions of key parameters (e.g., innovation coefficient, imitation coefficient, proportion of innovators, proportion of influencers) jointly affect diffusion dynamics?
