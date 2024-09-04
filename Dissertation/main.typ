@@ -1443,7 +1443,7 @@ limited. This suggests that overall market structure (especially the overall
 proportion of influencers) has an important impact on product diffusion dynamics
 when considering the role of influential innovators.
 
-== Change on the Innovators and Innovator proportion
+== Change on the Innovation Coefficient and Innovator proportion
 
 // pic_p_prop_inno_research
 #let p_prop_inno_images = (
@@ -1461,11 +1461,18 @@ when considering the role of influential innovators.
   ..p_prop_inno_images.map(img => image(img, width: 100%)),
 )
 
+In market diffusion research, we often need to consider the impact of multiple factors on the product adoption process at the same time. In order to intuitively show how the two key variables, the innovation coefficient (p) and the proportion of innovators, jointly affect the product diffusion rate, I designed this set of heat maps (@label:p_prop_inno_research). Heat maps can effectively show the interaction between two variables and their impact on the outcome variable. In this study, each cell in the heat map represents the average number of time steps required for the product to reach a specific adoption rate (25%, 50% and 75%) under a specific combination of innovation coefficient and innovator proportion. Each value shown in the figure is the average result of five independent simulations with the same parameter settings.
+
 #figure(
-  caption: [Steps to Reach 25%, 50%, and 75% Adoption Rates with Different Innovator's P and
-    Innovator's Proportion (small world network $arrow.t$, random network $arrow.b$)],
+  caption: [Research on Innovators of Small World Network (up) and Random Network (down)],
   p_prop_inno_image_grid,
-)
+) <label:p_prop_inno_research>
+
+These heat maps (@label:p_prop_inno_research) illustrate how the probability of product acceptance by an innovator and the proportion of innovators jointly affect the rate of product diffusion. The overall trend shows that as these two factors increase, diffusion speeds up (the heat map becomes darker and the values ​​decrease). However, this relationship is nonlinear, the changes are more significant in low-value areas, and there are obvious interactive effects.
+
+The two network structures (possibly small-world and random networks) exhibit similar overall patterns but differ in details, especially in regions of low innovation parameters. It is worth noting that a saturation effect appears in the high-value area, indicating that there is an optimal point beyond which the marginal benefits of continuing to increase innovation input are diminishing.
+
+These findings have important implications for formulating market strategies: when resources are limited, a trade-off needs to be made between increasing the probability of innovator acceptance and increasing the proportion of innovators; in the early stage, more emphasis may be placed on increasing the probability of acceptance; different network structures may require different Optimization strategy.
 
 == Change on Proportion of Influencers and Innovators
 
@@ -1505,7 +1512,6 @@ when considering the role of influential innovators.
 
 #bibliography("references.fixed.bib")
 
-// #set heading(outlined: false)
 #set heading(numbering: none)
 
 = Appendix A: Model Code
