@@ -1443,7 +1443,7 @@ limited. This suggests that overall market structure (especially the overall
 proportion of influencers) has an important impact on product diffusion dynamics
 when considering the role of influential innovators.
 
-== Change on the Innovation Coefficient and Innovator proportion
+== Change on the Innovation Coefficient and Innovator proportion <label:p_prop_inno_research_sec>
 
 // pic_p_prop_inno_research
 #let p_prop_inno_images = (
@@ -1476,6 +1476,8 @@ These findings have important implications for formulating market strategies: wh
 
 == Change on Proportion of Influencers and Innovators
 
+In order to gain a deeper understanding of the interaction between these two key factors, a heat map is also used here, as in @label:p_prop_inno_research_sec. The @label:prop_inno_inf_research shows how the proportion of innovators and the proportion of influencers jointly affect the speed of product diffusion under a fixed innovation coefficient (p=0.01) and imitation coefficient (q=0.3). Each cell in these heat maps represents the average number of time steps required for a product to reach a specific adoption rate under a specific combination of parameters.
+
 // pic_prop_inno_inf_research
 #let prop_inno_inf_images = (
   "img/pic_prop_inno_inf_research/step_to_25_sm.png",
@@ -1497,7 +1499,11 @@ These findings have important implications for formulating market strategies: wh
     Proportion and Influencer's Proportion (small world network $arrow.t$, random
     network $arrow.b$)],
   prop_inno_inf_image_grid,
-)
+) <label:prop_inno_inf_research>
+
+It can be analyzed from the figure that as the proportion of innovators increases from 0.02 to 0.07, and the proportion of influencers increases from 0 to 0.6, we observe an overall acceleration of the diffusion speed, but this effect is not linear. The impact of the innovator ratio is more significant at low values, while the marginal benefit of the influencer ratio shows a decreasing trend. The interactive effect between the two is most obvious in the lower left corner (both ratios are low) and the upper right corner (both ratios are high), which correspond to the slowest and fastest diffusion speeds respectively.
+
+Comparing the heat maps of small-world networks and random networks, we find that although the overall trends are similar, random networks exhibit slower diffusion speeds at low innovator and low influencer ratios, again indicating that network structure has an important impact on innovation diffusion. In addition, color "jumps" in the heat map suggest possible critical points beyond which the marginal benefit of increased diffusion speed decreases.
 
 = Discussion
 
