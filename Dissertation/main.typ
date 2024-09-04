@@ -151,7 +151,7 @@ internal states. These features enable ABM to effectively simulate individual
 behaviors and overall dynamics in complex systems.
 
 The ABM models contains three main components: agents, environment, and
-interaction rules. 
+interaction rules.
 
 #figure(
   caption: "Main Components of ABM",
