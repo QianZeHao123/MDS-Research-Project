@@ -1657,7 +1657,7 @@ through simulation analysis.
 
 == Contributions and Implications
 
-== Contributions
+=== Contributions
 
 === Practical significance
 
