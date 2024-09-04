@@ -1610,7 +1610,7 @@ through simulation analysis.
     [Innovators and opinion leaders play a key role in the product diffusion process,
       especially in today's age of social media. Our study further explores the impact
       of these key individuals on the speed of market penetration and diffusion by
-      adjusting the proportion of influential innovators in the model. These findings
+      adjusting the proportion of influential innovators in the model (Simulation 3, 4, 9 and 10). These findings
       revealed several key insights:
       - The importance of influential innovators: Our results strongly support the
         importance of identifying and engaging influential innovators. When these key
@@ -1637,20 +1637,37 @@ through simulation analysis.
   )
 + The role of consumer group heterogeneity: How does the proportion of different
   types of consumers (e.g., innovators, imitators, influential and non-influential
-  individuals) affect product diffusion? #rect[]
+  individuals) affect product diffusion? #rect[By segmenting consumer types (innovators or not and influencers or not), the
+    study analyzes how the proportions of these different groups jointly shape the
+    market penetration and diffusion rate of a product. Our analysis revealed the
+    following key findings:
+    - Network structure plays an important regulatory role in the innovation diffusion process. In small-world networks, the role of influencers is more prominent, especially when the proportion of innovators is low. In contrast, random networks show greater sensitivity to the proportion of innovators. This suggests that different social network structures may influence the dynamic process of innovation diffusion.
+    - While imitators make up the majority of consumers, their behavior is strongly influenced by innovators and influencers. Changes in the proportion of mainly affect the speed of diffusion in the middle and late stages. This highlights the interaction and role between different types of consumers in the innovation diffusion process.
+]
 + Multi-factor interactions: How do the interactions of key parameters (e.g.,
   innovation coefficient, imitation coefficient, proportion of innovators,
-  proportion of influencers) jointly affect diffusion dynamics?
+  proportion of influencers) jointly affect diffusion dynamics? #rect[
+    - The interaction between the proportion of innovators and influencers shows a complex "substitution-complementary" relationship. When the proportion of innovators is low (less than 2%), increasing the proportion of influencers can significantly accelerate the diffusion process. However, when the proportion of innovators is high (bigger than 5%), an increase in the proportion of influencers has a relatively small effect on diffusion speed. This illustrates a dynamic interplay between innovators and influencers in different contexts.
+    - We observe that there is a certain "tipping point", when the ratio of innovators and influencers reaches a certain level at the same time, the rate of diffusion increases sharply. This critical point is roughly located in the area where the proportion of innovators is 3-4% and the proportion of influencers is 15-20%. Once this critical point is exceeded, the rate of diffusion of innovation will increase significantly.]
 + The impact of social network structure: How do different network structures
   (such as small-world networks and random networks) affect the spread and
-  adoption speed of product information?
-
-
-
-多因素交互作用：通过热图分析，我们观察到了关键参数之间的非线性交互效应。这些发现强调了在制定市场策略时需要综合考虑多个因素。
-社会网络结构的影响：我们的仿真比较了小世界网络和随机网络下的扩散过程，发现网络结构确实影响扩散速度和模式。特别是在低创新参数条件下，两种网络结构表现出明显差异。
+  adoption speed of product information? #rect[In our simulation experiments, we observed quite different results in different networks using the same parameter combination. The key findings are as follows:
+  - Overall diffusion speed difference: In the case of small parameters, the diffusion speed of random networks is significantly faster than that of small-world networks; in the case of large parameters, the diffusion speeds of the two networks are almost the same.
+  - Differences in simulation results: The results of random networks are more average, less variable, and will slowly aggregate as the parameters increase. The results of small-world networks will also be more concentrated, but the regularity is not strong.]
 
 == Contributions and Implications
+
+== Contributions
+
+=== Practical significance
+
+Our study provides comprehensive and in-depth guidance for companies to formulate market strategies by exploring the impact of individual adoption probability, the influence of innovators and opinion leaders, consumer group heterogeneity, multi-factor interactions, and social network structure on innovation diffusion. First, we found that the impact of the innovation coefficient (p) and the imitation coefficient (q) on the diffusion process is dynamic, which means that companies need to adjust their marketing strategies according to different stages of the product life cycle. In the early stage of product launch, resources should be focused on improving the innovation coefficient, such as increasing advertising investment and providing product trials; while over time, it will be more effective to gradually shift to strategies that improve the imitation coefficient, such as encouraging users to share and build communities.
+
+Second, our analysis reveals the key role of innovators and influential individuals in accelerating product diffusion, especially when they account for a large proportion of the innovator group. This finding emphasizes the importance of companies investing in identifying and cultivating these key individuals, perhaps through precise influence marketing or KOL (key opinion leader) strategies. At the same time, we observed a complex interaction between the proportion of innovators and influencers, which suggests that companies need to carefully weigh whether to increase the overall number of innovators or concentrate resources on a small number of high-impact innovators when resources are limited.
+
+Finally, our study highlights the important role of social network structure in the diffusion of innovation. The differences in diffusion dynamics between small-world and random networks suggest that companies need to adjust their marketing strategies according to the network characteristics of the target market. For example, in markets that are closer to small-world networks (such as close communities or professional fields), viral marketing or word-of-mouth marketing strategies may be more suitable; while in markets that are closer to random networks (such as mass consumer goods markets), broader marketing coverage may be required. In addition, understanding the dynamic changes in diffusion speed under different network structures can help companies better plan the various stages of the product life cycle and optimize resource allocation.
+
+In summary, our study provides companies with a comprehensive framework for understanding and exploiting the complex dynamics of innovation diffusion. By comprehensively considering individual behavior, social influence, and network structure, companies can develop more precise and effective market strategies. In today's rapidly changing and highly interconnected market environment, this in-depth understanding will become the key for companies to maintain their competitive advantage. It requires companies to take a more dynamic, systematic, and comprehensive approach to market analysis and strategic planning, and constantly adjust strategies to meet the needs of different stages and types of markets.
 
 == Limitations and Future Research
 
