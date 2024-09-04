@@ -1461,22 +1461,53 @@ when considering the role of influential innovators.
   ..p_prop_inno_images.map(img => image(img, width: 100%)),
 )
 
-In market diffusion research, we often need to consider the impact of multiple factors on the product adoption process at the same time. In order to intuitively show how the two key variables, the innovation coefficient (p) and the proportion of innovators, jointly affect the product diffusion rate, I designed this set of heat maps (@label:p_prop_inno_research). Heat maps can effectively show the interaction between two variables and their impact on the outcome variable. In this study, each cell in the heat map represents the average number of time steps required for the product to reach a specific adoption rate (25%, 50% and 75%) under a specific combination of innovation coefficient and innovator proportion. Each value shown in the figure is the average result of five independent simulations with the same parameter settings.
+In market diffusion research, we often need to consider the impact of multiple
+factors on the product adoption process at the same time. In order to
+intuitively show how the two key variables, the innovation coefficient (p) and
+the proportion of innovators, jointly affect the product diffusion rate, I
+designed this set of heat maps (@label:p_prop_inno_research). Heat maps can
+effectively show the interaction between two variables and their impact on the
+outcome variable. In this study, each cell in the heat map represents the
+average number of time steps required for the product to reach a specific
+adoption rate (25%, 50% and 75%) under a specific combination of innovation
+coefficient and innovator proportion. Each value shown in the figure is the
+average result of five independent simulations with the same parameter settings.
 
 #figure(
   caption: [Research on Innovators of Small World Network (up) and Random Network (down)],
   p_prop_inno_image_grid,
 ) <label:p_prop_inno_research>
 
-These heat maps (@label:p_prop_inno_research) illustrate how the probability of product acceptance by an innovator and the proportion of innovators jointly affect the rate of product diffusion. The overall trend shows that as these two factors increase, diffusion speeds up (the heat map becomes darker and the values ​​decrease). However, this relationship is nonlinear, the changes are more significant in low-value areas, and there are obvious interactive effects.
+These heat maps (@label:p_prop_inno_research) illustrate how the probability of
+product acceptance by an innovator and the proportion of innovators jointly
+affect the rate of product diffusion. The overall trend shows that as these two
+factors increase, diffusion speeds up (the heat map becomes darker and the
+values ​​decrease). However, this relationship is nonlinear, the changes are
+more significant in low-value areas, and there are obvious interactive effects.
 
-The two network structures (possibly small-world and random networks) exhibit similar overall patterns but differ in details, especially in regions of low innovation parameters. It is worth noting that a saturation effect appears in the high-value area, indicating that there is an optimal point beyond which the marginal benefits of continuing to increase innovation input are diminishing.
+The two network structures (possibly small-world and random networks) exhibit
+similar overall patterns but differ in details, especially in regions of low
+innovation parameters. It is worth noting that a saturation effect appears in
+the high-value area, indicating that there is an optimal point beyond which the
+marginal benefits of continuing to increase innovation input are diminishing.
 
-These findings have important implications for formulating market strategies: when resources are limited, a trade-off needs to be made between increasing the probability of innovator acceptance and increasing the proportion of innovators; in the early stage, more emphasis may be placed on increasing the probability of acceptance; different network structures may require different Optimization strategy.
+These findings have important implications for formulating market strategies:
+when resources are limited, a trade-off needs to be made between increasing the
+probability of innovator acceptance and increasing the proportion of innovators;
+in the early stage, more emphasis may be placed on increasing the probability of
+acceptance; different network structures may require different Optimization
+strategy.
 
 == Change on Proportion of Influencers and Innovators
 
-In order to gain a deeper understanding of the interaction between these two key factors, a heat map is also used here, as in @label:p_prop_inno_research_sec. The @label:prop_inno_inf_research shows how the proportion of innovators and the proportion of influencers jointly affect the speed of product diffusion under a fixed innovation coefficient (p=0.01) and imitation coefficient (q=0.3). Each cell in these heat maps represents the average number of time steps required for a product to reach a specific adoption rate under a specific combination of parameters.
+In order to gain a deeper understanding of the interaction between these two key
+factors, a heat map is also used here, as in @label:p_prop_inno_research_sec.
+The @label:prop_inno_inf_research shows how the proportion of innovators and the
+proportion of influencers jointly affect the speed of product diffusion under a
+fixed innovation coefficient (p=0.01) and imitation coefficient (q=0.3). Each
+cell in these heat maps represents the average number of time steps required for
+a product to reach a specific adoption rate under a specific combination of
+parameters.
 
 // pic_prop_inno_inf_research
 #let prop_inno_inf_images = (
@@ -1501,11 +1532,26 @@ In order to gain a deeper understanding of the interaction between these two key
   prop_inno_inf_image_grid,
 ) <label:prop_inno_inf_research>
 
-It can be analyzed from the figure that as the proportion of innovators increases from 0.02 to 0.07, and the proportion of influencers increases from 0 to 0.6, we observe an overall acceleration of the diffusion speed, but this effect is not linear. The impact of the innovator ratio is more significant at low values, while the marginal benefit of the influencer ratio shows a decreasing trend. The interactive effect between the two is most obvious in the lower left corner (both ratios are low) and the upper right corner (both ratios are high), which correspond to the slowest and fastest diffusion speeds respectively.
+It can be analyzed from the figure that as the proportion of innovators
+increases from 0.02 to 0.07, and the proportion of influencers increases from 0
+to 0.6, we observe an overall acceleration of the diffusion speed, but this
+effect is not linear. The impact of the innovator ratio is more significant at
+low values, while the marginal benefit of the influencer ratio shows a
+decreasing trend. The interactive effect between the two is most obvious in the
+lower left corner (both ratios are low) and the upper right corner (both ratios
+are high), which correspond to the slowest and fastest diffusion speeds
+respectively.
 
-Comparing the heat maps of small-world networks and random networks, we find that although the overall trends are similar, random networks exhibit slower diffusion speeds at low innovator and low influencer ratios, again indicating that network structure has an important impact on innovation diffusion. In addition, color "jumps" in the heat map suggest possible critical points beyond which the marginal benefit of increased diffusion speed decreases.
+Comparing the heat maps of small-world networks and random networks, we find
+that although the overall trends are similar, random networks exhibit slower
+diffusion speeds at low innovator and low influencer ratios, again indicating
+that network structure has an important impact on innovation diffusion. In
+addition, color "jumps" in the heat map suggest possible critical points beyond
+which the marginal benefit of increased diffusion speed decreases.
 
 = Discussion
+
+
 
 == Summary of Findings
 
