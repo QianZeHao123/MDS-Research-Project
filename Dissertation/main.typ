@@ -1246,10 +1246,10 @@ red nodes, indicating that product adoption is close to saturation.
 
 == Research on Different Probability of Adoption
 
-=== Research on Innovation Coefficient (p)
+=== Research on Innovation Coefficient (p) <label:p_change_research>
 
 The innovation coefficient represents the tendency of consumers to independently
-adopt new products. I used the control variable method to change only the value
+adopt new products. In simulation 1 and 7, I used the control variable method to change only the value
 of the innovation coefficient p (ranging from 0.01 to 0.03), while keeping all
 other parameters unchanged, including the imitation coefficient (q),
 network structure (q=0.3, proportion of innovators=0.01, proportion of influencers=0.1, N=1000), overall market size, etc. For each p coefficient, multiple
@@ -1330,27 +1330,42 @@ become more important.
 
 === Research on Imitation Coefficient (q)
 
-
+Similar to the method of studying the innovation coefficient, in the study of the imitation coefficient q (simulation 2 and 8), other parameters are fixed (p=0.02, proportion of innovators=0.01, proportion of influencers=0.1, N=1000), only the value of q is changed (0.3 to 0.5), and the simulation is repeated many times. This study selects p=0.02 as the baseline innovation coefficient instead of 0.01, which is based on the observation in previous experiments that the two network types showed huge differences at p=0.01 (in @label:p_change_research when p=0.01 in random network, the box plot shows the results varied more than the small world network). This choice aims to reduce the interference of differences in network structure on the analysis of the impact of imitation coefficients, thereby obtaining a purer q coefficient effect. The following (@label:q_boxplot_sm) are the simulation results when 25%, 50%, and 75% of the users are accepted in two different networks:
 
 #figure(
-  caption: [Boxplot of Different Imitator Adoption Probabilities in Small World Network],
+  caption: [The impact of imitation coefficient on product adoption rate in different network structures],
   image("img/pic_q_change_research/box_combine.png", width: 100%),
 ) <label:q_boxplot_sm>
 
-== Research on the Impact of Fixed Influencial proportion
+The results show that as the imitation coefficient q increases from 0.3 to 0.5, the speed of product diffusion generally shows an accelerated trend. Especially in random networks, the variability of results is significantly reduced, indicating that the propagation process under high imitation coefficients becomes more stable and predictable in random networks. However, small-world networks do not show the same clear trend of decreasing variability.
+Although small-world networks still exhibit slightly faster propagation speeds at lower q values, the performance gap between the two network types gradually narrows as q values increase. 
+
+It is worth noting that compared with the growth effect of the innovation coefficient p (from 0.01 to 0.02), the growth of the imitation coefficient q has a relatively limited impact on accelerating network diffusion. This finding highlights that in the product adoption process, increasing the imitation coefficient may not be as effective as increasing the innovation coefficient, especially when pursuing significantly accelerated diffusion.
+
+== Research on the proportion of Influential Innovators
+
+This section will focus on the impact of the proportion of influential innovators on the product diffusion process. We will study this issue through two different experimental settings: First, we will study how the change in the proportion of influential innovators affects the product diffusion process when the total influencer proportion is fixed (simulation 3 and 9). Second, we will study how the change in the proportion of influential innovators affects the product diffusion process when the innovator proportion is fixed (simulation 4 and 10).
+
+=== Fixed Innovator's proportion
+
+The @label:inno_boxplot analyzes the impact of changes in the proportion of influential innovators on the product diffusion process when the total proportion of innovators is fixed at 1% (p=0.01, q=0.03, N=1000):
+
+#figure(
+  caption: [Keep the innovators' proportion changed when the influential proportion is fixed],
+  image("img/pic_same_inno_prop_research/box_combine.png", width: 100%),
+) <label:inno_boxplot>
+
+From the figure, we can analyze that when the total proportion of innovators is fixed, increasing the proportion of influential innovators can only slightly accelerate the product diffusion process. Random networks and small-world networks show similar characteristics at different stages, and the overall propagation speed of random networks is slightly faster than that of small-world networks. This shows that increasing the proportion of influential innovators has limited effect on accelerating product diffusion, especially when the total proportion of innovators is low. At the same time, similar to the simulation results of the lower innovation coefficient p, a low proportion of innovators will cause greater variability in results.
+
+=== Fixed Influencers' proportion
+
+The @label:inf_boxplot shows the effect of changing the proportion of influential innovators on the product diffusion process, while fixing the total proportion of influencers at 10% (p=0.01, q=0.03, N=1000):
 
 #figure(
   caption: [Keep the influential innovators' proportion changed when the innovator
     proportion is fixed],
   image("img/pic_same_inf_prop_research/box_combine.png", width: 100%),
-)
-
-== Research on the Impact of Fixed Innovator's proportion
-
-#figure(
-  caption: [Keep the innovators' proportion changed when the influential proportion is fixed],
-  image("img/pic_same_inno_prop_research/box_combine.png", width: 100%),
-)
+) <label:inf_boxplot>
 
 == Change on the Innovators and Innovator proportion
 
