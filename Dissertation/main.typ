@@ -1485,10 +1485,10 @@ factors increase, diffusion speeds up (the heat map becomes darker and the
 values ​​decrease). However, this relationship is nonlinear, the changes are
 more significant in low-value areas, and there are obvious interactive effects.
 
-The two network structures (possibly small-world and random networks) exhibit
-similar overall patterns but differ in details, especially in regions of low
-innovation parameters. It is worth noting that a saturation effect appears in
-the high-value area, indicating that there is an optimal point beyond which the
+The two network structures (small-world and random networks) exhibit similar
+overall patterns but differ in details, especially in regions of low innovation
+parameters. It is worth noting that a saturation effect appears in the
+high-value area, indicating that there is an optimal point beyond which the
 marginal benefits of continuing to increase innovation input are diminishing.
 
 These findings have important implications for formulating market strategies:
@@ -1551,9 +1551,29 @@ which the marginal benefit of increased diffusion speed decreases.
 
 = Discussion
 
-
-
 == Summary of Findings
+
+In today's rapidly changing market environment, understanding the diffusion
+process of new products and innovative ideas is crucial for companies and
+policymakers. By integrating the theoretical foundations of Bass diffusion model
+and complex networks, as well as the micro-simulation capabilities of ABM, we
+are able to capture the subtle dynamics and complex interactions that are
+difficult to reveal in traditional aggregate models. I believe that through a
+series of well-designed simulation experiments and comprehensive results
+analysis, we have not only successfully answered key research questions, but
+also revealed some thought-provoking new insights.
+
+=== Response to Research Questions
+
+Here we briefly review the research questions and come up the answers obtained through simulation analysis.
+
++ The relationship between individual adoption probability and market diffusion rate: How do different innovation coefficients (p) and imitation coefficients (q) affect the overall market diffusion process? 
+  #rect[,dfkjsfhjkhkj,dfkjsfhjkhkj,dfkjsfhjkhkj,dfkjsfhjkhkj,dfkjsfhjkhkj,dfkjsfhjkhkj,dfkjsfhjkhkj,
+  dfkjsfhjkhk,dfkjsfhjkhkj,dfkjsfhjkhkj,dfkjsfhjkhkj,dfkjsfhjkhk,dfkjsfhjkhkj,dfkjsfhjkhkj,dfkjsfhjkhkj,dfkjsfhjkhk]
++ Influence of innovators and opinion leaders: How does the ratio of innovators and influential individuals affect the market penetration and diffusion rate of products?
++ The role of consumer group heterogeneity: How does the proportion of different types of consumers (e.g., innovators, imitators, influential and non-influential individuals) affect product diffusion?
++ Multi-factor interactions: How do the interactions of key parameters (e.g., innovation coefficient, imitation coefficient, proportion of innovators, proportion of influencers) jointly affect diffusion dynamics?
++ The impact of social network structure: How do different network structures (such as small-world networks and random networks) affect the spread and adoption speed of product information?
 
 == Contributions and Implications
 
