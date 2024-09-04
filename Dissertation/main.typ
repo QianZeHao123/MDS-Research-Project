@@ -1244,7 +1244,7 @@ quickly spread throughout the network, marking the rapid growth stage of product
 adoption. Finally, at Step 70-80, the network is almost completely covered by
 red nodes, indicating that product adoption is close to saturation.
 
-== Research on Different Probability of Adoption
+== Research on Different Probability of Adoption <label:diff_prob_research>
 
 === Research on Innovation Coefficient (p) <label:p_change_research>
 
@@ -1533,7 +1533,7 @@ parameters.
 ) <label:prop_inno_inf_research>
 
 It can be analyzed from the figure that as the proportion of innovators
-increases from 0.02 to 0.07, and the proportion of influencers increases from 0
+increases from 0.01 to 0.07, and the proportion of influencers increases from 0
 to 0.6, we observe an overall acceleration of the diffusion speed, but this
 effect is not linear. The impact of the innovator ratio is more significant at
 low values, while the marginal benefit of the influencer ratio shows a
@@ -1565,14 +1565,90 @@ also revealed some thought-provoking new insights.
 
 === Response to Research Questions
 
-Here we briefly review the research questions and come up the answers obtained through simulation analysis.
+Here we briefly review the research questions and come up the answers obtained
+through simulation analysis.
 
-+ The relationship between individual adoption probability and market diffusion rate: How do different innovation coefficients (p) and imitation coefficients (q) affect the overall market diffusion process? 
-  #rect[]
-+ Influence of innovators and opinion leaders: How does the ratio of innovators and influential individuals affect the market penetration and diffusion rate of products?
-+ The role of consumer group heterogeneity: How does the proportion of different types of consumers (e.g., innovators, imitators, influential and non-influential individuals) affect product diffusion?
-+ Multi-factor interactions: How do the interactions of key parameters (e.g., innovation coefficient, imitation coefficient, proportion of innovators, proportion of influencers) jointly affect diffusion dynamics?
-+ The impact of social network structure: How do different network structures (such as small-world networks and random networks) affect the spread and adoption speed of product information?
++ The relationship between individual adoption probability and market diffusion
+  rate: How do different innovation coefficients (p) and imitation coefficients
+  (q) affect the overall market diffusion process? 
+  #table(
+    columns: (auto),
+    align: (left),
+    [Research on Different Probability of Adoption (@label:diff_prob_research)
+      reveals how these parameters affect the overall market diffusion process by
+      adjusting the innovation coefficient (p) and the imitation coefficient (q) in
+      the Bass model (Simulation: 1, 2, 7 and 8).
+      - First, regarding the impact of the innovation coefficient (p): high p
+        coefficients not only accelerate initial adoption, but also reduce the
+        uncertainty of the results. This may reflect the importance of strong innovation
+        marketing strategies (such as advertising, product demonstrations, etc.) in
+        promoting early adoption and building market momentum. However, the marginal
+        benefits brought by the increase in p coefficient shows a decreasing trend,
+        especially when reaching a higher adoption rate. This phenomenon suggests that
+        overinvestment in improving innovation adoption may not always be the most
+        effective strategy, especially in the later stages of the product life cycle.
+      - Second, the impact pattern of the imitation coefficient q is different from that
+        of p, reflecting the unique role of social influence and network effects in the
+        diffusion process. The increase in q coefficient mainly accelerates the
+        diffusion in the middle and late stages, which is consistent with the phenomenon
+        that word-of-mouth effects and social network influence increase over time in
+        reality. Another interesting finding is the moderating effect of network
+        structure on the impact of q. In random networks, the increased stability
+        brought by high q coefficient may reflect a more uniform flow of information. In
+        contrast, the slightly faster diffusion speed exhibited by the small-world
+        network at low q coefficient may stem from its characteristics of high
+        clustering coefficient and short average path length, which are conducive to
+        local rapid diffusion.
+    ],
+  )
++ Influence of innovators and opinion leaders: How does the ratio of innovators
+  and influential individuals affect the market penetration and diffusion rate of
+  products? 
+  #table(
+    columns: (auto),
+    align: (left),
+    [Innovators and opinion leaders play a key role in the product diffusion process,
+      especially in today's age of social media. Our study further explores the impact
+      of these key individuals on the speed of market penetration and diffusion by
+      adjusting the proportion of influential innovators in the model. These findings
+      revealed several key insights:
+      - The importance of influential innovators: Our results strongly support the
+        importance of identifying and engaging influential innovators. When these key
+        individuals occupy a larger proportion of the innovator population, they can
+        significantly accelerate the overall diffusion process. This may be because they
+        not only have a propensity to adopt innovations but also to quickly spread
+        innovation information through their extensive social networks.
+      - The importance of overall market structure: Interestingly, increasing the
+        proportion of influential innovators has different effects across different
+        market structures. When the overall proportion of influencers is fixed,
+        increasing the proportion of influential innovators has the most significant
+        effect. This suggests that simply increasing the number of innovators may not be
+        enough to accelerate diffusion; the key lies in whether these innovators have
+        widespread influence.
+      - Amplification of network effects: Influential innovators appear to be able to
+        amplify network effects. While keeping the proportion of total influencers
+        constant, increasing the proportion of influential innovators not only speeds up
+        diffusion but also significantly reduces the variability of the results. This
+        means that their presence makes the diffusion process more stable and
+        predictable.
+      - Effect of network structure: Although random networks show slightly faster
+        diffusion speeds, the role patterns of influential innovators are similar under
+        both network structures.],
+  )
++ The role of consumer group heterogeneity: How does the proportion of different
+  types of consumers (e.g., innovators, imitators, influential and non-influential
+  individuals) affect product diffusion? #rect[]
++ Multi-factor interactions: How do the interactions of key parameters (e.g.,
+  innovation coefficient, imitation coefficient, proportion of innovators,
+  proportion of influencers) jointly affect diffusion dynamics?
++ The impact of social network structure: How do different network structures
+  (such as small-world networks and random networks) affect the spread and
+  adoption speed of product information?
+
+
+
+多因素交互作用：通过热图分析，我们观察到了关键参数之间的非线性交互效应。这些发现强调了在制定市场策略时需要综合考虑多个因素。
+社会网络结构的影响：我们的仿真比较了小世界网络和随机网络下的扩散过程，发现网络结构确实影响扩散速度和模式。特别是在低创新参数条件下，两种网络结构表现出明显差异。
 
 == Contributions and Implications
 
