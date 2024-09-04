@@ -401,7 +401,7 @@ information dissemination @xue_simulation_2016.
 
 == Conclusion of Literature Review
 
-By collating the literature review, the following ideas inspired my research
+By collating the literature review, the following ideas inspired our research
 report:
 - ABM is a powerful tool for simulating complex systems and social phenomena,
   providing a bottom-up approach to understanding emergent behaviors.
@@ -436,7 +436,7 @@ market. This approach allows us to consider factors such as individual
 differences, social network structure, and market heterogeneity while
 maintaining a grasp of overall market trends.
 
-The following are my research proposals:
+The following are our research proposals:
 
 + Study on the relationship between the probability distribution of individual
   acceptance of new products in the market and the product diffusion rate: Explore
@@ -469,13 +469,13 @@ The following are my research proposals:
 
 = Methodology
 
-In this section, I will introduce the model framework (@label:framework), agent
+In this section, we will introduce the model framework (@label:framework), agent
 attributes (@label:agent_attr), social network structure (@label:network), and
 diffusion mechanism of the ABM model for market diffusion research
 (@label:diffusion). The model is designed to simulate the diffusion process of
 new products in the market, taking into account the influence of individual
 characteristics, social network structure, and market composition on the
-diffusion dynamics. After that, I designed simulation experiments for the
+diffusion dynamics. After that, we designed simulation experiments for the
 research questions (@label:simPlanDesign) and ran ABM using the Mesa framework
 (@label:run).
 
@@ -483,7 +483,7 @@ research questions (@label:simPlanDesign) and ran ABM using the Mesa framework
 
 === Model Assumption
 
-To address the research questions raised in @label:questions, I built a model
+To address the research questions raised in @label:questions, we built a model
 framework for ABM market diffusion research. It is based on the following key
 assumptions:
 
@@ -517,8 +517,8 @@ and market structure.
 === Model structure
 
 Regarding the many ABM modeling frameworks mentioned in @label:platforms,
-considering that my model requires some support for complex networks and
-statistics on the agent status at each moment, I finally chose to develope with
+considering that our model requires some support for complex networks and
+statistics on the agent status at each moment, We finally chose to develope with
 MESA #footnote[Mesa allows users to quickly create agent-based models using built-in core
   components (such as spatial grids and agent schedulers) or customized
   implementations; visualize them using a browser-based interface; and analyze
@@ -537,7 +537,7 @@ The following UML shows the overview class diagram of the ABM model
   caption: "Class Diagram of the ABM Model",
 ) <label:class>
 
-I used a top-down modeling approach to design the customer (agent) and the
+We used a top-down modeling approach to design the customer (agent) and the
 market environment (BassModel). The characteristics (such as the type of the
 consumers, the probability of accepting the product, etc.) of the user will be
 introduced in detail in @label:agent_attr, and the simulation of the market
@@ -587,8 +587,8 @@ So in each time step, the adoption probability of an agent is determined by:
 
 == Social Network Structure <label:network>
 
-The network structure in my ABM model is based on small-world networks and
-random networks. On top of these two basic network structures, I further
+The network structure in our ABM model is based on small-world networks and
+random networks. On top of these two basic network structures, We further
 introduced the key attribute of influencers. Influencers have more connections
 in the network. This design is intended to simulate the role of opinion leaders
 or key nodes in real society. There are three steps to build such a network:
@@ -685,11 +685,11 @@ and a shorter average path length compared to the small world network:
 === Network Edge Equalization <label:netedgeequal>
 
 We hope to compare market diffusion in Erdős-Rényi random graphs and
-Watts-Strogatz small-world networks. To ensure comparability, I use a controlled
+Watts-Strogatz small-world networks. To ensure comparability, We use a controlled
 variable approach, maintaining identical node counts (N) and total edge numbers
 across both network types.
 
-I achieve two different networks in which each node has the same number of
+We achieve two different networks in which each node has the same number of
 connections with other nodes by adjusting the connection probability p in the
 random network model and the initial neighbor count k in the small world model
 to achieve the same number of edges:
@@ -702,7 +702,7 @@ $ "edges" = 1 / 2 times N times k $
 By setting these two values equal, we can derive:
 $ p = k / (N-1) $
 
-For example, in my simulation, I set $N=1000$, $k=4$ in the small world network,
+For example, in our simulation, we set $N=1000$, $k=4$ in the small world network,
 so we can calculate $p approx 0.004004$ for random network.
 
 This approach constructs network models with identical node counts and edge
@@ -830,7 +830,7 @@ parameters:
 === Design of the Simulation Experiment <label:simPlanDesign>
 
 Experimental design is a core component of methodology, which directly
-determines how to test research hypotheses and answer research questions. My
+determines how to test research hypotheses and answer research questions. Our
 experimental design systematically covers changes in multiple key parameters
 (such as innovation coefficient p, imitation coefficient q, network type,
 influencer ratio, etc.) and considers their interactions to ensure the
@@ -839,7 +839,7 @@ comprehensiveness and rigor of the research. Each set of experiments is iterated
 stability of the results. Through this systematic and comprehensive experimental
 design, the foundation for the analysis and discussion of the results is laid.
 
-I designed a series of simulation experiments to explore the impact of different
+We designed a series of simulation experiments to explore the impact of different
 parameters on the product diffusion process. These experiments are divided into
 two categories, each containing 6 sets of experiments, conducted in small-world
 networks and random networks respectively. All experiments are based on a
@@ -945,7 +945,7 @@ simulation runs.
 
 === Scheduler and Barch Running with MESA
 
-Schedulers play a key role in Agent-Based Models. I chose to use the
+Schedulers play a key role in Agent-Based Models. We chose to use the
 RandomActivation scheduler provided by Mesa. The main reason for using a
 scheduler is to manage and control the order in which agents in the model are
 activated. At each simulation step, the RandomActivation scheduler randomly
@@ -1073,7 +1073,7 @@ the complex diffusion process.
 
 == Table of Neighbors between Influencers and Non-Influencers <label:neighbor_stat>
 
-Before doing any ABM analysis, I first need to verify the similarity of the
+Before doing any ABM analysis, we first need to verify the similarity of the
 number of connections between different networks mentioned and add more
 neighbors to the influencers in @label:network. Statistically analyze whether
 the influencers and non-influencers are the same in different networks. This is
@@ -1199,7 +1199,7 @@ also be observed.
 === Visualization of Network Evolution
 
 To gain a more intuitive understanding of the process of product adoption
-spreading in social networks, I created a series of network graphs to visualize
+spreading in social networks, we created a series of network graphs to visualize
 the time evolution of agent activations. These networks (@label:network_graph)
 were generated by the NetworkX library and visualized with igraph. In these
 graphs, nodes represent individual agents and edges represent social connections
@@ -1249,7 +1249,7 @@ red nodes, indicating that product adoption is close to saturation.
 === Research on Innovation Coefficient (p) <label:p_change_research>
 
 The innovation coefficient represents the tendency of consumers to independently
-adopt new products. In simulation 1 and 7, I used the control variable method to
+adopt new products. In simulation 1 and 7, we used the control variable method to
 change only the value of the innovation coefficient p (ranging from 0.01 to
 0.03), while keeping all other parameters unchanged, including the imitation
 coefficient (q), network structure (q=0.3, proportion of innovators=0.01,
@@ -1327,7 +1327,7 @@ It can be seen that when p coefficient is relatively large
 However, when P is relatively small, the coverage interval after random network
 simulation is larger. 
 
-I think this result may be caused by the fact that small-world networks have the
+We think this result may be caused by the fact that small-world networks have the
 characteristics of high clustering coefficient and short average path length,
 which may lead to rapid local propagation of information and rapid reach to
 other parts of the network. In contrast, the connections of random networks are
@@ -1558,10 +1558,14 @@ process of new products and innovative ideas is crucial for companies and
 policymakers. By integrating the theoretical foundations of Bass diffusion model
 and complex networks, as well as the micro-simulation capabilities of ABM, we
 are able to capture the subtle dynamics and complex interactions that are
-difficult to reveal in traditional aggregate models. I believe that through a
+difficult to reveal in traditional aggregate models. We believe that through a
 series of well-designed simulation experiments and comprehensive results
 analysis, we have not only successfully answered key research questions, but
 also revealed some thought-provoking new insights.
+
+=== Model effectiveness
+
+Our market diffusion model demonstrates high validity and reliability. It is based on the widely recognized Bass diffusion model and social network theory, and innovatively combines the ABM method to better capture individual behaviors and interactions in complex systems. The model is comprehensively designed, taking into account multiple key factors, including innovation coefficient, imitation coefficient, network structure, and consumer type. The model demonstrates its stability and explanatory power through the S-shaped adoption curve of single simulation results (@label:single_stat), neighbor statistics (@label:neighbor_stat_vis), detailed sensitivity analysis, network structure comparison, and intuitive visual verification. The findings are highly consistent with real-world observations and existing research, further confirming the validity of the model. In addition, the scalability of the model provides a good foundation for future research, allowing for the further addition of more consumer characteristics or complex decision rules.
 
 === Response to Research Questions
 
@@ -1659,15 +1663,17 @@ through simulation analysis.
 
 === Contributions
 
+
+
 === Practical significance
 
-Our study provides comprehensive and in-depth guidance for companies to formulate market strategies by exploring the impact of individual adoption probability, the influence of innovators and opinion leaders, consumer group heterogeneity, multi-factor interactions, and social network structure on innovation diffusion. First, we found that the impact of the innovation coefficient (p) and the imitation coefficient (q) on the diffusion process is dynamic, which means that companies need to adjust their marketing strategies according to different stages of the product life cycle. In the early stage of product launch, resources should be focused on improving the innovation coefficient, such as increasing advertising investment and providing product trials; while over time, it will be more effective to gradually shift to strategies that improve the imitation coefficient, such as encouraging users to share and build communities.
+Our research provides marketers with a comprehensive set of strategic guidelines, highlighting the importance of adopting dynamic and differentiated strategies based on product lifecycles and market characteristics. In the early stages of product launch, companies should focus resources on improving the innovation coefficient (p coefficient), such as increasing advertising investment and providing trial opportunities. Over time, the strategic focus should gradually shift to improving the imitation coefficient (q coefficient), such as encouraging users to share and build communities. This phased strategy not only optimizes resource allocation, but also effectively responds to market dynamics.
 
-Second, our analysis reveals the key role of innovators and influential individuals in accelerating product diffusion, especially when they account for a large proportion of the innovator group. This finding emphasizes the importance of companies investing in identifying and cultivating these key individuals, perhaps through precise influence marketing or KOL (key opinion leader) strategies. At the same time, we observed a complex interaction between the proportion of innovators and influencers, which suggests that companies need to carefully weigh whether to increase the overall number of innovators or concentrate resources on a small number of high-impact innovators when resources are limited.
+The key is to identify and cultivate influential innovators, who play a vital role in accelerating product diffusion. Companies should consider adopting a phased product launch strategy, first targeting these key individuals and attracting them through influencer marketing or KOL (key opinion leader) strategies. With limited resources, focusing resources on a small number of high-impact innovators may be more effective than trying to increase the overall number of innovators. In the long run, cultivating lasting relationships with these innovators, or even building "innovator communities" or "influencer networks," can become a continuous product development and promotion resource.
 
-Finally, our study highlights the important role of social network structure in the diffusion of innovation. The differences in diffusion dynamics between small-world and random networks suggest that companies need to adjust their marketing strategies according to the network characteristics of the target market. For example, in markets that are closer to small-world networks (such as close communities or professional fields), viral marketing or word-of-mouth marketing strategies may be more suitable; while in markets that are closer to random networks (such as mass consumer goods markets), broader marketing coverage may be required. In addition, understanding the dynamic changes in diffusion speed under different network structures can help companies better plan the various stages of the product life cycle and optimize resource allocation.
+Market segmentation and differentiation of network strategies is another key consideration. Different types of consumers play different roles in the diffusion process and require targeted strategies. Companies should adjust their marketing approach based on the network characteristics of the target market (closer to random networks or small-world networks). For example, in markets with obvious small-world network characteristics (such as close communities or professional fields), it may be more appropriate to adopt viral marketing or word-of-mouth marketing strategies and focus on improving the imitation coefficient. In contrast, in markets that are closer to random networks (such as mass consumer goods markets), a wider marketing coverage and a greater focus on improving the innovation coefficient may be required. This differentiation strategy also applies to the selection and use of social media platforms.
 
-In summary, our study provides companies with a comprehensive framework for understanding and exploiting the complex dynamics of innovation diffusion. By comprehensively considering individual behavior, social influence, and network structure, companies can develop more precise and effective market strategies. In today's rapidly changing and highly interconnected market environment, this in-depth understanding will become the key for companies to maintain their competitive advantage. It requires companies to take a more dynamic, systematic, and comprehensive approach to market analysis and strategic planning, and constantly adjust strategies to meet the needs of different stages and types of markets.
+Finally, our research emphasizes the importance of comprehensive optimization and dynamic adjustment. Companies should seek a balance between multiple factors rather than overinvesting in a single aspect. Identifying and exploiting the "critical point" of parameter combinations may be the key to accelerating market penetration. At the same time, companies need to be wary of the diminishing marginal benefits brought about by overinvestment. By building a more accurate market diffusion prediction model, companies can make more informed decisions and optimize resource allocation. This comprehensive approach is not only applicable to corporate strategies, but also has important implications for innovation policy making, which helps to create a balanced innovation ecosystem and accelerate the diffusion of technology or products on a wider scale.
 
 == Limitations and Future Research
 
