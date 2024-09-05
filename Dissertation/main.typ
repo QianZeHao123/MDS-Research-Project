@@ -42,7 +42,17 @@
 
 = Literature Review
 
-== Diffusion of Innovation and Bass Model
+This section presents the literature review part of the report and serves as the
+theoretical foundation for all subsequent research. In @label:DiffusionLiter, we
+introduce the Bass model and discuss its limitations. Following this, we explore
+agent-based modeling and its applications in complex systems and social science
+research in @label:LiterABM. @label:networkDiffusionLiter focuses on network
+structure and the role of influencers in innovation diffusion. We then examine
+the application of ABM methods to the Bass model in @label:applyABM. Finally,
+@label:conclusionLiter summarizes the literature review, leading to the research
+questions proposed in @label:questions.
+
+== Diffusion of Innovation and Bass Model <label:DiffusionLiter>
 
 === Innovation Diffusion Theory
 
@@ -143,7 +153,7 @@ Bass model potentially challenging in explaining and predicting certain market
 phenomena, especially when individual differences, social network structures,
 and complex adoption decisions need to be considered.
 
-== Agent-based Modelling and Simulation
+== Agent-based Modelling and Simulation <label:LiterABM>
 
 === Definition and Concept of Agent-Based Modelling
 
@@ -312,7 +322,7 @@ simulations, tools such as GAMA or MASON might be more appropriate. If
 scientific computing and graph theory related content are needed in the modeling
 process, it is more appropriate to use the MESA package.
 
-== Network Structure, Diffusion and Influencers
+== Network Structure, Diffusion and Influencers <label:networkDiffusionLiter>
 
 === Network topological structure
 
@@ -362,7 +372,7 @@ Their model considered the influence of opinion leaders and found that targeted
 publicity targeting opinion leaders can significantly improve the efficiency of
 information dissemination @xue_simulation_2016.
 
-== Apply ABM methods into the Bass model
+== Apply ABM methods into the Bass model <label:applyABM>
 
 === Existing research
 
@@ -413,7 +423,7 @@ innovation diffusion dynamics in actual markets. Therefore, it is necessary to
 develop more sophisticated and realistic ABM models to better understand and
 predict the innovation diffusion process.
 
-== Conclusion of Literature Review
+== Conclusion of Literature Review <label:conclusionLiter>
 
 By collating the literature review, the following ideas inspired our research
 report:
@@ -450,7 +460,7 @@ multi-dimensional modeling approach, we expect to be able to more
 comprehensively understand and predict the innovation diffusion dynamics in
 complex market environments.
 
-The following are our research proposals:
+And the following are our research proposals:
 
 + Study on the relationship between the probability distribution of individual
   acceptance of new products in the market and the product diffusion rate: Explore
