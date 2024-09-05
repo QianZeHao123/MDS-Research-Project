@@ -46,20 +46,22 @@
 
 === Innovation Diffusion Theory
 
-Innovation diffusion theory, proposed by Rogers @rogers_new_1976, the process of
-people accepting a new product usually follows the product life cycle theory and
-can be divided into several stages: introduction, growth, maturity and decline.
-In the introduction stage, only a few innovators (about 2.5% of the population)
-and early adopters (about 13.5%) will try the new product. As time goes by, the
-product enters the growth stage and more early majority (about 34%) begin to
-adopt it. In the maturity stage, most potential users (late majority about 34%)
-have adopted the product and the market tends to be saturated. Finally, it
-enters the decline stage, with only a few laggards (about 16%) still adopting it
-@chesbrough_beyond_2006. The adoption process at the individual level includes
-stages such as cognition, interest, evaluation, trial and final adoption
-@everett_m_rogers_diffusion_2003. Different types of consumers have different
-adoption times and can be divided into groups such as innovators, early
-adopters, early majority, late majority and laggards @diederen_innovation_2003.
+
+According to innovation diffusion theory, proposed by Rogers @rogers_new_1976,
+the process of people accepting a new product usually follows the product life
+cycle theory and can be divided into several stages: introduction, growth,
+maturity and decline. In the introduction stage, only a few innovators (about
+2.5% of the population) and early adopters (about 13.5%) will try the new
+product. As time goes by, the product enters the growth stage and more early
+majority (about 34%) begin to adopt it. In the maturity stage, most potential
+users (late majority about 34%) have adopted the product and the market tends to
+be saturated. Finally, it enters the decline stage, with only a few laggards
+(about 16%) still adopting it @chesbrough_beyond_2006. The adoption process at
+the individual level includes stages such as cognition, interest, evaluation,
+trial and final adoption @everett_m_rogers_diffusion_2003. Different types of
+consumers have different adoption times and can be divided into groups such as
+innovators, early adopters, early majority, late majority and laggards
+@diederen_innovation_2003.
 
 === Bass Diffusion Model
 
@@ -68,12 +70,26 @@ which new products or technologies are gradually accepted and popularized in
 society. The most famous and widely used model is the Bass diffusion model
 @bass_new_1969. Since Frank Bass proposed the new product diffusion model in
 1969, the Bass model has had a profound impact on the research of new product
-adoption and technology diffusion. The model describes the diffusion process of
-new products through a simple differential equation:
+adoption and technology diffusion. 
+
+In the Bass diffusion model, p (innovation coefficient) and q (imitation
+coefficient) are two core parameters. The p represents the probability that a
+potential adopter will adopt an innovation independently, reflecting external
+influences (such as advertising) and the behavior of early adopters, and is
+usually small (0.01-0.03). And q represents the probability that a potential adopter
+will adopt an innovation under the influence of existing adopters, reflecting
+internal influences (such as word of mouth) and follower behavior, and is
+usually large (0.3-0.5).
+
+The model describes the diffusion process of new products through a simple
+differential equation:
+
 $ "dF"(t) / "dt" = (p + q F(t))(1 - F(t)) $ <label:bass>
 
 where F(t) represents the cumulative adopter ratio, and p and q represent the
-innovation and imitation coefficients, respectively.
+innovation and imitation coefficients, respectively. 
+
+
 
 The solutuion of the Bass model is:
 $ F(t) = 1 - exp(-(p + q)t) / (1 + q/p exp(-(p + q)t)) $ <label:bassfull>
@@ -1705,27 +1721,81 @@ through simulation analysis.
 
 === Similarities and differences with bass model
 
-When using Agent-Based Modeling (ABM) to conduct simulation research on market diffusion, the conclusions obtained were consistent with the parameter analysis results of the traditional Bass model. That is, in the Bass innovation diffusion model, the size and relative relationship of the p and q parameters have a significant impact on the diffusion model. A larger p coefficient represents strong innovation or external influence, leading to early and rapid diffusion; a larger q coefficient represents strong imitation or internal influence, forming a typical S-shaped curve.
+When using Agent-Based Modeling (ABM) to conduct simulation research on market
+diffusion, the conclusions obtained were consistent with the parameter analysis
+results of the traditional Bass model. That is, in the Bass innovation diffusion
+model, the size and relative relationship of the p and q parameters have a
+significant impact on the diffusion model. A larger p coefficient represents
+strong innovation or external influence, leading to early and rapid diffusion; a
+larger q coefficient represents strong imitation or internal influence, forming
+a typical S-shaped curve.
 
-However, ABM simulations require significantly longer time steps than traditional Bass models. Through @label:bassfull, we can calculate the time steps required when the customer acceptance rate reaches 25%, 50%, and 75% respectively. For example, when p=0.01 and q=0.3, ABM simulation (Simulation 1, proportion of influencers = 10%, proportion of innovators = 1%, random network) shows that it takes 30, 35, and 39 time steps for the customer acceptance rate to reach 25%, 50%, and 75% respectively. This is a significantly longer time step compared to the results of the traditional Bass model (25%: 7.83, 50%: 11.18, 75%: 14.66). This research finding is consistent with some other results on the comparison of ABM between fully connected networks and Moore networks.
+However, ABM simulations require significantly longer time steps than
+traditional Bass models. Through @label:bassfull, we can calculate the time
+steps required when the customer acceptance rate reaches 25%, 50%, and 75%
+respectively. For example, when p=0.01 and q=0.3, ABM simulation (Simulation 1,
+proportion of influencers = 10%, proportion of innovators = 1%, random network)
+shows that it takes 30, 35, and 39 time steps for the customer acceptance rate
+to reach 25%, 50%, and 75% respectively. This is a significantly longer time
+step compared to the results of the traditional Bass model (25%: 7.83, 50%:
+11.18, 75%: 14.66). This research finding is consistent with some other results
+on the comparison of ABM between fully connected networks and Moore networks.
 
-This difference mainly stems from the differences in the inter-individual connection assumptions between the two models. The traditional Bass model adopts the "global knowledge" assumption, that is, each agent is affected by all other agents, which is equivalent to all agents in the market being connected to each other. Our ABM model considers more complex individual behaviors and network structures, and uses random networks and small-world networks that are closer to reality. This more detailed simulation, while increasing computational time, more accurately reflects diffusion dynamics in real markets. 
+This difference mainly stems from the differences in the inter-individual
+connection assumptions between the two models. The traditional Bass model adopts
+the "global knowledge" assumption, that is, each agent is affected by all other
+agents, which is equivalent to all agents in the market being connected to each
+other. Our ABM model considers more complex individual behaviors and network
+structures, and uses random networks and small-world networks that are closer to
+reality. This more detailed simulation, while increasing computational time,
+more accurately reflects diffusion dynamics in real markets. 
 
 === Similarities and differences with network diffusion
 
-Similar to many innovation diffusion studies based on ABM, this study also confirmed that different network structures have a significant impact on the diffusion process. In particular, the maximum degree in the network (i.e., the number of connections owned by the most connected node in the network) has a significant impact on the diffusion time. As shown in @label:neighbor_stat_vis, the maximum degree of random networks is usually higher than that of small-world networks. Our model simulations are consistent with this, showing that random networks do indeed have higher diffusion rates than small-world networks.
+Similar to many innovation diffusion studies based on ABM, this study also
+confirmed that different network structures have a significant impact on the
+diffusion process. In particular, the maximum degree in the network (i.e., the
+number of connections owned by the most connected node in the network) has a
+significant impact on the diffusion time. As shown in @label:neighbor_stat_vis,
+the maximum degree of random networks is usually higher than that of small-world
+networks. Our model simulations are consistent with this, showing that random
+networks do indeed have higher diffusion rates than small-world networks.
 
-In addition, our research extends further and introduces the key role of the "influencer". Through extensive experimental comparisons, we found that a higher proportion of influencers can significantly accelerate the diffusion of a product. This phenomenon is reflected in both small-world networks and random networks, and also reduces the difference in diffusion speed between the two networks.
+In addition, our research extends further and introduces the key role of the "influencer".
+Through extensive experimental comparisons, we found that a higher proportion of
+influencers can significantly accelerate the diffusion of a product. This
+phenomenon is reflected in both small-world networks and random networks, and
+also reduces the difference in diffusion speed between the two networks.
 
-There are several reasons for this: first, the efficiency of information dissemination has become higher. Influencers usually have more social connections and can spread information more quickly and widely. In any network structure, more influencers mean that information can reach every corner of the network faster; second, the existence of influencers may make up for the differences between different network structures. For example, in a small-world network, influencers can act as a "bridge" to connect different social groups, thereby accelerating the spread of information.
+There are several reasons for this: first, the efficiency of information
+dissemination has become higher. Influencers usually have more social
+connections and can spread information more quickly and widely. In any network
+structure, more influencers mean that information can reach every corner of the
+network faster; second, the existence of influencers may make up for the
+differences between different network structures. For example, in a small-world
+network, influencers can act as a "bridge" to connect different social groups,
+thereby accelerating the spread of information.
 
 == Contributions and Implications
 
 === Contributions
 
-This study provides a more comprehensive understanding of the market diffusion process by innovatively integrating the Bass diffusion model, complex network theory, and ABM methods. It not only explores the behaviors and interactions at the individual level, but also analyzes in detail the impact of different social network structures, key individuals (such as influencers and innovators), and multi-factor interactions on the diffusion process. This multidimensional analytical approach bridges the gap between theoretical models and actual market conditions, providing valuable insights for academics and practitioners.
+This study provides a more comprehensive understanding of the market diffusion
+process by innovatively integrating the Bass diffusion model, complex network
+theory, and ABM methods. It not only explores the behaviors and interactions at
+the individual level, but also analyzes in detail the impact of different social
+network structures, key individuals (such as influencers and innovators), and
+multi-factor interactions on the diffusion process. This multidimensional
+analytical approach bridges the gap between theoretical models and actual market
+conditions, providing valuable insights for academics and practitioners.
 
-More importantly, this study establishes a flexible and scalable market diffusion research platform. This platform allows researchers to explore the impact of various parameter combinations, such as different sizes of potential customer groups (N), different numbers of agents (Agent), and simultaneous changes in the innovation coefficient (p) and the imitation coefficient (q). This approach also provides a powerful tool for future researchers to further explore the complex dynamics of market diffusion.
+More importantly, this study establishes a flexible and scalable market
+diffusion research platform. This platform allows researchers to explore the
+impact of various parameter combinations, such as different sizes of potential
+customer groups (N), different numbers of agents (Agent), and simultaneous
+changes in the innovation coefficient (p) and the imitation coefficient (q).
+This approach also provides a powerful tool for future researchers to further
+explore the complex dynamics of market diffusion.
 
 === Practical significance
 
@@ -1779,27 +1849,74 @@ and accelerate the diffusion of technology or products on a wider scale.
 
 === Limitations of the Model
 
-Although this study has made significant progress in market diffusion modeling, it still has some limitations. First, the heterogeneity of agents is mainly reflected in two dimensions: whether they are innovators and whether they are influencers, which may oversimplify the complexity of consumers in reality. Secondly, the innovation coefficient (p) and imitation coefficient (q) in the model remain unchanged throughout the diffusion process and cannot reflect the dynamic changes in the market, especially the possible cyclical fluctuations in innovation effects. For example, the innovation effect of some products may show cyclical changes due to the influence of seasons, advertising cycles or economic cycles. Furthermore, the network structure is determined at the beginning of the simulation, without taking into account the dynamic evolution characteristics of social networks. And q may changes as well. Furthermore, despite using small-world networks and random networks, this may still not fully capture the more complex social network structure in the real world. Finally, the accuracy and generalization ability of the model may be limited due to the lack of validation with actual market data.
+Although this study has made significant progress in market diffusion modeling,
+it still has some limitations. First, the heterogeneity of agents is mainly
+reflected in two dimensions: whether they are innovators and whether they are
+influencers, which may oversimplify the complexity of consumers in reality.
+Secondly, the innovation coefficient (p) and imitation coefficient (q) in the
+model remain unchanged throughout the diffusion process and cannot reflect the
+dynamic changes in the market, especially the possible cyclical fluctuations in
+innovation effects. For example, the innovation effect of some products may show
+cyclical changes due to the influence of seasons, advertising cycles or economic
+cycles. Furthermore, the network structure is determined at the beginning of the
+simulation, without taking into account the dynamic evolution characteristics of
+social networks. And q may changes as well. Furthermore, despite using
+small-world networks and random networks, this may still not fully capture the
+more complex social network structure in the real world. Finally, the accuracy
+and generalization ability of the model may be limited due to the lack of
+validation with actual market data.
 
 === Future Research Directions
 
-Based on the limitations of the current study, future research can be expanded in several aspects. First, the heterogeneity of agents can be increased, for example, innovators can be further subdivided into high-probability adopters and relatively low-probability adopters to better reflect the diversity of consumer groups. Second, dynamically changing innovation coefficients and imitation coefficients can be introduced, especially considering the cyclical changes of the innovation coefficient. For example, the following model can be used to describe the cyclical changes of the innovation coefficient:
+Based on the limitations of the current study, future research can be expanded
+in several aspects. First, the heterogeneity of agents can be increased, for
+example, innovators can be further subdivided into high-probability adopters and
+relatively low-probability adopters to better reflect the diversity of consumer
+groups. Second, dynamically changing innovation coefficients and imitation
+coefficients can be introduced, especially considering the cyclical changes of
+the innovation coefficient. For example, the following model can be used to
+describe the cyclical changes of the innovation coefficient:
 
 $ p=p_"base"+A sin (omega t+phi) $
 
-Where $p_"base"$ is the basic innovation coefficient, $A$ is the amplitude, $omega$ is the angular frequency, $phi$ is the phase, and $t$ is the time. This model can better reflect the cyclical fluctuations in the real market, such as the impact of seasonal effects, advertising cycles or economic cycles on innovation adoption.
+Where $p_"base"$ is the basic innovation coefficient, $A$ is the amplitude, $omega$ is
+the angular frequency, $phi$ is the phase, and $t$ is the time. This model can
+better reflect the cyclical fluctuations in the real market, such as the impact
+of seasonal effects, advertising cycles or economic cycles on innovation
+adoption.
 
-For the imitation coefficient $q(t)$, we can keep the original growth-and-decay model, or design it to change periodically according to the specific situation:
+For the imitation coefficient $q(t)$, we can keep the original growth-and-decay
+model, or design it to change periodically according to the specific situation:
 
 $ q(t) = q_"max" (1 - exp(-mu t)) exp(-v t) $
 
-Furthermore, future models can incorporate dynamic changes in network structure, consider the birth or death of connections between nodes, and more accurately simulate the evolution of social networks. In addition, research can explore more complex network topologies, such as multi-layer networks or networks built based on actual social media data. Finally, future work should focus on collecting actual market data for model verification and calibration to improve the practicality and reliability of the model. These directions can not only improve current models, but also provide new perspectives and insights for innovation diffusion research, helping us better understand and predict the innovation diffusion process in complex market environments.
+Furthermore, future models can incorporate dynamic changes in network structure,
+consider the birth or death of connections between nodes, and more accurately
+simulate the evolution of social networks. In addition, research can explore
+more complex network topologies, such as multi-layer networks or networks built
+based on actual social media data. Finally, future work should focus on
+collecting actual market data for model verification and calibration to improve
+the practicality and reliability of the model. These directions can not only
+improve current models, but also provide new perspectives and insights for
+innovation diffusion research, helping us better understand and predict the
+innovation diffusion process in complex market environments.
 
 = Conclusion
 
-This study provides a more comprehensive understanding of the market diffusion process by innovatively integrating the Bass diffusion model, complex network theory, and agent-based model (ABM) methods. We deeply explore the impact of factors such as innovation coefficient, imitation coefficient, influencer ratio, consumer group heterogeneity, and social network structure on product diffusion, revealing the complex interactions between them. These findings enrich the traditional innovation diffusion theory.
+This study provides a more comprehensive understanding of the market diffusion
+process by innovatively integrating the Bass diffusion model, complex network
+theory, and agent-based model (ABM) methods. We deeply explore the impact of
+factors such as innovation coefficient, imitation coefficient, influencer ratio,
+consumer group heterogeneity, and social network structure on product diffusion,
+revealing the complex interactions between them. These findings enrich the
+traditional innovation diffusion theory.
 
-Although this study has some limitations in terms of agent heterogeneity and network dynamics, it has built a flexible and scalable platform for future research. We hope to have a deeper understanding of the innovation diffusion process based on the conclusions of this study, provide stronger support for corporate decision-making and policy making, and ultimately promote the rapid and effective dissemination of innovation on a wider range.
+Although this study has some limitations in terms of agent heterogeneity and
+network dynamics, it has built a flexible and scalable platform for future
+research. We hope to have a deeper understanding of the innovation diffusion
+process based on the conclusions of this study, provide stronger support for
+corporate decision-making and policy making, and ultimately promote the rapid
+and effective dissemination of innovation on a wider range.
 
 #bibliography("references.fixed.bib")
 
