@@ -46,7 +46,6 @@
 
 === Innovation Diffusion Theory
 
-
 According to innovation diffusion theory, proposed by Rogers @rogers_new_1976,
 the process of people accepting a new product usually follows the product life
 cycle theory and can be divided into several stages: introduction, growth,
@@ -82,20 +81,18 @@ reflecting internal influences (such as word of mouth) and follower behavior,
 and is usually large (0.3-0.5).
 
 The model describes the diffusion process of new products through a simple
-differential equation:
+differential equation (@label:bass):
 
 $ "dF"(t) / "dt" = (p + q F(t))(1 - F(t)) $ <label:bass>
 
 where F(t) represents the cumulative adopter ratio, and p and q represent the
 innovation and imitation coefficients, respectively. 
 
-
-
-The solutuion of the Bass model is:
+The solutuion of the Bass model is (@label:bassfull):
 $ F(t) = 1 - exp(-(p + q)t) / (1 + q/p exp(-(p + q)t)) $ <label:bassfull>
 
-The sales volume S(t) can be expressed as:
-$ "S"(t) = "m" "dF"(t) / "dt" $
+The sales volume S(t) can be expressed as (@label:sales):
+$ "S"(t) = "m" "dF"(t) / "dt" $ <label:sales>
 
 The core assumption of the Bass model is that the adoption of new products is
 the result of innovation and imitation, and the adoption probability is linearly
@@ -126,8 +123,25 @@ using Matplotlib (@label:NumPyRes):
 The influence of the Bass model is reflected in the fact that it has become the
 basis of many extended models. For example, the intergenerational diffusion
 model and the generalized Bass model developed by Bass are important
-developments based on the original model. These extensions further improve the
-scope of application and predictive power of the model.
+developments based on the original model @kim_bass_2015. These extensions
+further improve the scope of application and predictive power of the model.
+
+=== Limitations of the Bass Model
+
+Although the Bass model proposes an excellent equation to describe market
+diffusion, it still has some significant limitations. First, the model is based
+on the assumption of homogeneity, treating all potential adopters as the same
+and ignoring the diversity of individual decisions in real markets. Secondly,
+the Bass model assumes that the population is completely mixed and each
+individual can influence others equally, which ignores the complex structure of
+real social networks. Furthermore, because the model operates at the aggregate
+level, it cannot capture the decision-making processes and dynamics at the
+individual level. Finally, the Bass model oversimplifies the adoption process
+and fails to reflect the many complex factors that affect innovation diffusion
+in the real world @kumar_bass_nodate. These limitations make the traditional
+Bass model potentially challenging in explaining and predicting certain market
+phenomena, especially when individual differences, social network structures,
+and complex adoption decisions need to be considered.
 
 == Agent-based Modelling and Simulation
 
@@ -298,35 +312,7 @@ simulations, tools such as GAMA or MASON might be more appropriate. If
 scientific computing and graph theory related content are needed in the modeling
 process, it is more appropriate to use the MESA package.
 
-=== Building Philosophy of ABM
-
-Modeling plays a crucial role in scientific research, with diverse purposes
-including prediction, explanation, and description. Edmonds emphasize the
-importance of clarifying model purposes, as this influences modeling and
-validation strategies @edmonds_different_2019. In terms of modeling strategies,
-KISS (Keep It Simple, Stupid) and KIDS (Keep It Descriptive, Stupid) represent
-two distinct approaches. KISS aims for simplicity, while KIDS emphasizes
-descriptiveness and extensive evidence. Both strategies have their advantages
-and disadvantages, and the choice depends on factors such as research objectives
-and phenomenon complexity. As computational power increases and complex systems
-research advances, KIDS may gain favor in certain fields @edmonds_kiss_2005.
-However, regardless of the chosen strategy, it is crucial to clearly define the
-model's purpose and demonstrate its applicability. Researchers should flexibly
-select strategies based on specific circumstances to construct the most
-effective models.
-
-Bottom-up ABM starts from the micro-level, defining agents' attributes,
-behavioral rules, and interactions to simulate complex system dynamics
-@rixon_bottom-up_2005. This approach allows macro-level phenomena to emerge
-naturally from micro-level interactions, capturing the heterogeneity and
-adaptivity of the system @nageli_towards_2020. By constructing models from the
-individual level, ABM provides a unique perspective for understanding and
-explaining complex systems, demonstrating the advantages of bottom-up modeling
-approaches.
-
-
-
-== Network Structure and Diffusion
+== Network Structure, Diffusion and Influencers
 
 === Network topological structure
 
@@ -516,6 +502,16 @@ and market structure.
 
 === Model structure
 
+Modeling plays a crucial role in scientific research, with diverse purposes
+including prediction, explanation, and description. Edmonds emphasize the
+importance of clarifying model purposes, as this influences modeling and
+validation strategies @edmonds_different_2019. In terms of modeling strategies,
+KISS (Keep It Simple, Stupid) and KIDS (Keep It Descriptive, Stupid) represent
+two distinct approaches @edmonds_kiss_2005. KISS aims to simplify models by
+focusing on essential elements and relationships, so in our model we choose KISS
+principle. We will focus on the core factors that affect the diffusion process,
+such as agent types, social network structure, and diffusion mechanisms.
+
 Regarding the many ABM modeling frameworks mentioned in @label:platforms,
 considering that our model requires some support for complex networks and
 statistics on the agent status at each moment, We finally chose to develope with
@@ -537,12 +533,19 @@ The following UML shows the overview class diagram of the ABM model
   caption: "Class Diagram of the ABM Model",
 ) <label:class>
 
-We used a top-down modeling approach to design the customer (agent) and the
-market environment (BassModel). The characteristics (such as the type of the
-consumers, the probability of accepting the product, etc.) of the user will be
-introduced in detail in @label:agent_attr, and the simulation of the market
-environment (like the social network type, the market scale and the proportion
-of different kinds of consumer, etc.) will be presented in @label:network.
+We used a up approach to design the customer (agent) and the market environment
+(BassModel). Bottom-up ABM starts from the micro-level, defining agents'
+attributes, behavioral rules, and interactions to simulate complex system
+dynamics @rixon_bottom-up_2005. This approach allows macro-level phenomena to
+emerge naturally from micro-level interactions, capturing the heterogeneity and
+adaptivity of the system @nageli_towards_2020. By constructing models from the
+individual level, ABM provides a unique perspective for understanding and
+explaining complex systems, demonstrating the advantages of bottom-up modeling
+approaches. The characteristics (such as the type of the consumers, the
+probability of accepting the product, etc.) of the user will be introduced in
+detail in @label:agent_attr, and the simulation of the market environment (like
+the social network type, the market scale and the proportion of different kinds
+of consumer, etc.) will be presented in @label:network.
 
 == Agent Attributes <label:agent_attr>
  
@@ -1712,7 +1715,7 @@ model, the size and relative relationship of the p and q parameters have a
 significant impact on the diffusion model. A larger p coefficient represents
 strong innovation or external influence, leading to early and rapid diffusion; a
 larger q coefficient represents strong imitation or internal influence, forming
-a typical S-shaped curve.
+a typical S-shaped curve @orbach_parametric_2016.
 
 However, ABM simulations require significantly longer time steps than
 traditional Bass models. Through @label:bassfull, we can calculate the time
@@ -1723,7 +1726,8 @@ shows that it takes 30, 35, and 39 time steps for the customer acceptance rate
 to reach 25%, 50%, and 75% respectively. This is a significantly longer time
 step compared to the results of the traditional Bass model (25%: 7.83, 50%:
 11.18, 75%: 14.66). This research finding is consistent with some other results
-on the comparison of ABM between fully connected networks and Moore networks.
+on the comparison of ABM between fully connected networks and Moore networks
+@holanda_modelling_nodate.
 
 This difference mainly stems from the differences in the inter-individual
 connection assumptions between the two models. The traditional Bass model adopts
@@ -1740,10 +1744,11 @@ Similar to many innovation diffusion studies based on ABM, this study also
 confirmed that different network structures have a significant impact on the
 diffusion process. In particular, the maximum degree in the network (i.e., the
 number of connections owned by the most connected node in the network) has a
-significant impact on the diffusion time. As shown in @label:neighbor_stat_vis,
-the maximum degree of random networks is usually higher than that of small-world
-networks. Our model simulations are consistent with this, showing that random
-networks do indeed have higher diffusion rates than small-world networks.
+significant impact on the diffusion time @di_lucchio_bass_2024. As shown in
+@label:neighbor_stat_vis, the maximum degree of random networks is usually
+higher than that of small-world networks. Our model simulations are consistent
+with this, showing that random networks do indeed have higher diffusion rates
+than small-world networks.
 
 In addition, our research extends further and introduces the key role of the "influencer".
 Through extensive experimental comparisons, we found that a higher proportion of
