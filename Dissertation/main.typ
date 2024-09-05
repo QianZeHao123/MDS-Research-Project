@@ -81,14 +81,13 @@ society. The most famous and widely used model is the Bass diffusion model
 1969, the Bass model has had a profound impact on the research of new product
 adoption and technology diffusion. 
 
-In the Bass diffusion model, p (innovation coefficient) and q (imitation
-coefficient) are two core parameters. The p represents the probability that a
-potential adopter will adopt an innovation independently, reflecting external
-influences (such as advertising) and the behavior of early adopters, and is
-usually small (0.01-0.03). And q represents the probability that a potential
-adopter will adopt an innovation under the influence of existing adopters,
-reflecting internal influences (such as word of mouth) and follower behavior,
-and is usually large (0.3-0.5).
+In Bass's diffusion model, p (innovation coefficient) and q (imitation
+coefficient) are two basic parameters. P is the probability that a potential
+user will adopt the innovation independently, reflecting external influences
+(such as advertising) and early adopter behavior, and is usually small
+(0.01-0.03). And q is the probability that a potential user will adopt the
+innovation under the influence of existing users, reflecting internal influences
+(such as word of mouth) and copycat behavior, and is usually large (0.3-0.5).
 
 The model describes the diffusion process of new products through a simple
 differential equation (@label:bass):
@@ -104,9 +103,9 @@ $ F(t) = 1 - exp(-(p + q)t) / (1 + q/p exp(-(p + q)t)) $ <label:bassfull>
 The sales volume S(t) can be expressed as (@label:sales):
 $ "S"(t) = "m" "dF"(t) / "dt" $ <label:sales>
 
-The core assumption of the Bass model is that the adoption of new products is
-the result of innovation and imitation, and the adoption probability is linearly
-related to the number of adopters @boswijk_econometrics_2005.
+The core assumption of the Bass model is that the launch of new products is the
+result of innovation and imitation, and the probability of launch is linearly
+related to the number of adopters. @boswijk_econometrics_2005.
 
 The literature shows that the main advantage of the Bass model is that it can
 accurately predict the S-shaped curve and sales peak of new product sales, and
@@ -138,20 +137,20 @@ further improve the scope of application and predictive power of the model.
 
 === Limitations of the Bass Model
 
-Although the Bass model proposes an excellent equation to describe market
-diffusion, it still has some significant limitations. First, the model is based
-on the assumption of homogeneity, treating all potential adopters as the same
-and ignoring the diversity of individual decisions in real markets. Secondly,
-the Bass model assumes that the population is completely mixed and each
-individual can influence others equally, which ignores the complex structure of
-real social networks. Furthermore, because the model operates at the aggregate
-level, it cannot capture the decision-making processes and dynamics at the
-individual level. Finally, the Bass model oversimplifies the adoption process
-and fails to reflect the many complex factors that affect innovation diffusion
-in the real world @kumar_bass_nodate. These limitations make the traditional
-Bass model potentially challenging in explaining and predicting certain market
-phenomena, especially when individual differences, social network structures,
-and complex adoption decisions need to be considered.
+Although the Bass model proposes a good equation to describe market diffusion,
+it still has some obvious limitations. First, the model is based on the
+assumption of homogeneity, treating all potential adopters equally and ignoring
+the diversity of individual decisions in the actual market. Second, the Bass
+model assumes that the population is fully mixed and each individual can
+influence others equally, thus ignoring the complex structure of real social
+networks. In addition, because the model operates at the aggregate level, it
+cannot capture the decision-making process and dynamics at the individual level.
+Finally, the Bass model oversimplifies the adoption process and does not reflect
+the many complex factors that affect the diffusion of innovation in the real
+world @kumar_bass_nodate. These limitations make the traditional Bass model
+potentially challenging in explaining and predicting certain market phenomena,
+especially when individual differences, social network structures, and complex
+adoption decisions need to be considered.
 
 == Agent-based Modelling and Simulation <label:LiterABM>
 
@@ -245,20 +244,20 @@ improve efficiency through parallel computing, and can be integrated with other
 modeling methods to enhance overall modeling capabilities.
 
 However, ABM also faces some significant challenges and limitations. The most
-prominent one is the difficulty of verification @zheng_primer_2013. Due to the
-complexity of the model, it is difficult to fully verify the accuracy of the
-results. ABM often requires powerful computing resources, especially for
-large-scale or complex models @conte_agent-based_2014. It also requires large
-amounts of detailed process data for calibration and validation, which increases
-the difficulty of data collection. The complexity of parameter calibration and
-the highly technical requirements of the model are also important constraints.
-In addition, the complex interactions and emergent behaviors generated by ABM
-can be difficult to interpret, running the risk of producing arbitrary and
-inconsistent models. High computational cost, lack of unified modeling
-standards, and the possibility of overfitting are important issues to consider
-when using ABM. Despite these challenges, ABM remains a powerful tool for
-studying complex systems, but its use requires careful weighing of these
-advantages and disadvantages.
+important of these is the difficulty of validation @zheng_primer_2013. Due to
+the complexity of the model, it is difficult to fully verify the accuracy of the
+results. ABM usually requires powerful computing resources, especially for
+large-scale or complex models @conte_agent-based_2014. In addition, calibration
+and validation require a large amount of detailed process data, which makes data
+collection difficult. The complexity of parameter calibration and the high
+technical requirements of the model are also important limitations. In addition,
+the complex interactions and emergent behaviors produced by ABM can be difficult
+to interpret, and there is a risk of creating arbitrary and inconsistent models.
+The high computational cost, the lack of unified modeling standards, and the
+possibility of overfitting are important aspects to consider when using ABM.
+Despite these challenges, ABM remains a powerful tool for studying complex
+systems, but its use requires careful weighing of these advantages and
+disadvantages.
 
 ABM has been widely used in multiple disciplines, demonstrating its strong
 potential as an interdisciplinary research tool and its applicability in systems
@@ -1038,17 +1037,17 @@ diffusion model, allowing us to more accurately capture complex market dynamics.
   ),
 ) <label:scheduler>
 
-Batch running is an efficient way to run different parameter combinations in a
-single simulation script. Using Mesa's BatchRunner, we can systematically
-explore the impact of different parameter combinations on product diffusion.
-This method allows us to define parameter ranges (such as innovation
-coefficients and imitation coefficients), perform multiple repeated simulations,
-and automatically collect data. Through batch running, we can perform
-sensitivity analysis, understand how different market conditions affect product
-adoption, identify key parameters and critical points, and predict diffusion
-trends under various scenarios. At the same time, repeating the experiment for
-the same parameter combination takes a lot of time. CPU multiprocessors can
-solve this problem in the batch running function implementation to speed up the
+Batch execution is an effective way to execute different parameter combinations
+in a single simulation script. With Mesa's BatchRunner, we can systematically
+study the impact of different parameter combinations on product diffusion. The
+method allows us to define parameter ranges (such as innovation coefficients and
+imitation coefficients), perform multiple repeated simulations, and
+automatically collect data. With batch execution, we can perform sensitivity
+analysis to understand how different market conditions affect product adoption,
+identify key parameters and critical points, and predict diffusion trends under
+different scenarios. At the same time, repeating experiments for the same
+parameter combination takes a lot of time. CPU multiprocessors can solve this
+problem when implementing batch execution capabilities to speed up the
 simulation process.
 
 === Data Collection
