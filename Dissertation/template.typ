@@ -19,7 +19,8 @@
   set text(font: ("Linux Libertine", "SimSun"), lang: "en")
   // set text(font: "Arial", lang: "en")
   set heading(numbering: "1.1")
-   
+  set math.equation(numbering: "(1)", number-align: bottom)
+  
   set bibliography(title: "References", style: "apa")
    
   // Title row.
@@ -59,6 +60,5 @@
    
   // Main body.
   set par(justify: true)
-   
   body
 }
