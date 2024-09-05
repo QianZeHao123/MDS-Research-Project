@@ -76,10 +76,10 @@ In the Bass diffusion model, p (innovation coefficient) and q (imitation
 coefficient) are two core parameters. The p represents the probability that a
 potential adopter will adopt an innovation independently, reflecting external
 influences (such as advertising) and the behavior of early adopters, and is
-usually small (0.01-0.03). And q represents the probability that a potential adopter
-will adopt an innovation under the influence of existing adopters, reflecting
-internal influences (such as word of mouth) and follower behavior, and is
-usually large (0.3-0.5).
+usually small (0.01-0.03). And q represents the probability that a potential
+adopter will adopt an innovation under the influence of existing adopters,
+reflecting internal influences (such as word of mouth) and follower behavior,
+and is usually large (0.3-0.5).
 
 The model describes the diffusion process of new products through a simple
 differential equation:
@@ -114,7 +114,7 @@ using Matplotlib (@label:NumPyRes):
 
 #figure(
   caption: [
-    Bass Model Simulation with Python NumPy and Matplotlib
+    Visualization of Bass Model Simulation with Python
     #link(
       "https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20version%200.1/purebass.ipynb",
     )[[Code]]
@@ -188,23 +188,6 @@ interaction rules.
   ),
 )
 
-Refer to @badham_developing_2018 and Gilbert's ABM specification sheet
-@gilbert_abm_nodate for summarizing the ABM modeling process:
-
-+ Define model purpose and scope.
-+ Identify and characterize agents.
-+ Determine agent behavior theories and decision rules.
-+ Establish agent relationships and interaction theories.
-+ Design the environment.
-+ Choose an ABMS platform and development strategy.
-+ Implement learning and evolution strategies.
-+ Incorporate security mechanisms @ramchurn_trust_2004.
-+ Develop interaction protocols.
-+ Collect relevant agent data.
-+ Validate agent behavior models.
-+ Run simulations and analyze output results.
-+ Link micro-level agent behaviors to macro-level system behaviors.
-
 The setting of interaction rules, the selection of key parameters and the
 verification of results of ABM are the core links in the modeling process. The
 interaction rules are usually implemented by setting the behavior and
@@ -261,6 +244,12 @@ to understand and predict complex social, economic, and natural phenomena
 
 === Application of ABM in complex systems and social science research
 
+With the improvement of computing power, ABM may play an increasingly important
+role in social sciences. Rand proposed a guiding framework for rigorous use of
+agent-based modeling (ABM) in research, including using some existing model
+frameworks, determining the applicability of ABM, designing and building models,
+and model verification and validation @rand_agent-based_2011.
+
 ABM has demonstrated its unique advantages in the study of complex systems and
 can effectively reflect the complexity and adaptability of the system
 @zheng_primer_2013. Through simple local rules, ABM can generate complex system
@@ -288,9 +277,14 @@ computational models. This interdisciplinary approach not only promotes the
 development of social science theories, but also provides new perspectives and
 tools for the study of complex social systems.
 
-== Platforms and Building Philosophy of ABM
+=== Tools and Platforms for ABM Development <label:platforms>
 
-=== Platforms for ABM Development <label:platforms>
+UML enhances Agent-Based Modeling by providing higher abstraction, improved
+readability, and better modularity. It facilitates communication, documentation,
+and design pattern application while being language-independent. UML captures
+dynamic behaviors, promotes efficient modeling, and encourages professional
+practices, ultimately improving ABM quality and maintainability
+@bersini_uml_2011.
 
 ABM tools encompass a diverse range, including specialized platforms (e.g.,
 NetLogo, GAMA), large-scale development environments (e.g., Repast, MASON),
@@ -302,8 +296,7 @@ suitable, while experienced programmers may prefer tools integrated with their
 familiar languages. For projects requiring GIS integration or large-scale
 simulations, tools such as GAMA or MASON might be more appropriate. If
 scientific computing and graph theory related content are needed in the modeling
-process, it is more appropriate to use the MESA package
-@project_mesa_team_mesa_nodate.
+process, it is more appropriate to use the MESA package.
 
 === Building Philosophy of ABM
 
@@ -331,53 +324,7 @@ individual level, ABM provides a unique perspective for understanding and
 explaining complex systems, demonstrating the advantages of bottom-up modeling
 approaches.
 
-With the improvement of computing power, ABM may play an increasingly important
-role in social sciences. Rand proposed a guiding framework for rigorous use of
-agent-based modeling (ABM) in research, including using some existing model
-frameworks, determining the applicability of ABM, designing and building models,
-and model verification and validation @rand_agent-based_2011.
 
-UML also enhances Agent-Based Modeling by providing higher abstraction, improved
-readability, and better modularity. It facilitates communication, documentation,
-and design pattern application while being language-independent. UML captures
-dynamic behaviors, promotes efficient modeling, and encourages professional
-practices, ultimately improving ABM quality and maintainability
-@bersini_uml_2011.
-
-=== Apply ABM methods into the Bass model
-
-ABMs offer significant advantages for modeling innovation diffusion compared to
-traditional aggregate approaches. As illustrated in the reviewed papers, ABMs
-can capture heterogeneity among agents, such as different consumer types in
-electric vehicle adoption models @mehdizadeh_systematic_2022 or varying farmer
-characteristics in agricultural innovation studies @kiesling_agent-based_2012.
-They explicitly model interactions and social networks, like word-of-mouth
-effects in movie-going behavior @ratna_social_nodate or peer influence in solar
-panel adoption @rand_agentbased_2021. ABMs reveal emergent phenomena from
-micro-level behaviors, as seen in the diffusion of organic farming practices.
-They provide flexibility to incorporate various decision rules, spatial effects,
-and qualitative factors, exemplified by models integrating psychological
-theories like the Theory of Planned Behavior. By enabling analysis at both
-individual and aggregate levels, ABMs facilitate policy experimentation, as
-demonstrated in studies on energy technology adoption @nageli_towards_2020 and
-electric vehicle diffusion @zhang_empirically_2019. This approach allows for
-more realistic representation of complex social dynamics in innovation
-diffusion, providing valuable insights for both theoretical understanding and
-practical decision support.
-
-== Influencers and Opinion Leaders in Diffusion
-
-Influencers or opinion leaders are nodes in social networks that have a
-particularly important influence on the spread of information. They usually
-account for about 10% of network users, have a high degree of connectivity in
-the network, and play a key role in the widespread dissemination of information
-@turnbull_diffusion_1980. Studies have found that the probability of
-dissemination (p_op) of opinion leaders is often a key factor in successfully
-simulating the spread of real-world information @feder_role_2006. Ideally, early
-adopters are also opinion leaders, so that information can be spread most
-effectively. In general, influencers are widely connected and influential nodes
-in social networks, and play a disproportionately important role in the
-widespread dissemination of information @li_abem_2021.
 
 == Network Structure and Diffusion
 
@@ -400,6 +347,20 @@ different network structures. For example, the degree discount algorithm
 performs well in most networks, while the greedy algorithm works better in grid
 networks.
 
+=== Influencers and Opinion Leaders in Diffusion
+
+Influencers or opinion leaders are nodes in social networks that have a
+particularly important influence on the spread of information. They usually
+account for about 10% of network users, have a high degree of connectivity in
+the network, and play a key role in the widespread dissemination of information
+@turnbull_diffusion_1980. Studies have found that the probability of
+dissemination (p_op) of opinion leaders is often a key factor in successfully
+simulating the spread of real-world information @feder_role_2006. Ideally, early
+adopters are also opinion leaders, so that information can be spread most
+effectively. In general, influencers are widely connected and influential nodes
+in social networks, and play a disproportionately important role in the
+widespread dissemination of information @li_abem_2021.
+
 === Node Heterogeneity and Opinion Leaders
 
 Smith and Burow emphasize the importance of considering node heterogeneity for
@@ -414,6 +375,29 @@ Xue used ABM to study the spread of immunization policies in social networks.
 Their model considered the influence of opinion leaders and found that targeted
 publicity targeting opinion leaders can significantly improve the efficiency of
 information dissemination @xue_simulation_2016.
+
+== Apply ABM methods into the Bass model
+
+=== Existing research
+
+ABMs offer significant advantages for modeling innovation diffusion compared to
+traditional aggregate approaches. As illustrated in the reviewed papers, ABMs
+can capture heterogeneity among agents, such as different consumer types in
+electric vehicle adoption models @mehdizadeh_systematic_2022 or varying farmer
+characteristics in agricultural innovation studies @kiesling_agent-based_2012.
+They explicitly model interactions and social networks, like word-of-mouth
+effects in movie-going behavior @ratna_social_nodate or peer influence in solar
+panel adoption @rand_agentbased_2021. ABMs reveal emergent phenomena from
+micro-level behaviors, as seen in the diffusion of organic farming practices.
+They provide flexibility to incorporate various decision rules, spatial effects,
+and qualitative factors, exemplified by models integrating psychological
+theories like the Theory of Planned Behavior. By enabling analysis at both
+individual and aggregate levels, ABMs facilitate policy experimentation, as
+demonstrated in studies on energy technology adoption @nageli_towards_2020 and
+electric vehicle diffusion @zhang_empirically_2019. This approach allows for
+more realistic representation of complex social dynamics in innovation
+diffusion, providing valuable insights for both theoretical understanding and
+practical decision support.
 
 == Conclusion of Literature Review
 
