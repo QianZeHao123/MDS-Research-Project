@@ -70,16 +70,16 @@ society. The most famous and widely used model is the Bass diffusion model
 1969, the Bass model has had a profound impact on the research of new product
 adoption and technology diffusion. The model describes the diffusion process of
 new products through a simple differential equation:
-$ "dF"(t) / "dt" = (p + q F(t))(1 - F(t)) $
+$ "dF"(t) / "dt" = (p + q F(t))(1 - F(t)) $ <label:bass>
 
 where F(t) represents the cumulative adopter ratio, and p and q represent the
 innovation and imitation coefficients, respectively.
 
 The solutuion of the Bass model is:
-$F(t) = 1 - exp(-(p + q)t) / (1 + q/p exp(-(p + q)t))$
+$ F(t) = 1 - exp(-(p + q)t) / (1 + q/p exp(-(p + q)t)) $ <label:bassfull>
 
 The sales volume S(t) can be expressed as:
-$"S"(t) = "m" "dF"(t) / "dt"$
+$ "S"(t) = "m" "dF"(t) / "dt" $
 
 The core assumption of the Bass model is that the adoption of new products is
 the result of innovation and imitation, and the adoption probability is linearly
@@ -685,9 +685,9 @@ and a shorter average path length compared to the small world network:
 === Network Edge Equalization <label:netedgeequal>
 
 We hope to compare market diffusion in Erdős-Rényi random graphs and
-Watts-Strogatz small-world networks. To ensure comparability, We use a controlled
-variable approach, maintaining identical node counts (N) and total edge numbers
-across both network types.
+Watts-Strogatz small-world networks. To ensure comparability, We use a
+controlled variable approach, maintaining identical node counts (N) and total
+edge numbers across both network types.
 
 We achieve two different networks in which each node has the same number of
 connections with other nodes by adjusting the connection probability p in the
@@ -702,8 +702,8 @@ $ "edges" = 1 / 2 times N times k $
 By setting these two values equal, we can derive:
 $ p = k / (N-1) $
 
-For example, in our simulation, we set $N=1000$, $k=4$ in the small world network,
-so we can calculate $p approx 0.004004$ for random network.
+For example, in our simulation, we set $N=1000$, $k=4$ in the small world
+network, so we can calculate $p approx 0.004004$ for random network.
 
 This approach constructs network models with identical node counts and edge
 numbers but differing topological structures, providing an ideal platform for
@@ -839,14 +839,15 @@ comprehensiveness and rigor of the research. Each set of experiments is iterated
 stability of the results. Through this systematic and comprehensive experimental
 design, the foundation for the analysis and discussion of the results is laid.
 
-We designed a series of simulation experiments to explore the impact of different
-parameters on the product diffusion process. These experiments are divided into
-two categories, each containing 6 sets of experiments, conducted in small-world
-networks and random networks respectively. All experiments are based on a
-network of 1,000 agents with multiple iterations to eliminate the randomness of
-the simulation. Each set of experiments uses the same parameter settings in both
-network structures in order to directly compare the impact of the network
-structure. The following is a detailed description of the experimental design:
+We designed a series of simulation experiments to explore the impact of
+different parameters on the product diffusion process. These experiments are
+divided into two categories, each containing 6 sets of experiments, conducted in
+small-world networks and random networks respectively. All experiments are based
+on a network of 1,000 agents with multiple iterations to eliminate the
+randomness of the simulation. Each set of experiments uses the same parameter
+settings in both network structures in order to directly compare the impact of
+the network structure. The following is a detailed description of the
+experimental design:
 
 - Network Type: Small-world network experiments (simulations 1-6) and random
   network experiments (simulations 7-12)
@@ -1249,8 +1250,8 @@ red nodes, indicating that product adoption is close to saturation.
 === Research on Innovation Coefficient (p) <label:p_change_research>
 
 The innovation coefficient represents the tendency of consumers to independently
-adopt new products. In simulation 1 and 7, we used the control variable method to
-change only the value of the innovation coefficient p (ranging from 0.01 to
+adopt new products. In simulation 1 and 7, we used the control variable method
+to change only the value of the innovation coefficient p (ranging from 0.01 to
 0.03), while keeping all other parameters unchanged, including the imitation
 coefficient (q), network structure (q=0.3, proportion of innovators=0.01,
 proportion of influencers=0.1, N=1000), overall market size, etc. For each p
@@ -1327,11 +1328,11 @@ It can be seen that when p coefficient is relatively large
 However, when P is relatively small, the coverage interval after random network
 simulation is larger. 
 
-We think this result may be caused by the fact that small-world networks have the
-characteristics of high clustering coefficient and short average path length,
-which may lead to rapid local propagation of information and rapid reach to
-other parts of the network. In contrast, the connections of random networks are
-more evenly distributed, but lack strong local clustering. At the same time,
+We think this result may be caused by the fact that small-world networks have
+the characteristics of high clustering coefficient and short average path
+length, which may lead to rapid local propagation of information and rapid reach
+to other parts of the network. In contrast, the connections of random networks
+are more evenly distributed, but lack strong local clustering. At the same time,
 when the p coefficient is small, product adoption mainly depends on social
 propagation in the network (imitation effect) rather than independent adoption
 by individuals. In this case, the characteristics of the network structure
@@ -1565,7 +1566,20 @@ also revealed some thought-provoking new insights.
 
 === Model effectiveness
 
-Our market diffusion model demonstrates high validity and reliability. It is based on the widely recognized Bass diffusion model and social network theory, and innovatively combines the ABM method to better capture individual behaviors and interactions in complex systems. The model is comprehensively designed, taking into account multiple key factors, including innovation coefficient, imitation coefficient, network structure, and consumer type. The model demonstrates its stability and explanatory power through the S-shaped adoption curve of single simulation results (@label:single_stat), neighbor statistics (@label:neighbor_stat_vis), detailed sensitivity analysis, network structure comparison, and intuitive visual verification. The findings are highly consistent with real-world observations and existing research, further confirming the validity of the model. In addition, the scalability of the model provides a good foundation for future research, allowing for the further addition of more consumer characteristics or complex decision rules.
+Our market diffusion model demonstrates high validity and reliability. It is
+based on the widely recognized Bass diffusion model and social network theory,
+and innovatively combines the ABM method to better capture individual behaviors
+and interactions in complex systems. The model is comprehensively designed,
+taking into account multiple key factors, including innovation coefficient,
+imitation coefficient, network structure, and consumer type. The model
+demonstrates its stability and explanatory power through the S-shaped adoption
+curve of single simulation results (@label:single_stat), neighbor statistics
+(@label:neighbor_stat_vis), detailed sensitivity analysis, network structure
+comparison, and intuitive visual verification. The findings are highly
+consistent with real-world observations and existing research, further
+confirming the validity of the model. In addition, the scalability of the model
+provides a good foundation for future research, allowing for the further
+addition of more consumer characteristics or complex decision rules.
 
 === Response to Research Questions
 
@@ -1614,8 +1628,8 @@ through simulation analysis.
     [Innovators and opinion leaders play a key role in the product diffusion process,
       especially in today's age of social media. Our study further explores the impact
       of these key individuals on the speed of market penetration and diffusion by
-      adjusting the proportion of influential innovators in the model (Simulation 3, 4, 9 and 10). These findings
-      revealed several key insights:
+      adjusting the proportion of influential innovators in the model (Simulation 3,
+      4, 9 and 10). These findings revealed several key insights:
       - The importance of influential innovators: Our results strongly support the
         importance of identifying and engaging influential innovators. When these key
         individuals occupy a larger proportion of the innovator population, they can
@@ -1645,39 +1659,107 @@ through simulation analysis.
     study analyzes how the proportions of these different groups jointly shape the
     market penetration and diffusion rate of a product. Our analysis revealed the
     following key findings:
-    - Network structure plays an important regulatory role in the innovation diffusion process. In small-world networks, the role of influencers is more prominent, especially when the proportion of innovators is low. In contrast, random networks show greater sensitivity to the proportion of innovators. This suggests that different social network structures may influence the dynamic process of innovation diffusion.
-    - While imitators make up the majority of consumers, their behavior is strongly influenced by innovators and influencers. Changes in the proportion of mainly affect the speed of diffusion in the middle and late stages. This highlights the interaction and role between different types of consumers in the innovation diffusion process.
-]
+    - Network structure plays an important regulatory role in the innovation diffusion
+      process. In small-world networks, the role of influencers is more prominent,
+      especially when the proportion of innovators is low. In contrast, random
+      networks show greater sensitivity to the proportion of innovators. This suggests
+      that different social network structures may influence the dynamic process of
+      innovation diffusion.
+    - While imitators make up the majority of consumers, their behavior is strongly
+      influenced by innovators and influencers. Changes in the proportion of mainly
+      affect the speed of diffusion in the middle and late stages. This highlights the
+      interaction and role between different types of consumers in the innovation
+      diffusion process.
+  ]
 + Multi-factor interactions: How do the interactions of key parameters (e.g.,
   innovation coefficient, imitation coefficient, proportion of innovators,
   proportion of influencers) jointly affect diffusion dynamics? #rect[
-    - The interaction between the proportion of innovators and influencers shows a complex "substitution-complementary" relationship. When the proportion of innovators is low (less than 2%), increasing the proportion of influencers can significantly accelerate the diffusion process. However, when the proportion of innovators is high (bigger than 5%), an increase in the proportion of influencers has a relatively small effect on diffusion speed. This illustrates a dynamic interplay between innovators and influencers in different contexts.
-    - We observe that there is a certain "tipping point", when the ratio of innovators and influencers reaches a certain level at the same time, the rate of diffusion increases sharply. This critical point is roughly located in the area where the proportion of innovators is 3-4% and the proportion of influencers is 15-20%. Once this critical point is exceeded, the rate of diffusion of innovation will increase significantly.]
+    - The interaction between the proportion of innovators and influencers shows a
+      complex "substitution-complementary" relationship. When the proportion of
+      innovators is low (less than 2%), increasing the proportion of influencers can
+      significantly accelerate the diffusion process. However, when the proportion of
+      innovators is high (bigger than 5%), an increase in the proportion of
+      influencers has a relatively small effect on diffusion speed. This illustrates a
+      dynamic interplay between innovators and influencers in different contexts.
+    - We observe that there is a certain "tipping point", when the ratio of innovators
+      and influencers reaches a certain level at the same time, the rate of diffusion
+      increases sharply. This critical point is roughly located in the area where the
+      proportion of innovators is 3-4% and the proportion of influencers is 15-20%.
+      Once this critical point is exceeded, the rate of diffusion of innovation will
+      increase significantly.
+  ]
 + The impact of social network structure: How do different network structures
   (such as small-world networks and random networks) affect the spread and
-  adoption speed of product information? #rect[In our simulation experiments, we observed quite different results in different networks using the same parameter combination. The key findings are as follows:
-  - Overall diffusion speed difference: In the case of small parameters, the diffusion speed of random networks is significantly faster than that of small-world networks; in the case of large parameters, the diffusion speeds of the two networks are almost the same.
-  - Differences in simulation results: The results of random networks are more average, less variable, and will slowly aggregate as the parameters increase. The results of small-world networks will also be more concentrated, but the regularity is not strong.]
+  adoption speed of product information? #rect[In our simulation experiments, we observed quite different results in different
+    networks using the same parameter combination. The key findings are as follows:
+    - Overall diffusion speed difference: In the case of small parameters, the
+      diffusion speed of random networks is significantly faster than that of
+      small-world networks; in the case of large parameters, the diffusion speeds of
+      the two networks are almost the same.
+    - Differences in simulation results: The results of random networks are more
+      average, less variable, and will slowly aggregate as the parameters increase.
+      The results of small-world networks will also be more concentrated, but the
+      regularity is not strong.]
 
 == Comparison with Existing Research
 
+=== Similarities and differences with bass model
 
+
+
+=== Similarities and differences with network diffusion
 
 == Contributions and Implications
 
 === Contributions
 
-
-
 === Practical significance
 
-Our research provides marketers with a comprehensive set of strategic guidelines, highlighting the importance of adopting dynamic and differentiated strategies based on product lifecycles and market characteristics. In the early stages of product launch, companies should focus resources on improving the innovation coefficient (p coefficient), such as increasing advertising investment and providing trial opportunities. Over time, the strategic focus should gradually shift to improving the imitation coefficient (q coefficient), such as encouraging users to share and build communities. This phased strategy not only optimizes resource allocation, but also effectively responds to market dynamics.
+Our research provides marketers with a comprehensive set of strategic
+guidelines, highlighting the importance of adopting dynamic and differentiated
+strategies based on product lifecycles and market characteristics. In the early
+stages of product launch, companies should focus resources on improving the
+innovation coefficient (p coefficient), such as increasing advertising
+investment and providing trial opportunities. Over time, the strategic focus
+should gradually shift to improving the imitation coefficient (q coefficient),
+such as encouraging users to share and build communities. This phased strategy
+not only optimizes resource allocation, but also effectively responds to market
+dynamics.
 
-The key is to identify and cultivate influential innovators, who play a vital role in accelerating product diffusion. Companies should consider adopting a phased product launch strategy, first targeting these key individuals and attracting them through influencer marketing or KOL (key opinion leader) strategies. With limited resources, focusing resources on a small number of high-impact innovators may be more effective than trying to increase the overall number of innovators. In the long run, cultivating lasting relationships with these innovators, or even building "innovator communities" or "influencer networks," can become a continuous product development and promotion resource.
+The key is to identify and cultivate influential innovators, who play a vital
+role in accelerating product diffusion. Companies should consider adopting a
+phased product launch strategy, first targeting these key individuals and
+attracting them through influencer marketing or KOL (key opinion leader)
+strategies. With limited resources, focusing resources on a small number of
+high-impact innovators may be more effective than trying to increase the overall
+number of innovators. In the long run, cultivating lasting relationships with
+these innovators, or even building "innovator communities" or "influencer
+networks," can become a continuous product development and promotion resource.
 
-Market segmentation and differentiation of network strategies is another key consideration. Different types of consumers play different roles in the diffusion process and require targeted strategies. Companies should adjust their marketing approach based on the network characteristics of the target market (closer to random networks or small-world networks). For example, in markets with obvious small-world network characteristics (such as close communities or professional fields), it may be more appropriate to adopt viral marketing or word-of-mouth marketing strategies and focus on improving the imitation coefficient. In contrast, in markets that are closer to random networks (such as mass consumer goods markets), a wider marketing coverage and a greater focus on improving the innovation coefficient may be required. This differentiation strategy also applies to the selection and use of social media platforms.
+Market segmentation and differentiation of network strategies is another key
+consideration. Different types of consumers play different roles in the
+diffusion process and require targeted strategies. Companies should adjust their
+marketing approach based on the network characteristics of the target market
+(closer to random networks or small-world networks). For example, in markets
+with obvious small-world network characteristics (such as close communities or
+professional fields), it may be more appropriate to adopt viral marketing or
+word-of-mouth marketing strategies and focus on improving the imitation
+coefficient. In contrast, in markets that are closer to random networks (such as
+mass consumer goods markets), a wider marketing coverage and a greater focus on
+improving the innovation coefficient may be required. This differentiation
+strategy also applies to the selection and use of social media platforms.
 
-Finally, our research emphasizes the importance of comprehensive optimization and dynamic adjustment. Companies should seek a balance between multiple factors rather than overinvesting in a single aspect. Identifying and exploiting the "critical point" of parameter combinations may be the key to accelerating market penetration. At the same time, companies need to be wary of the diminishing marginal benefits brought about by overinvestment. By building a more accurate market diffusion prediction model, companies can make more informed decisions and optimize resource allocation. This comprehensive approach is not only applicable to corporate strategies, but also has important implications for innovation policy making, which helps to create a balanced innovation ecosystem and accelerate the diffusion of technology or products on a wider scale.
+Finally, our research emphasizes the importance of comprehensive optimization
+and dynamic adjustment. Companies should seek a balance between multiple factors
+rather than overinvesting in a single aspect. Identifying and exploiting the "critical
+point" of parameter combinations may be the key to accelerating market
+penetration. At the same time, companies need to be wary of the diminishing
+marginal benefits brought about by overinvestment. By building a more accurate
+market diffusion prediction model, companies can make more informed decisions
+and optimize resource allocation. This comprehensive approach is not only
+applicable to corporate strategies, but also has important implications for
+innovation policy making, which helps to create a balanced innovation ecosystem
+and accelerate the diffusion of technology or products on a wider scale.
 
 == Limitations and Future Research
 
