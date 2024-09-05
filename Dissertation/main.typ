@@ -1659,6 +1659,10 @@ through simulation analysis.
   - Overall diffusion speed difference: In the case of small parameters, the diffusion speed of random networks is significantly faster than that of small-world networks; in the case of large parameters, the diffusion speeds of the two networks are almost the same.
   - Differences in simulation results: The results of random networks are more average, less variable, and will slowly aggregate as the parameters increase. The results of small-world networks will also be more concentrated, but the regularity is not strong.]
 
+== Comparison with Existing Research
+
+
+
 == Contributions and Implications
 
 === Contributions
