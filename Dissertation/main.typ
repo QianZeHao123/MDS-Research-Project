@@ -385,6 +385,34 @@ more realistic representation of complex social dynamics in innovation
 diffusion, providing valuable insights for both theoretical understanding and
 practical decision support.
 
+=== Research Gap
+
+Although there have been some cases of using ABM to study innovation diffusion,
+these studies still have limitations in simulating social network structure and
+individual heterogeneity. Many existing studies use fully connected networks or
+relatively simplified network models to describe the relationships between
+agents. For example, some studies use Moore's neighborhood network (that is,
+each node is connected to 8 surrounding nodes in a two-dimensional space and
+establishes connections with other random nodes) to simulate the innovation
+diffusion process @holanda_modelling_nodate. Although this simplification is
+computationally more convenient, it may not fully reflect the complexity of real
+social networks.
+
+In addition, descriptions of node heterogeneity are often too simplistic, mainly
+dividing individuals into two categories: innovators and imitators. This binary
+classification ignores the key role of influencers in social networks.
+Influencers usually have extensive social connections and play an important role
+in information dissemination and innovation diffusion. In the real world, these
+highly connected individuals have a significant impact on the innovation
+diffusion process, but have not received sufficient attention in existing ABM
+research.
+
+This simplified treatment of network structure complexity and individual
+heterogeneity may result in the model being unable to accurately capture
+innovation diffusion dynamics in actual markets. Therefore, it is necessary to
+develop more sophisticated and realistic ABM models to better understand and
+predict the innovation diffusion process.
+
 == Conclusion of Literature Review
 
 By collating the literature review, the following ideas inspired our research
@@ -394,33 +422,33 @@ report:
 - The Bass diffusion model is widely used in innovation diffusion research, and
   ABMs offer advantages for modeling innovation diffusion compared to traditional
   aggregate approaches.
-- KISS and UML enhance ABM modeling by emphasizing simplicity and abstraction,
-  respectively.
 - Influencers and opinion leaders play a key role in information dissemination,
   and network structure and node heterogeneity significantly impact diffusion
   processes. Influencers mean they have more connections in the social network.
 - Network topological structure, node heterogeneity, and opinion leaders are
   important factors in information diffusion, and ABMs can capture these dynamics
   effectively.
+- The main limitation of ABM is that its modeling process requires strong
+  theoretical support and model verification is often challenging. In contrast,
+  although the Bass diffusion model can effectively describe macro market changes,
+  it is difficult to capture the heterogeneity and micro dynamics of individual
+  behavior.
 
 == Statement of research objectives <label:questions>
 
-This study is based on the theoretical foundation of the Bass diffusion model
-and combines the Agent-Based Modeling method to simulate the market diffusion
-process. The Bass model provides us with a theoretical framework to describe the
-diffusion process of innovative products in the market, which takes into account
-the role of external influences (such as advertising) and internal influences
-(such as word of mouth) on potential adopters. ABM allows us to simulate the
-behavior and interaction of individual consumers at the micro level, thereby
-exploring the various factors that affect the diffusion process at a more
-detailed scale.
-
-By combining the macro-forecasting capabilities of the Bass model with the
-micro-simulation advantages of ABM, this study aims to gain a more comprehensive
-and in-depth understanding of the diffusion dynamics of new products in the
-market. This approach allows us to consider factors such as individual
-differences, social network structure, and market heterogeneity while
-maintaining a grasp of overall market trends.
+This study aims to build an innovative market diffusion simulation framework
+that integrates the theoretical foundation of the Bass diffusion model and the
+micro-simulation capabilities of Agent-Based Modeling (ABM). This integrated
+approach allows us to simulate the behaviors and interactions of individual
+consumers more finely while considering both external and internal influences.
+Our model specifically introduces the key attribute of "influencer" to improve
+the representation of agent heterogeneity and more closely resemble the role
+distribution in real social networks. In addition, this study embeds agents in
+different types of network structures, aiming to deeply explore the impact of
+social network topology on the innovation diffusion process. Through this
+multi-dimensional modeling approach, we expect to be able to more
+comprehensively understand and predict the innovation diffusion dynamics in
+complex market environments.
 
 The following are our research proposals:
 
