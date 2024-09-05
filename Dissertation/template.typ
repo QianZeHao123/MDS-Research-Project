@@ -20,9 +20,7 @@
   // set text(font: "Arial", lang: "en")
   set heading(numbering: "1.1")
    
-  // set bibliography(title: "References", style: "chicago-author-date")
   set bibliography(title: "References", style: "apa")
-  // set bibliography(title: "References", style: "harvard-cite-them-right")
    
   // Title row.
   align(center)[
