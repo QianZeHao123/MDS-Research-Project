@@ -884,10 +884,10 @@ the network graph, achieved by @label:netedgeequal):
 
 == Model Input and Simulation Design
 
-=== Model Parameters
+=== Model Parameters <label:model_param>
 
-This Model contains several key parameters that together define the behavior and
-characteristics of the model. The following is a detailed description of these
+This Model contains several key parameters that together define the behavior (based on @label:agent_attr) and
+characteristics of the model (@label:network). The following is a detailed description of these
 parameters:
 
 #figure(
@@ -1019,7 +1019,7 @@ experimental design:
 The following pseudocode outlines the core initialization process for our
 Agent-Based Model (ABM) of product diffusion. This initialization sets up the
 fundamental structures and parameters necessary for simulating the Bass
-diffusion model in a network context. The code demonstrates how we establish the
+diffusion model in a network context (@label:model_param). The code demonstrates how we establish the
 agent population, create the social network, and prepare the model for
 simulation runs.
 
@@ -1188,6 +1188,8 @@ the complex diffusion process.
     table.hline(),
   ),
 )
+
+Finally, the data from the data collector will be written into a CSV file to facilitate a series of data analysis later. All the methods in this chapter will eventually be presented as a Python ABM platform. The code is available via GitHub: https://github.com/QianZeHao123/MDS-Research-Project/tree/main/ABM%20version%200.7
 
 = Simulation and Results Analysis <label:SimulationResults>
 
@@ -1617,7 +1619,7 @@ coefficient and innovator proportion. Each value shown in the figure is the
 average result of five independent simulations with the same parameter settings.
 
 #figure(
-  caption: [Innovator Analysis: Small-World vs. Random Networks],
+  caption: [Innovator Analysis: Small-World vs. Random Networks #link("https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%207%20visualization/7_p_prop_inno_research.Rmd")[[Code]]],
   p_prop_inno_image_grid,
 ) <label:p_prop_inno_research>
 
@@ -1669,7 +1671,7 @@ parameters.
 )
 
 #figure(
-  caption: [Proportion Analysis: Small-World vs. Random Networks],
+  caption: [Proportion Analysis: Small-World vs. Random Networks #link("https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%207%20visualization/8_prop_inf_inno_research.Rmd")[[Code]]],
   prop_inno_inf_image_grid,
 ) <label:prop_inno_inf_research>
 
