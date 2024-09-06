@@ -36,6 +36,8 @@
 
 = Introduction and Research Question
 
+#line(length: 100%)
+
 == Introduction
 
 == Research Background
@@ -116,6 +118,8 @@ This research report is structured as follows:
   contributions and limitations.
 
 = Literature Review <label:LiteratureReview>
+
+#line(length: 100%)
 
 This section presents the literature review part of the report and serves as the
 theoretical foundation for all subsequent research. In @label:DiffusionLiter, we
@@ -568,6 +572,8 @@ And the following are our research proposals:
   rate, peak time, saturation level, etc.).
 
 = Methodology <label:Methodology>
+
+#line(length: 100%)
 
 In this section, we will introduce the model framework (@label:framework), agent
 attributes (@label:agent_attr), social network structure (@label:network), and
@@ -1195,6 +1201,8 @@ All the methods in this chapter (@label:Methodology) will eventually be presente
 
 = Simulation and Results Analysis <label:SimulationResults>
 
+#line(length: 100%)
+
 In this section, we will present the simulation results of our market diffusion
 ABM in detail and conduct an in-depth analysis of these results. First, we will
 present detailed statistics of a single simulation (@label:single_stat_sim),
@@ -1696,6 +1704,8 @@ which the marginal benefit of increased diffusion speed decreases.
 
 = Discussion <label:Discussion>
 
+#line(length: 100%)
+
 == Summary of Findings
 
 In today's rapidly changing market environment, understanding the diffusion
@@ -2034,6 +2044,8 @@ Ultimately, this research will illuminate a crucial process, revealing how new i
 
 = Conclusion
 
+#line(length: 100%)
+
 This study provides a more comprehensive understanding of the market diffusion
 process by innovatively integrating the Bass diffusion model, complex network
 theory, and agent-based model (ABM) methods. We deeply explore the impact of
@@ -2052,6 +2064,8 @@ and effective dissemination of innovation on a wider range.
 #bibliography("references.fixed.bib")
 
 #set heading(numbering: none)
+
+#pagebreak()
 
 = Appendix A: Model Code
 
