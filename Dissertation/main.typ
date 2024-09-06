@@ -1101,37 +1101,34 @@ consistently and controllably. This approach is particularly suitable for
 simulating social processes that do not have a fixed order, such as our product
 diffusion model, allowing us to more accurately capture complex market dynamics.
 
-#figure(
-  caption: "Comparison of Agent Activation Order with and without Random Activation Scheduler",
-  table(
-    columns: (auto, auto, auto),
-    align: (center, center, center),
-    stroke: none,
-    table.hline(),
-    table.header(
-      [*Time Step*],
-      [*Without Random Activation*],
-      [*With Random Activation*],
-    ),
-    table.hline(),
-    [0],
-    [1 $arrow$ 2 $arrow$ 3 $arrow$ 4 $arrow$ 5],
-    [1 $arrow$ 2 $arrow$ 3 $arrow$ 4 $arrow$ 5],
-    [1],
-    [1 $arrow$ 2 $arrow$ 3 $arrow$ 4 $arrow$ 5],
-    [3 $arrow$ 1 $arrow$ 5 $arrow$ 2 $arrow$ 4],
-    [2],
-    [1 $arrow$ 2 $arrow$ 3 $arrow$ 4 $arrow$ 5],
-    [5 $arrow$ 4 $arrow$ 2 $arrow$ 1 $arrow$ 3],
-    [$dots$],
-    [1 $arrow$ 2 $arrow$ 3 $arrow$ 4 $arrow$ 5],
-    [2 $arrow$ 3 $arrow$ 1 $arrow$ 5 $arrow$ 4],
-    [n],
-    [1 $arrow$ 2 $arrow$ 3 $arrow$ 4 $arrow$ 5],
-    [4 $arrow$ 1 $arrow$ 3 $arrow$ 5 $arrow$ 2],
-    table.hline(),
+#figure(caption: "Agent Activation: Sequential vs. Random Scheduling", table(
+  columns: (auto, auto, auto),
+  align: (center, center, center),
+  stroke: none,
+  table.hline(),
+  table.header(
+    [*Time Step*],
+    [*Without Random Activation*],
+    [*With Random Activation*],
   ),
-) <label:scheduler>
+  table.hline(),
+  [0],
+  [1 $arrow$ 2 $arrow$ 3 $arrow$ 4 $arrow$ 5],
+  [1 $arrow$ 2 $arrow$ 3 $arrow$ 4 $arrow$ 5],
+  [1],
+  [1 $arrow$ 2 $arrow$ 3 $arrow$ 4 $arrow$ 5],
+  [3 $arrow$ 1 $arrow$ 5 $arrow$ 2 $arrow$ 4],
+  [2],
+  [1 $arrow$ 2 $arrow$ 3 $arrow$ 4 $arrow$ 5],
+  [5 $arrow$ 4 $arrow$ 2 $arrow$ 1 $arrow$ 3],
+  [$dots$],
+  [1 $arrow$ 2 $arrow$ 3 $arrow$ 4 $arrow$ 5],
+  [2 $arrow$ 3 $arrow$ 1 $arrow$ 5 $arrow$ 4],
+  [n],
+  [1 $arrow$ 2 $arrow$ 3 $arrow$ 4 $arrow$ 5],
+  [4 $arrow$ 1 $arrow$ 3 $arrow$ 5 $arrow$ 2],
+  table.hline(),
+)) <label:scheduler>
 
 Batch execution is an effective way to execute different parameter combinations
 in a single simulation script. With Mesa's BatchRunner, we can systematically
@@ -1408,7 +1405,7 @@ coefficient, multiple simulations were performed to ensure the stability and
 reliability of the results.
 
 #figure(
-  caption: [Boxplot of Different Innovator Adoption Probabilities in Small World Network #link(
+  caption: [Innovator Adoption in Small-World Networks #link(
       "https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%207%20visualization/3_p_change_research.Rmd",
     )[[Code]]],
   image("img/pic_p_change_research/box_sm.png", width: 80%),
@@ -1428,7 +1425,7 @@ as through effective marketing) to accelerate product adoption, especially in
 the early stages of market penetration.
 
 #figure(
-  caption: [Boxplot of Different Innovator Adoption Probabilities in Random Network #link(
+  caption: [Innovator Adoption in Random Networks #link(
       "https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%207%20visualization/3_p_change_research.Rmd",
     )[[Code]]],
   image("img/pic_p_change_research/box_random.png", width: 80%),
@@ -1452,7 +1449,7 @@ coefficient (p) is small, the adoption process in the random network
 )
 
 #figure(
-  caption: [A comparison about Line Plot of Different Innovator Adoption Probabilities #link(
+  caption: [Comparing Innovator Adoption Across Networks #link(
       "https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%207%20visualization/3_p_change_research.Rmd",
     )[[Code]]],
   combined_plot_grid,
@@ -1467,7 +1464,7 @@ red line represents the average number of steps at each p coefficient.
 
 #figure(
   image("img/pic_p_change_research/box_final.png", width: 80%),
-  caption: [Comparison of different p coefficient in two networks when 50% reaches #link(
+  caption: [p Coefficient Impact at 50% Adoption #link(
       "https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%207%20visualization/3_p_change_research.Rmd",
     )[[Code]]],
 ) <label:p_boxplot_final>
@@ -1504,8 +1501,9 @@ coefficients, thereby obtaining a purer q coefficient effect. The following
 users are accepted in two different networks:
 
 #figure(
-  caption: [The impact of imitation coefficient on product adoption rate in different
-    network structures],
+  caption: [Imitation Coefficient Effects Across Networks #link(
+      "https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%207%20visualization/4_q_change_research.Rmd",
+    )[[Code]]],
   image("img/pic_q_change_research/box_combine.png", width: 100%),
 ) <label:q_boxplot_sm>
 
@@ -1550,7 +1548,9 @@ influential innovators on the product diffusion process when the total
 proportion of innovators is fixed at 1% (p=0.01, q=0.03, N=1000):
 
 #figure(
-  caption: [The influencer proportion is fixed],
+  caption: [Scenario: Constant Innovator Percentage #link(
+      "https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%207%20visualization/5_research_same_innovator_prop.Rmd",
+    )[[Code]]],
   image("img/pic_same_inno_prop_research/box_combine.png", width: 100%),
 ) <label:inno_boxplot>
 
@@ -1572,7 +1572,9 @@ influential innovators on the product diffusion process, while fixing the total
 proportion of influencers at 10% (p=0.01, q=0.03, N=1000):
 
 #figure(
-  caption: [The innovator proportion is fixed],
+  caption: [Scenario: Constant Influencer Percentage #link(
+      "https://github.com/QianZeHao123/MDS-Research-Project/blob/main/ABM%20result%20visualization/model%20version%207%20visualization/6_research_same_influencer_prop.Rmd",
+    )[[Code]]],
   image("img/pic_same_inf_prop_research/box_combine.png", width: 100%),
 ) <label:inf_boxplot>
 
@@ -1629,7 +1631,7 @@ coefficient and innovator proportion. Each value shown in the figure is the
 average result of five independent simulations with the same parameter settings.
 
 #figure(
-  caption: [Research on Innovators of Small World Network (up) and Random Network (down)],
+  caption: [Innovator Analysis: Small-World vs. Random Networks],
   p_prop_inno_image_grid,
 ) <label:p_prop_inno_research>
 
@@ -1681,9 +1683,7 @@ parameters.
 )
 
 #figure(
-  caption: [Steps to Reach 25%, 50%, and 75% Adoption Rates with Different Innovator's
-    Proportion and Influencer's Proportion (small world network $arrow.t$, random
-    network $arrow.b$)],
+  caption: [Proportion Analysis: Small-World vs. Random Networks],
   prop_inno_inf_image_grid,
 ) <label:prop_inno_inf_research>
 
@@ -2064,6 +2064,75 @@ and effective dissemination of innovation on a wider range.
 
 = Appendix A: Model Code
 
-= Appendix B: Words Count
+Code Repository: https://github.com/QianZeHao123/MDS-Research-Project
 
-In this document, there are #total-words words all up.
+The latest code package for building the ABM model are available on the GitHub:
+https://github.com/QianZeHao123/MDS-Research-Project/tree/main/ABM%20version%200.7
+
+R code for ABM result visualization:
+https://github.com/QianZeHao123/MDS-Research-Project/tree/main/ABM%20result%20visualization/model%20version%207%20visualization
+
+= Appendix B: Simulation Results
+
+All the simulation results have been uploaded to the Durham University Data
+Onedrive and can be accessed through the following link:
+https://durhamuniversity-my.sharepoint.com/:f:/g/personal/bjsn39_durham_ac_uk/EupzzfgNaWhOsKlx1eNQG8kBSLIYDcKitluXy2zI3DQm5w?e=B2zcZB
+
+
+The simulation data files are very large, and the SHA256 hash values are provided. Every one can get the same visualization results by using the same data files. Check the SHA256 hash values to ensure the integrity of the data files.
+
+#figure(table(
+  columns: (auto, auto, auto,auto, auto, auto),
+  align: (left,left,left),
+  stroke: none,
+  table.hline(),
+  [*Index*],
+  [*File Size*],
+  [*SHA256*],
+  [*Index*],
+  [*File Size*],
+  [*SHA256*],
+  table.hline(),
+  [Simulation 1],
+  [2.15 GB],
+  [119d6a9402e0f.........],
+  [Simulation 2],
+  [2.16 GB],
+  [7d6939744ecc5.........],
+  [Simulation 3],
+  [2.14 GB],
+  [ba6baf54977e4.........],
+  [Simulation 4],
+  [2.12 GB],
+  [ae1012e2fb9d6.........],
+  [Simulation 5],
+  [4.24 GB],
+  [847f82a683097.........],
+  [Simulation 6],
+  [6.08 GB],
+  [6212be09019da.........],
+  [Simulation 7],
+  [2.09 GB],
+  [469fb7afe337b.........],
+  [Simulation 8],
+  [2.11 GB],
+  [9af3c3c57ba3c.........],
+  [Simulation 9],
+  [2.08 GB],
+  [377a86228b6df.........],
+  [Simulation 10],
+  [2.07 GB],
+  [6c5345b8e3f7f.........],
+  [Simulation 11],
+  [4.13 GB],
+  [f679d8e1b0051.........],
+  [Simulation 12],
+  [5.97 GB],
+  [378940c2e9aea.........],
+  table.hline(),
+))
+
+= Appendix C: Words Count
+
+The report is written in Typst. In this document, there are #total-words words
+all up (counted by #link("https://typst.app/universe/package/wordometer/")[wordometer]).
