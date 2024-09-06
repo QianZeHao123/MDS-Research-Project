@@ -111,26 +111,25 @@ for theoretical research and practical applications.
 == Structure of the Report
 
 This research report is structured as follows:
-- Literature Review: This section provides a comprehensive review of the
-  literature on innovation diffusion theory, the Bass model, agent-based modeling,
-  and network diffusion. It also discusses the limitations of the Bass model and
-  the advantages and challenges of ABM.
-- Methodology: This section introduces the model framework, agent attributes,
-  social network structure, and diffusion mechanism of the ABM model for market
-  diffusion research. It also presents the simulation plan design and the
-  implementation of the ABM model using the Mesa framework.
-- Results: This section presents the simulation results of the ABM model for
-  market diffusion research, including the impact of individual behavior, social
-  network structure, and market composition on the diffusion process. It also
-  discusses the interactive effects of multiple factors on product diffusion
-  dynamics.
-- Discussion: This section analyzes the simulation results, interprets the
-  findings, and discusses the implications for innovation diffusion research and
-  practical applications. It also highlights the research contributions and
-  limitations.
- 
+- Literature Review (@label:LiteratureReview): This section provides a
+  comprehensive review of the literature on innovation diffusion theory, the Bass
+  model, agent-based modeling, and network diffusion. It also discusses the
+  limitations of the Bass model and the advantages and challenges of ABM.
+- Methodology (@label:Methodology): This section introduces the model framework,
+  agent attributes, social network structure, and diffusion mechanism of the ABM
+  model for market diffusion research. It also presents the simulation plan design
+  and the implementation of the ABM model using the Mesa framework.
+- Simulation Results (@label:SimulationResults): This section presents the
+  simulation results of the ABM model for market diffusion research, including the
+  impact of individual behavior, social network structure, and market composition
+  on the diffusion process. It also discusses the interactive effects of multiple
+  factors on product diffusion dynamics.
+- Discussion (@label:Discussion): This section analyzes the simulation results,
+  interprets the findings, and discusses the implications for innovation diffusion
+  research and practical applications. It also highlights the research
+  contributions and limitations.
 
-= Literature Review
+= Literature Review <label:LiteratureReview>
 
 This section presents the literature review part of the report and serves as the
 theoretical foundation for all subsequent research. In @label:DiffusionLiter, we
@@ -301,22 +300,26 @@ interaction rules.
   ),
 )
 
-The setting of interaction rules, the selection of key parameters and the
-verification of results of ABM are the core links in the modeling process. The
-interaction rules are usually implemented by setting the behavior and
-topological structure of the agent, including the "Soup" model, cellular
-automata, Euclidean space, GIS and network topology @macal_agent-based_2009. The
-key parameters cover the personal characteristics and environmental factors of
-the agent @conte_agent-based_2014, and may also include specific belief
-parameters @ramchurn_trust_2004. The result verification methods include
-comparing the ABM simulation results with classical models or empirical data,
-adopting multi-level verification methods (calibrating parameters at the micro
-level and observing the reality of macro behavior) @conte_agent-based_2014, and
-using social network analysis and participatory simulation to obtain information
-about agent behavior and interaction. However, due to the complexity of ABM
-models, verification and calibration remain one of the main challenges, and the
-lack of standardized methods makes it difficult to interpret and analyze the
-results.
+In the ABM modeling process, the setting of interaction rules, the selection of
+key parameters and the verification of results are the core links. The
+interaction rules are usually implemented by setting the behavior and topology
+of the agent, including the "soup" model, cellular automaton, Euclidean space,
+GIS and network topology @macal_agent-based_2009. The key parameters cover the
+personal characteristics and environmental factors of the agent
+@conte_agent-based_2014, and sometimes also include specific belief parameters
+@ramchurn_trust_2004.
+
+There are various methods for verifying the results: ABM simulation results can
+be compared with classical models or empirical data, multi-level verification
+methods can be used (calibrating parameters at the micro level and observing the
+authenticity of macro behavior) @conte_agent-based_2014, or social network
+analysis and participatory simulation can be used to obtain agent behavior and
+interaction information.
+
+However, the complexity of ABM models makes verification and calibration still a
+major challenge. The lack of standardized methods also increases the difficulty
+of result interpretation and analysis. These issues still need to be further
+explored and resolved by researchers.
 
 === Pros and Cons of ABM and its Applications
 
@@ -357,38 +360,36 @@ to understand and predict complex social, economic, and natural phenomena
 
 === Application of ABM in complex systems and social science research
 
-With the improvement of computing power, ABM may play an increasingly important
-role in social sciences. Rand proposed a guiding framework for rigorous use of
-agent-based modeling (ABM) in research, including using some existing model
-frameworks, determining the applicability of ABM, designing and building models,
-and model verification and validation @rand_agent-based_2011.
+With the improvement of computing power, ABM is increasingly used in social
+sciences. Rand proposed a guiding framework for the rigorous use of ABM,
+covering key steps such as model selection, applicability assessment, design
+construction and verification @rand_agent-based_2011.
 
-ABM has demonstrated its unique advantages in the study of complex systems and
-can effectively reflect the complexity and adaptability of the system
+ABM has shown unique advantages in the study of complex systems and can
+effectively reflect the complexity and adaptability of the system
 @zheng_primer_2013. Through simple local rules, ABM can generate complex system
-behaviors, such as the collective behaviors exhibited by the "Life" and "Boids"
-models @macal_agent-based_2009. It can simulate multi-level systems, capture
-complex interactions between individuals and between individuals and the
-environment, and allow agents to adapt and change decisions over time
-@badham_developing_2018. ABM can also simulate the properties of complex
-adaptive systems (CAS), including nonlinearity, fluidity and diversity, as well
-as feedback mechanisms in the system, which together constitute the complexity
-and adaptability of the system @macal_tutorial_2005.
+behaviors, such as the collective behavior exhibited by the "Game of Life" and "Bird
+Flock" models @macal_agent-based_2009. It can not only simulate multi-level
+systems and capture complex interactions between individuals and between
+individuals and the environment, but also allow agents to adjust decisions over
+time @badham_developing_2018. ABM can also simulate the characteristics of
+complex adaptive systems (CAS), including nonlinearity, fluidity and diversity,
+as well as feedback mechanisms in the system @macal_tutorial_2005.
 
-In social science research, ABM provides an innovative way to integrate social
-science theory and computational methods. It applies decision theory in social
-science (such as the BDI model) to the decision rules of agents
-@zheng_primer_2013, and combines data mining and complex system modeling to
-create the emerging field of computational social science. ABM can transform
-behavioral theories into computable models and calibrate them using multiple
-data sources. It integrates the theoretical foundations of multiple disciplines,
-including complexity science, system science, and management science. Through
-models such as SugarScape, ABM successfully simulates complex social processes
-@macal_agent-based_2009. In addition, the application of ABM in trust models and
-other fields demonstrates its ability to combine sociological concepts with
-computational models. This interdisciplinary approach not only promotes the
-development of social science theories, but also provides new perspectives and
-tools for the study of complex social systems.
+In social science research, ABM provides an innovative way to integrate theory
+and computational methods. It applies social science decision theory (such as
+the BDI model) to the decision rules of agents @zheng_primer_2013, and creates
+the emerging field of computational social science by combining data mining and
+complex system modeling. ABM can transform behavioral theories into computable
+models and calibrate them using multi-source data. It integrates
+multidisciplinary theoretical foundations such as complexity science, system
+science, and management science. Through models such as SugarScape, ABM
+successfully simulates complex social processes @macal_agent-based_2009. The
+application of ABM in areas such as trust models demonstrates its ability to
+integrate sociological concepts with computational models. This
+interdisciplinary approach not only promotes the development of social science
+theories, but also provides new perspectives and tools for the study of complex
+social systems.
 
 === Tools and Platforms for ABM Development <label:platforms>
 
@@ -580,7 +581,7 @@ And the following are our research proposals:
   characteristics and key indicators of the diffusion process (such as diffusion
   rate, peak time, saturation level, etc.).
 
-= Methodology
+= Methodology <label:Methodology>
 
 In this section, we will introduce the model framework (@label:framework), agent
 attributes (@label:agent_attr), social network structure (@label:network), and
@@ -600,11 +601,16 @@ To address the research questions raised in @label:questions, we built a model
 framework for ABM market diffusion research. It is based on the following key
 assumptions:
 
+#figure(
+  image("img/abm_model/fourGroup.png", width: 80%),
+  caption: "Market Composition of the ABM Model",
+) <label:fourGroup>
+
 - Agent heterogeneity: Agents are divided into two main types: innovators and
   imitators, which are further divided into influential and non-influential
-  individuals. Each agent has unique attributes, including consumer type and
-  whether it is influenced. The transition from "non-adopted" to "adopted" for the
-  adoption status of a new product is irreversible.
+  individuals (@label:fourGroup). Each agent has unique attributes, including
+  consumer type and whether it is influenced. The transition from "non-adopted" to "adopted"
+  for the adoption status of a new product is irreversible.
 - Social network structure: Product information is spread through network
   connections, and the relationship between agents is constructed through
   small-world networks and random networks. On this basis, influential agents will
@@ -1200,7 +1206,20 @@ the complex diffusion process.
   ),
 )
 
-= Simulation and Results Analysis
+= Simulation and Results Analysis <label:SimulationResults>
+
+In this section, we will present the simulation results of our market diffusion
+ABM in detail and conduct an in-depth analysis of these results. First, we will
+present detailed statistics of a single simulation (@label:single_stat_sim),
+including adoption curves and network evolution visualizations, to intuitively
+demonstrate the diffusion process. Next, we will explore in depth the impact of
+different parameters on the diffusion process with sensitivity analysis,
+including the role of innovation coefficients (@label:p_change_research) and
+imitation coefficients (@label:q_change_research), the importance of the
+proportion of influencers (@label:inno_prop_research_sec), the impact of network
+structure, etc. We will also analyze multi-factor interactions to reveal how
+parameter combinations jointly shape the diffusion dynamics
+(@label:p_prop_inno_research_sec, @label:prop_inno_inf_research_sec_full).
 
 == Table of Neighbors between Influencers and Non-Influencers <label:neighbor_stat>
 
@@ -1295,7 +1314,7 @@ of influencers is much higher than that of non-influencers. It also proves that
 the network equilibrium achieved in @label:netedgeequal makes the two networks
 comparable.
 
-== Single Run Simulation Results Statistics
+== Single Run Simulation Results Statistics <label:single_stat_sim>
 
 === Statistics of Consumer's Adoption for single simulation
 
@@ -1468,7 +1487,7 @@ propagation in the network (imitation effect) rather than independent adoption
 by individuals. In this case, the characteristics of the network structure
 become more important.
 
-=== Research on Imitation Coefficient (q)
+=== Research on Imitation Coefficient (q) <label:q_change_research>
 
 Similar to the method of studying the innovation coefficient, in the study of
 the imitation coefficient q (simulation 2 and 8), other parameters are fixed
@@ -1507,16 +1526,22 @@ highlights that in the product adoption process, increasing the imitation
 coefficient may not be as effective as increasing the innovation coefficient,
 especially when pursuing significantly accelerated diffusion.
 
-== Research on the proportion of Influential Innovators
+== Research on the proportion of Influential Innovators <label:inno_prop_research_sec>
 
 This section will focus on the impact of the proportion of influential
-innovators on the product diffusion process. We will study this issue through
-two different experimental settings: First, we will study how the change in the
-proportion of influential innovators affects the product diffusion process when
-the total influencer proportion is fixed (simulation 3 and 9). Second, we will
-study how the change in the proportion of influential innovators affects the
-product diffusion process when the innovator proportion is fixed (simulation 4
-and 10).
+innovators on the product diffusion process (@label:inno_prop_research_zero),
+especially when the proportion of Influencial Innovators = 0. We will study this
+issue through two different experimental settings: First, we will study how the
+change in the proportion of influential innovators affects the product diffusion
+process when the total influencer proportion is fixed (simulation 3 and 9).
+Second, we will study how the change in the proportion of influential innovators
+affects the product diffusion process when the innovator proportion is fixed
+(simulation 4 and 10).
+
+#figure(
+  image("img/abm_model/fourzero.png", width: 80%),
+  caption: [Research on the proportion of influential innovators],
+) <label:inno_prop_research_zero>
 
 === Fixed proportion of Innovators
 
@@ -1525,7 +1550,7 @@ influential innovators on the product diffusion process when the total
 proportion of innovators is fixed at 1% (p=0.01, q=0.03, N=1000):
 
 #figure(
-  caption: [Keep the innovators' proportion changed when the influential proportion is fixed],
+  caption: [The influencer proportion is fixed],
   image("img/pic_same_inno_prop_research/box_combine.png", width: 100%),
 ) <label:inno_boxplot>
 
@@ -1547,8 +1572,7 @@ influential innovators on the product diffusion process, while fixing the total
 proportion of influencers at 10% (p=0.01, q=0.03, N=1000):
 
 #figure(
-  caption: [Keep the influential innovators' proportion changed when the innovator
-    proportion is fixed],
+  caption: [The innovator proportion is fixed],
   image("img/pic_same_inf_prop_research/box_combine.png", width: 100%),
 ) <label:inf_boxplot>
 
@@ -1629,7 +1653,7 @@ in the early stage, more emphasis may be placed on increasing the probability of
 acceptance; different network structures may require different Optimization
 strategy.
 
-== Change on Proportion of Influencers and Innovators
+== Change on Proportion of Influencers and Innovators <label:prop_inno_inf_research_sec_full>
 
 In order to gain a deeper understanding of the interaction between these two key
 factors, a heat map is also used here, as in @label:p_prop_inno_research_sec.
@@ -1680,7 +1704,7 @@ that network structure has an important impact on innovation diffusion. In
 addition, color "jumps" in the heat map suggest possible critical points beyond
 which the marginal benefit of increased diffusion speed decreases.
 
-= Discussion
+= Discussion <label:Discussion>
 
 == Summary of Findings
 
