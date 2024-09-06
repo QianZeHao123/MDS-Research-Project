@@ -648,7 +648,7 @@ The following UML shows the overview class diagram of the ABM model
 (@label:class):
 
 #figure(
-  image("img/abm_model/class.png", width: 50%),
+  image("img/abm_model/class.png", width: 90%),
   caption: "Class Diagram of the ABM Model",
 ) <label:class>
 
@@ -1189,7 +1189,9 @@ the complex diffusion process.
   ),
 )
 
-Finally, the data from the data collector will be written into a CSV file to facilitate a series of data analysis later. All the methods in this chapter will eventually be presented as a Python ABM platform. The code is available via GitHub: https://github.com/QianZeHao123/MDS-Research-Project/tree/main/ABM%20version%200.7
+Finally, the data from the data collector will be written into a CSV file to facilitate a series of data analysis later. 
+
+All the methods in this chapter (@label:Methodology) will eventually be presented as a Python ABM platform for market diffusion simulation. The code is available via GitHub: https://github.com/QianZeHao123/MDS-Research-Project/tree/main/ABM%20version%200.7
 
 = Simulation and Results Analysis <label:SimulationResults>
 
