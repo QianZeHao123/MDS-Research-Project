@@ -12,7 +12,22 @@
     name: "Supervisor Name: Jennifer Badham",
     email: "jennifer.badham@durham.ac.uk",
   ),),
-  abstract: lorem(59 + 11),
+  abstract: [This study based on Bass diffusion theory, combined with Agent-based modeling
+    and complex network theory, to explore the diffusion dynamics of innovative
+    products in the market. The research focuses on the impact of individual
+    behavior, social network structure, and market composition on the diffusion
+    process, aiming to provide deeper insights than traditional aggregation models.
+    We construct a flexible simulation framework that integrates key factors such as
+    innovation coefficient, imitation coefficient, proportion of consumer types, and
+    different social network structures. Through systematic parameter adjustments
+    and multiple simulations, the study reveals how these factors influence the
+    diffusion process individually and interactively. Results show that the ratio of
+    innovators to influential individuals has a significant impact on early adoption
+    rates, while social network structure moderates the speed and scope of
+    information dissemination. We also discovered "critical points" for certain
+    parameter combinations, beyond which the diffusion rate increases dramatically.
+    Furthermore, research highlights the importance of considering consumer
+    heterogeneity and network effects in accurately predicting market dynamics.],
   date: today.display("[month repr:long] [day], [year]"),
 )
 
@@ -38,7 +53,82 @@
 
 == Introduction
 
-== Research Question
+== Research Background
+In today's rapidly changing market environment, understanding the diffusion
+process of new products and innovative ideas is crucial for companies and
+policymakers. Traditional diffusion models, such as the Bass model, provide us
+with valuable insights at the macro level, but often fail to capture the
+complexity and diversity of individual behaviors at the micro level. With the
+increasing popularity and influence of social networks, the interaction and
+information dissemination between consumers have become more complex and
+dynamic. In this context, combining traditional diffusion theory with modern
+computational methods, especially using agent-based models (ABM) to simulate
+market diffusion processes, has become a very promising research direction.
+
+== Research Objectives
+
+This study aims to build an innovative market diffusion simulation framework
+that integrates the theoretical foundation of the Bass diffusion model and the
+micro-simulation capabilities of ABM. This integrated approach allows us to
+simulate the behavior and interactions of individual consumers more finely,
+while considering both external influences and internal influences. Our model
+specifically introduces the key attribute of "influencers" to improve the
+representation of agent heterogeneity and to be closer to the role distribution
+in real social networks. In addition, this study embeds agents in different
+types of network structures, aiming to deeply explore the impact of social
+network topology on the innovation diffusion process.
+
+== Research Significance
+
+This research is of great significance at both theoretical and practical levels:
+
+- Theoretical level: This study provides a new analytical framework for innovation
+  diffusion research by integrating traditional diffusion theory and modern
+  computational methods. This not only helps bridge the gap between macroscopic
+  diffusion models and microscopic individual behavior, but also provides a new
+  perspective for our understanding of emergent behavior in complex systems.
+- Practical level: For businesses and policymakers, more accurately predicting and
+  understanding the innovation diffusion process can bring significant economic
+  and social benefits. The results of this study can help companies optimize their
+  market strategies and more effectively identify and utilize key influencers,
+  thereby accelerating the market penetration of new products. For policymakers,
+  these insights can guide them to formulate more targeted innovation policies and
+  promote technological progress and economic development of the entire society.
+
+== Research Questions
+
+This study aims to explore the following key issues: the relationship between
+the probability distribution of individual acceptance in the market and the
+product diffusion rate; the role of innovators and opinion leaders in product
+diffusion; the impact of consumer group heterogeneity on product diffusion; the
+interaction of multiple factors (such as innovation coefficient, imitation
+coefficient, proportion of innovators, proportion of influencers) on product
+diffusion; and the impact of social network structure on product diffusion
+dynamics. By studying these issues, we hope to fully understand the innovation
+diffusion process in a complex market environment and provide valuable insights
+for theoretical research and practical applications.
+
+== Structure of the Report
+
+This research report is structured as follows:
+- Literature Review: This section provides a comprehensive review of the
+  literature on innovation diffusion theory, the Bass model, agent-based modeling,
+  and network diffusion. It also discusses the limitations of the Bass model and
+  the advantages and challenges of ABM.
+- Methodology: This section introduces the model framework, agent attributes,
+  social network structure, and diffusion mechanism of the ABM model for market
+  diffusion research. It also presents the simulation plan design and the
+  implementation of the ABM model using the Mesa framework.
+- Results: This section presents the simulation results of the ABM model for
+  market diffusion research, including the impact of individual behavior, social
+  network structure, and market composition on the diffusion process. It also
+  discusses the interactive effects of multiple factors on product diffusion
+  dynamics.
+- Discussion: This section analyzes the simulation results, interprets the
+  findings, and discusses the implications for innovation diffusion research and
+  practical applications. It also highlights the research contributions and
+  limitations.
+ 
 
 = Literature Review
 
