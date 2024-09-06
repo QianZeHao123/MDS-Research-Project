@@ -12,22 +12,7 @@
     name: "Supervisor Name: Jennifer Badham",
     email: "jennifer.badham@durham.ac.uk",
   ),),
-  abstract: [This study based on Bass diffusion theory, combined with Agent-based modeling
-    and complex network theory, to explore the diffusion dynamics of innovative
-    products in the market. The research focuses on the impact of individual
-    behavior, social network structure, and market composition on the diffusion
-    process, aiming to provide deeper insights than traditional aggregation models.
-    We construct a flexible simulation framework that integrates key factors such as
-    innovation coefficient, imitation coefficient, proportion of consumer types, and
-    different social network structures. Through systematic parameter adjustments
-    and multiple simulations, the study reveals how these factors influence the
-    diffusion process individually and interactively. Results show that the ratio of
-    innovators to influential individuals has a significant impact on early adoption
-    rates, while social network structure moderates the speed and scope of
-    information dissemination. We also discovered "critical points" for certain
-    parameter combinations, beyond which the diffusion rate increases dramatically.
-    Furthermore, research highlights the importance of considering consumer
-    heterogeneity and network effects in accurately predicting market dynamics.],
+  abstract: [This research is based on Bass diffusion theory, combined with Agent modeling and complex network theory, to explore the diffusion dynamics of innovative products in the market. The study focuses on the effects of individual behavior, social network structure, and market composition on the diffusion process, aiming to provide deeper insights than traditional aggregation models. We construct a flexible simulation framework that inherits key factors such as individual heterogeneity and different social network structures. Through systematic parameter tuning and multiple simulations, the study shows that the ratio of innovators to influential individuals has a significant impact on early adoption rates, while the social network structure regulates the speed and scope of information dissemination. Additionally, research highlights the importance of considering consumer heterogeneity and network effects in accurately predicting market dynamics.],
   date: today.display("[month repr:long] [day], [year]"),
 )
 
@@ -54,16 +39,17 @@
 == Introduction
 
 == Research Background
+
 In today's rapidly changing market environment, understanding the diffusion
 process of new products and innovative ideas is crucial for companies and
-policymakers. Traditional diffusion models, such as the Bass model, provide us
+policymakers. Traditional diffusion models, such as the Bass model @bass_new_1969, provide us
 with valuable insights at the macro level, but often fail to capture the
-complexity and diversity of individual behaviors at the micro level. With the
+complexity and diversity of individual behaviors at the micro level @kumar_bass_nodate. With the
 increasing popularity and influence of social networks, the interaction and
 information dissemination between consumers have become more complex and
 dynamic. In this context, combining traditional diffusion theory with modern
 computational methods, especially using agent-based models (ABM) to simulate
-market diffusion processes, has become a very promising research direction.
+market diffusion processes, has become a very promising research direction @holanda_modelling_nodate.
 
 == Research Objectives
 
@@ -1024,7 +1010,7 @@ experimental design:
 
 // The @label:simPlan below shows all the detailed parameters that need to be input for each simulation.
 
-// #simInfo
+#simInfo
 
 == Run the ABM Model <label:run>
 
@@ -2030,16 +2016,17 @@ model, or design it to change periodically according to the specific situation:
 
 $ q(t) = q_"max" (1 - exp(-mu t)) exp(-v t) $
 
-Furthermore, future models can incorporate dynamic changes in network structure,
-consider the birth or death of connections between nodes, and more accurately
-simulate the evolution of social networks. In addition, research can explore
-more complex network topologies, such as multi-layer networks or networks built
-based on actual social media data. Finally, future work should focus on
-collecting actual market data for model verification and calibration to improve
-the practicality and reliability of the model. These directions can not only
-improve current models, but also provide new perspectives and insights for
-innovation diffusion research, helping us better understand and predict the
-innovation diffusion process in complex market environments.
+In the future, our models can be improved by incorporating changes in how people connect with each other. By examining how new connections form or old ones disappear, we'll be able to demonstrate how social networks evolve over time in a more realistic manner. Additionally, studying more complex types of networks, such as those with multiple layers or networks constructed from real social media data, will bring our models closer to real-world scenarios.
+
+Collecting actual market data is crucial for verifying if our models are functioning correctly. This data, which can be used to enhance the accuracy of our models, will contribute to making them more useful and reliable. These novel approaches not only improve our current models but also provide fresh perspectives on how new ideas spread, deepening our understanding of this process.
+
+As we implement these changes, we'll likely uncover previously unseen aspects. New patterns in idea diffusion might emerge, and we could observe how minor alterations in people's connections potentially lead to significant shifts in how ideas propagate through a group.
+
+This work is particularly significant as markets become increasingly complex, necessitating better tools for comprehension. By enhancing our models, we'll be better equipped to predict outcomes in these intricate markets. These improved models have the potential to assist businesses in making more informed decisions, guide governments in crafting better policies, and enable researchers to explore new questions about idea diffusion.
+
+Ultimately, this research will illuminate a crucial process, revealing how new ideas and products permeate our society. The knowledge gained from this work can be applied in various ways, ranging from product improvement to addressing major societal challenges. As we delve deeper into understanding these complex systems, we open up possibilities for innovation and problem-solving that were previously out of reach.
+
+
 
 = Conclusion
 
@@ -2079,11 +2066,14 @@ Onedrive and can be accessed through the following link:
 https://durhamuniversity-my.sharepoint.com/:f:/g/personal/bjsn39_durham_ac_uk/EupzzfgNaWhOsKlx1eNQG8kBSLIYDcKitluXy2zI3DQm5w?e=B2zcZB
 
 
-The simulation data files are very large, and the SHA256 hash values are provided. Every one can get the same visualization results by using the same data files. Check the SHA256 hash values to ensure the integrity of the data files.
+The simulation data files are very large, and the SHA256 hash values are
+provided. Every one can get the same visualization results by using the same
+data files. Check the SHA256 hash values to ensure the integrity of the data
+files.
 
 #figure(table(
-  columns: (auto, auto, auto,auto, auto, auto),
-  align: (left,left,left),
+  columns: (auto, auto, auto, auto, auto, auto),
+  align: (left, left, left),
   stroke: none,
   table.hline(),
   [*Index*],
